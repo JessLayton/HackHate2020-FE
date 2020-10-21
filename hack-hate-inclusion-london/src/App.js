@@ -5,7 +5,7 @@ import Form from './components/form/Form'
 function App() {
   return (
     <>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Form/>
     </>
   );
