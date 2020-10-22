@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { ThemeProvider, CssBaseline } from '@material-ui/core';
+import { CssBaseline } from '@material-ui/core';
 
-import theme from './theme';
+import ThemeChanger from './ThemeChanger'
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+  <ThemeChanger>
     <CssBaseline />
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </ThemeProvider>,
+  </ThemeChanger>,
   // eslint-disable-next-line no-undef
   document.getElementById('root'),
 );
