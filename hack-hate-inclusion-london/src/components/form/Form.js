@@ -14,7 +14,7 @@ const Form = () => {
                 <p>1. Time Period</p>
                 <MonthPicker />
                 <p>2. Name of DDPO</p>
-                <AutocompleteField label="DDPO"/>
+                <AutocompleteField label="DDPO" />
                 <p>3. Boroughs Covered (Tick all that apply)</p>
                 <Checkboxes />
                 <p>4. Details of referrals / enquiries during this quarter - Please provide a number</p>

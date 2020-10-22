@@ -1,17 +1,16 @@
 import React from 'react';
 import CheckBox from './Checkbox';
-import boroughs from '../../boroughs';
+import boroughs from '../../resources/boroughs';
 
-const Checkboxes = () => {
-    
-       
+const Checkboxes = () => {    
+     
     const [checkedItems, setCheckedItems] = React.useState(boroughs); 
 
-    const handleChange = (event) => {
-        const item = event.target.name;
-        const isChecked = event.target.checked;
-        this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
-      }
+    const handleChange = (index) => {
+      const updatedCheckedItems = checkedItems;
+      updatedCheckedItems[index] = !checkedItems[index];
+      setCheckedItems(updatedCheckedItems);
+    }
    
        return (
            
@@ -19,7 +18,7 @@ const Checkboxes = () => {
             {
                 boroughs.map((borough, index) => (
                   
-                        <CheckBox label={borough.value} name={borough.value} checked={checkedItems[index]} onChange={() => handleChange(index)} />
+                        <CheckBox key={index} label={borough.value} name={borough.value} checked={checkedItems[index]} onChange={() => handleChange(index)} />
                   
                 ))
             }
