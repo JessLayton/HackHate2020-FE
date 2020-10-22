@@ -23,8 +23,6 @@ const CheckBox = ({ label }) => {
                 }
                 label={label}
             />
-
-
     );
 }
 
