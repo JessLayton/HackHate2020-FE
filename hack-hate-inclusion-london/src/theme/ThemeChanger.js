@@ -1,9 +1,9 @@
 import { MuiThemeProvider } from '@material-ui/core';
 import React from 'react';
 
-import { defaultTheme } from './theme';
+import { defaultTheme, lightTheme, darkTheme } from './theme';
 
-const themes = { defaultTheme };
+const themes = { defaultTheme, lightTheme, darkTheme };
 
 const getTheme = (themeName) => {
   return themes[themeName];
@@ -17,7 +17,7 @@ const ThemeChanger =  (props) => {
 
   const setThemeName = (newThemeName) => {
     localStorage.setItem('appTheme', newThemeName);
-    _setThemeName(themeName);
+    _setThemeName(newThemeName);
   };
 
   const theme = getTheme(themeName);

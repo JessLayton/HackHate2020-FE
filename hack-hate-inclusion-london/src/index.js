@@ -4,14 +4,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { CssBaseline } from '@material-ui/core';
 
-import ThemeChanger from './ThemeChanger'
+import ThemeChanger from './theme/ThemeChanger'
 
 ReactDOM.render(
   <ThemeChanger>
     <CssBaseline />
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </ThemeChanger>,
   // eslint-disable-next-line no-undef
   document.getElementById('root'),
