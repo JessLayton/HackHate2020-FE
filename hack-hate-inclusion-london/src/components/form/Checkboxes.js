@@ -1,4 +1,5 @@
 import React from "react";
+import FormGroup from "@material-ui/core/FormGroup";
 import CheckBox from "./Checkbox";
 import boroughs from "../../resources/boroughs";
 
@@ -12,7 +13,7 @@ const Checkboxes = () => {
   };
 
   return (
-    <>
+    <FormGroup>
       {boroughs.map((borough, index) => (
         <CheckBox
           key={index}
@@ -22,7 +23,7 @@ const Checkboxes = () => {
           onChange={() => handleChange(index)}
         />
       ))}
-    </>
+    </FormGroup>
   );
 };
 

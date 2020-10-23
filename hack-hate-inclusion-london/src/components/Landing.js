@@ -3,7 +3,9 @@ import Form from './form/Form';
 
 function Landing() {
     return (
+        <>
         <Form/>
+        </>
     )
 }
 

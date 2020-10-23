@@ -1,8 +1,9 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
+import { TextField, FormControl } from "@material-ui/core";
 
 const NumberField = ({ label }) => {
   return (
+    <FormControl>
     <TextField
       label={label}
       variant="filled"
@@ -11,6 +12,7 @@ const NumberField = ({ label }) => {
         shrink: true,
       }}
     />
+    </FormControl>
   );
 };
 

@@ -13,6 +13,3 @@ const caseAttributes = [
 
 ];
 export default caseAttributes;
-
-
-
