@@ -25,7 +25,7 @@ const Navbar = () => {
         <Toolbar>
           <Grid container direction='row' justify='space-between' alignItems='center'>
             <Grid item>
-              <Typography variant='h3'>
+              <Typography variant='h3' component='h1'>
                 Hack Hate 2020
               </Typography>
             </Grid>
