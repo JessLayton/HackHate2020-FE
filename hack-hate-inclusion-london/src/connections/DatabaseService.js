@@ -1,5 +1,14 @@
 import { post, get } from './DatabaseConnector';
 
+const submitForm = () => {
+  try {
+    const response = await post('/formData');
+    console.log(response);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const addOrganisation = (name) => {
   try {
     const response = await post('/ddpo', { name });
@@ -17,4 +26,4 @@ const getAllOrganisations = () => {
   }
 };
 
-export { addOrganisation, getAllOrganisations };
+export { submitForm, addOrganisation, getAllOrganisations };

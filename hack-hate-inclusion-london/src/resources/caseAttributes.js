@@ -1,15 +1,15 @@
 const caseAttributes = [
-  { value: "COVID - facemasks" },
-  { value: "Neighbour Dispute" },
-  { value: "Friend / Carer" },
-  { value: "Domestic Violence" },
-  { value: "Residential / Care Home" },
-  { value: "Verbal" },
-  { value: "Physical" },
-  { value: "In the home" },
-  { value: "In the street" },
-  { value: "Public transport" },
-  { value: "Other" },
+  { label: "COVID - facemasks" },
+  { label: "Neighbour Dispute" },
+  { label: "Friend / Carer" },
+  { label: "Domestic Violence" },
+  { label: "Residential / Care Home" },
+  { label: "Verbal" },
+  { label: "Physical" },
+  { label: "In the home" },
+  { label: "In the street" },
+  { label: "Public transport" },
+  { label: "Other" },
 
 ];
 export default caseAttributes;

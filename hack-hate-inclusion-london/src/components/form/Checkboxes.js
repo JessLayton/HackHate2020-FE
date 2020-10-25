@@ -17,8 +17,8 @@ const Checkboxes = () => {
       {boroughs.map((borough, index) => (
         <CheckBox
           key={index}
-          label={borough.value}
-          name={borough.value}
+          label={borough.label}
+          name={borough.label}
           checked={checkedItems[index]}
           onChange={() => handleChange(index)}
         />

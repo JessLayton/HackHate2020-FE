@@ -1,18 +1,24 @@
 import React from "react";
-import { TextField, FormControl } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
-const NumberField = ({ label }) => {
+const NumberField = ({ label, value, onChange, minValue, maxValue }) => {
+  const handleChange = (event) => {
+    onChange(label, event.target.value);
+  }
   return (
-    <FormControl>
+    <div>
     <TextField
+    value={value}
       label={label}
       variant="filled"
       type="number"
       InputLabelProps={{
         shrink: true,
       }}
+      InputProps={{ inputProps: { min: minValue, max: maxValue }}}
+      onChange={handleChange}
     />
-    </FormControl>
+    </div>
   );
 };
 

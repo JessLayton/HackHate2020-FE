@@ -1,13 +1,13 @@
 const gendersAndSexualities = [
-    { value: "Cis Male" },
-    { value: "Cis Female" },
-    { value: "Male" },
-    { value: "Female" },
-    { value: "Heterosexual" },
-    { value: "Homosexual" },
-    { value: "Bi-sexual" },
-    { value: "Lesbian" },
-    { value: "Other" },  
+    { label: "Cis Male" },
+    { label: "Cis Female" },
+    { label: "Male" },
+    { label: "Female" },
+    { label: "Heterosexual" },
+    { label: "Homosexual" },
+    { label: "Bi-sexual" },
+    { label: "Lesbian" },
+    { label: "Other" },  
   ];
   export default gendersAndSexualities;
   

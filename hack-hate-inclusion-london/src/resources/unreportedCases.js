@@ -1,10 +1,11 @@
 const unreportedCases = [
-    {value: "Not enough evidence"},
-    {value: "Client decision - I don't trust Police"},
-    {value: "Client decision - Police didn't believe me before"},
-    {value: "Client decision - I am afraid to go to the Authorities"},
-    {value: "Client decision - I just want the abuse to stop"},
-    {value: "Client decision - I need someone to talk to in confidence without making a report"}
+    {label: "Not enough evidence"},
+    {label: "Client decision - I don't trust Police"},
+    {label: "Client decision - Police didn't believe me before"},
+    {label: "Client decision - I am afraid to go to the Authorities"},
+    {label: "Client decision - I just want the abuse to stop"},
+    {label: "Client decision - I need someone to talk to in confidence without making a report"},
+    {label: "Other"},
 ]
 
 export default unreportedCases;
