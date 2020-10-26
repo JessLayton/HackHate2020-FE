@@ -1,16 +1,22 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
+import React from "react";
+import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
-export default function DatePickers() {
+const MonthPicker = ({ label, onChange, value }) => {
+  const handleChange = (date) => {
+    onChange(date);
+  };
 
   return (
-      <TextField
-        label="3 Month Period Starting:"
-        variant='filled'
-        type="month"
-        InputLabelProps={{
-          shrink: true,
-        }}
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <DatePicker
+        views={["month", "year"]}
+        label={label}
+        value={value}
+        onChange={handleChange}
       />
+    </MuiPickersUtilsProvider>
   );
-}
+};
+
+export default MonthPicker;

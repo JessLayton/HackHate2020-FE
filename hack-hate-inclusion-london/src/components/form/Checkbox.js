@@ -12,17 +12,16 @@ const CheckBox = ({ label }) => {
   };
 
   return (
-  
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={state.unchecked}
-            onChange={handleChange}
-            color="primary"
-          />
-        }
-        label={label}
-      />
+    <FormControlLabel
+      control={
+        <Checkbox
+          checked={state.unchecked}
+          onChange={handleChange}
+          color="primary"
+        />
+      }
+      label={label}
+    />
   );
 };
 

@@ -10,7 +10,7 @@ const AutocompleteField = ({ label, options }) => {
       getOptionLabel={(option) => option.name}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField {...params} label={label} variant="filled" />
+        <TextField {...params} label={label} />
       )}
     />
   );
