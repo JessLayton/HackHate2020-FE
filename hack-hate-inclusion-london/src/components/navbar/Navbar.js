@@ -5,11 +5,11 @@ import useTheme from '@material-ui/core/styles/useTheme';
 
 import SettingsDrawer from './SettingsDrawer';
 
-const useStyles = makeStyles((theme) => ({
-  navbarSpacer: {
+const useStyles = makeStyles({
+  navbarSpacer: theme => ({
     height: theme.navbar ? theme.navbar.height : '100px',
-  },
-}));
+  }),
+});
 
 const Navbar = () => {
   const theme = useTheme();

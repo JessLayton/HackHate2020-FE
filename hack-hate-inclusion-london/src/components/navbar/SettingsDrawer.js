@@ -1,27 +1,38 @@
 import React from 'react';
-import { Button, Drawer, Grid, makeStyles, Slider, Typography } from '@material-ui/core';
+import { Box, Button, Drawer, Grid, makeStyles, Slider, Typography, useTheme } from '@material-ui/core';
 
 import { themes } from '../../theme/theme';
 import fontFamilies from '../../theme/fontFamilies';
 import { ThemeContext } from '../../theme/ThemeChanger';
 import ThemeColourBoxes from './ThemeColourBoxes';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
   sideSpacing: {
-    marginLeft: '10px',
-    marginRight: '10px',
+    marginLeft: '12px',
+    marginRight: '12px',
+    width: '400px',
   },
-}));
+  titleBackground: (currentTheme) => ({
+    backgroundColor: currentTheme.palette.primary.main,
+    marginBottom: '10px',
+  }),
+  titleStyles: (currentTheme) => ({
+    paddingLeft: '20px',
+    paddingBottom: '10px',
+    paddingTop: '10px',
+    color: currentTheme.palette.primary.contrastText,
+  }),
+});
 
 const SettingsDrawer = ({ open, toggleOpen }) => {
-  const classes = useStyles();
+  const currentTheme = useTheme();
+  const classes = useStyles(currentTheme);
 
   const setThemeDetails = React.useContext(ThemeContext);
   const [fontSize, setFontSize] = React.useState(Number(localStorage.getItem('appFontSize') || 14));
 
   const handleFontSizeChange = (event, newValue) => {
     setFontSize(newValue);
-    setThemeDetails({ fontSize: newValue })
   };
 
     const getThemeOptions = () => (
@@ -49,35 +60,39 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
     const marks = [
       {
         value: 12,
-        label: 12,
+        label: '12px',
       },
       {
         value: 14,
-        label: 14,
+        label: '14px',
       },
       {
         value: 16,
-        label: 16,
+        label: '16px',
       },
       {
         value: 18,
-        label: 18,
+        label: '18px',
       },
       {
         value: 20,
-        label: 20,
+        label: '20px',
       },
     ];
     return (
-      <Slider
-        value={fontSize}
-        min={12}
-        max={20}
-        step={2}
-        marks={marks}
-        valueLabelDisplay='auto'
-        onChange={handleFontSizeChange}
-      />
+      <>
+        <Slider
+          value={fontSize}
+          min={12}
+          max={20}
+          step={2}
+          marks={marks}
+          onChange={handleFontSizeChange}
+        />
+        <Typography style={{ fontSize }}>
+          Regular font size
+        </Typography>
+      </>
   )};
 
   const getFontOptions = () => (
@@ -104,10 +119,10 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
 
   return (
     <Drawer open={open} anchor='right' onClose={toggleOpen}>
+      <Box className={classes.titleBackground}>
+        <Typography variant='h4' component='h2' className={classes.titleStyles}>User Settings</Typography>
+      </Box>
       <Grid container direction='column' spacing={2} className={classes.sideSpacing}>
-        <Grid item>
-          <Typography variant='h4' component='h2'>User Settings</Typography>
-        </Grid>
         <Grid item>
           {getThemeOptions()}
         </Grid>
