@@ -1,32 +1,39 @@
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import grey from '@material-ui/core/colors/grey';
 
 
 const defaultTheme = {
-
+  palette: {
+    primary: {
+      main: '#00bcd4',
+      contrastText: '#005b67'
+    },
+    secondary: {
+      main: '#005b67',
+    },
+    error: {
+      main: '#aa2e25',
+    },
+  },
 };
 
-const lightTheme = {
+const monoChrome = {
   palette: {
-    type: 'light',
     primary: {
-      main: '#4167B2'
-    }
-  }
-};
-
-const darkTheme = {
-  palette: {
-    type: "dark",
-    primary: {
-      main: "#000"
-    }
-  }
+      main: grey[900],
+    },
+    secondary: {
+      main: grey[50],
+    },
+    error: {
+      main: grey[400],
+    },
+  },
 };
 
 const themes = {
   defaultTheme,
-  lightTheme,
-  darkTheme
+  monoChrome,
 }
 
 const getTheme = (themeDetails) => {

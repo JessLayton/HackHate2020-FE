@@ -1,6 +1,8 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
+import useTheme from '@material-ui/core/styles/useTheme';
+
 import SettingsDrawer from './SettingsDrawer';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles(theme);
 
   const [settingsOpen, setSettingsOpen] = React.useState(false);
 
@@ -32,7 +35,7 @@ const Navbar = () => {
             <Grid item>
               <Tooltip title='Open user settings' aria-label='open user settings'>
                 <IconButton aria-label='user settings' onClick={handleToggleSettings}>
-                  <SettingsIcon/>
+                  <SettingsIcon color='secondary'/>
                 </IconButton>
               </Tooltip>
             </Grid>

@@ -24,7 +24,7 @@ const ThemeChanger =  (props) => {
       setFontSize(newThemeDetails.fontSize);
     }
     if (newThemeDetails.font) {
-      localStorage.setItem('appTheme', newThemeDetails.font);
+      localStorage.setItem('appFont', newThemeDetails.font);
       setFont(newThemeDetails.font);
     }
 
