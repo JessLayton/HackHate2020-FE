@@ -116,7 +116,7 @@ const Form = () => {
           <Grid item>
             <p>3. Boroughs Covered (Tick all that apply)</p>
           </Grid>
-          <Grid container item>
+          <Grid item>
             <Checkboxes />
           </Grid>
         </Grid>

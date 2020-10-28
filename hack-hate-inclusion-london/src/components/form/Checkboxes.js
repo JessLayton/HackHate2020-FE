@@ -19,13 +19,12 @@ const Checkboxes = () => {
   return (
     <FormGroup>
       <Grid container direction="row" spacing={1}>
-        <Grid container item direction="column" spacing={1}>
+        <Grid container item xs={12} sm={6} direction="column" spacing={1}>
           {boroughs
-            .slice(0, Math.floor(boroughs.length))
+            .slice(0, Math.floor(boroughs.length/2))
             .map((borough, index) => (
-              <Grid item>
+              <Grid item key={index}>
                 <CheckBox
-                  key={index}
                   label={borough.label}
                   name={borough.label}
                   checked={checkedItems[index]}
@@ -34,11 +33,10 @@ const Checkboxes = () => {
               </Grid>
             ))}
         </Grid>
-        <Grid container item direction="column" spacing={1}>
-          {boroughs.slice(Math.ceil(boroughs.length)).map((borough, index) => (
-            <Grid item>
+        <Grid container item xs ={12} sm={6} direction="column" spacing={1}>
+          {boroughs.slice(Math.ceil(boroughs.length/2)).map((borough, index) => (
+            <Grid item key={index}>
               <CheckBox
-                key={index}
                 label={borough.label}
                 name={borough.label}
                 checked={checkedItems[index]}
