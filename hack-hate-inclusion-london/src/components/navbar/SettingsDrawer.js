@@ -90,11 +90,24 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
           marks={marks}
           onChange={handleFontSizeChange}
         />
-        <MuiThemeProvider theme={getTheme({ fontSize: fontSize, font: currentTheme.typography.fontFamily })}>
-          <Typography>
-            Regular font size
-          </Typography>
-        </MuiThemeProvider>
+        <Grid container alignItems='center' spacing={2}>
+          <Grid item>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={() => {setThemeDetails({ fontSize })}}
+            >
+              Set Font Size
+            </Button>
+          </Grid>
+          <Grid item>
+            <MuiThemeProvider theme={getTheme({ fontSize: fontSize, font: currentTheme.typography.fontFamily })}>
+              <Typography>
+                Example font size
+              </Typography>
+            </MuiThemeProvider>
+          </Grid>
+        </Grid>
       </>
   )};
 
@@ -105,6 +118,7 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
           <Grid item>
             <Button
               variant='contained'
+              color='primary'
               onClick={() => {setThemeDetails({ font: fontFamilies[fontFamily] })}}
             >
               Set Font
