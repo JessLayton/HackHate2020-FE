@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, Button, Drawer, Grid, makeStyles, Slider, Typography, useTheme } from '@material-ui/core';
+import { Box, Button, Drawer, Grid, makeStyles, MuiThemeProvider, Slider, Typography, useTheme } from '@material-ui/core';
 
 import { themes } from '../../theme/theme';
 import fontFamilies from '../../theme/fontFamilies';
 import { ThemeContext } from '../../theme/ThemeChanger';
 import ThemeColourBoxes from './ThemeColourBoxes';
+import getTheme from '../../theme/theme';
 
 const useStyles = makeStyles({
   sideSpacing: {
@@ -89,9 +90,11 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
           marks={marks}
           onChange={handleFontSizeChange}
         />
-        <Typography style={{ fontSize }}>
-          Regular font size
-        </Typography>
+        <MuiThemeProvider theme={getTheme({ fontSize: fontSize, font: currentTheme.typography.fontFamily })}>
+          <Typography>
+            Regular font size
+          </Typography>
+        </MuiThemeProvider>
       </>
   )};
 
