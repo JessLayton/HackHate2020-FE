@@ -31,7 +31,7 @@ const boroughs = [
   { label: "Westminster", isChecked: false },
   {
     label:
-      "City of London (33rd principal division of Greater London - not a London borough)",
+      "City of London (Principal division of Greater London)",
     isChecked: false,
   },
 ];

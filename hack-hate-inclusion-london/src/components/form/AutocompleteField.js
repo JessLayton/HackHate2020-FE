@@ -18,6 +18,7 @@ const AutocompleteField = ({ options, onChange, value, placeholder }) => {
             shrink: true,
           }}
           variant="outlined"
+          required
           placeholder={placeholder}
         />
       )}

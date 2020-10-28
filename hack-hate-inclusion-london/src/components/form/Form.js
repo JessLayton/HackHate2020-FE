@@ -8,6 +8,7 @@ import Checkboxes from "./Checkboxes";
 import NumberFieldsGroup from "./NumberFieldsGroup";
 import TextBox from "./TextBox";
 import BigTextBox from "./BigTextBox";
+import ScrollUp from "./ScrollUp";
 
 import ethnicities from "../../resources/ethnicities";
 import referralsAndEnquiries from "../../resources/referralsAndEnquiries";
@@ -67,9 +68,15 @@ const Form = () => {
   const [outcomesCS, setOutcomesCS] = React.useState("");
   const [otherDetails, setOtherDetails] = React.useState("");
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert("Thank you for submitting");
+  };
+
   return (
-    <form className={classes.form}>
+    <form className={classes.form} onSubmit={handleSubmit}>
       <Grid container direction="column" spacing={7}>
+        <ScrollUp />
         <Grid container item spacing={2}>
           <Grid item>
             <p>1. Time Period (Quarterly)</p>
@@ -166,19 +173,23 @@ const Form = () => {
               with number of cases
             </p>
           </Grid>
-          <Grid container item direction="column" spacing={2}>
+          <Grid container item direction="column" spacing={1}>
+            <Grid item>
             <NumberFieldsGroup
               inputs={unreportedCases}
               value={unreportedCaseCount}
               onChange={setUnreportedCaseCount}
               minValue={0}
             />
+            </Grid>
+            <Grid item>
+            <TextBox
+              placeholder="Give Details"
+              value={otherDetails}
+              onChange={setOtherDetails}
+            />
+            </Grid>
           </Grid>
-          <TextBox
-            placeholder="Give Details"
-            value={otherDetails}
-            onChange={setOtherDetails}
-          />
         </Grid>
         <Divider />
         <Grid container item direction="column" spacing={2}>
@@ -275,7 +286,12 @@ const Form = () => {
         </Grid>
         <Divider />
         <Grid item>
-          <Button variant="contained" color="primary" size="large">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="large"
+          >
             Submit
           </Button>
         </Grid>
