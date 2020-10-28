@@ -103,7 +103,7 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
   );
 
   return (
-    <Drawer open={true} anchor='right' onClose={toggleOpen}>
+    <Drawer open={open} anchor='right' onClose={toggleOpen}>
       <Grid container direction='column' spacing={2} className={classes.sideSpacing}>
         <Grid item>
           <Typography variant='h4' component='h2'>User Settings</Typography>
