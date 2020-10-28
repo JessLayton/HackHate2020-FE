@@ -10,6 +10,5 @@ const caseAttributes = [
   { label: "In the street" },
   { label: "Public transport" },
   { label: "Other" },
-
 ];
 export default caseAttributes;

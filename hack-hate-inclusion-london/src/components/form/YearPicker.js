@@ -2,7 +2,7 @@ import React from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
-const MonthPicker = ({ label, onChange, value }) => {
+const YearPicker = ({ onChange, value }) => {
   const handleChange = (date) => {
     onChange(date);
   };
@@ -10,13 +10,13 @@ const MonthPicker = ({ label, onChange, value }) => {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <DatePicker
-        views={["month", "year"]}
-        label={label}
+        views={["year"]}
         value={value}
         onChange={handleChange}
+        inputVariant="outlined"
       />
     </MuiPickersUtilsProvider>
   );
 };
 
-export default MonthPicker;
+export default YearPicker;

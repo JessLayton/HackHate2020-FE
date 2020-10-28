@@ -1,10 +1,10 @@
 const DDPOs = [
-    {name: "Beans society"},
-    {name: "Little Alex Horne fund"},
-    {name: "Help - need cheese"},
-    {name: "There will be cake"},
-    {name: "Association of marmite haters"},
-    {name: "Sausages"},
+  { value: "Beans society" },
+  { value: "Little Alex Horne fund" },
+  { value: "Help - need cheese" },
+  { value: "There will be cake" },
+  { value: "Association of marmite haters" },
+  { value: "Sausages" },
 ];
 
 export default DDPOs;

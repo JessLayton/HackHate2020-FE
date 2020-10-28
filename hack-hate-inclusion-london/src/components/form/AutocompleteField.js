@@ -2,16 +2,26 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-const AutocompleteField = ({ label, options }) => {
+const AutocompleteField = ({ options, onChange, value, placeholder }) => {
+  const handleChange = () => {
+    onChange({ ...value });
+  };
   return (
     <Autocomplete
-      id="combo-box-demo"
       options={options}
-      getOptionLabel={(option) => option.name}
+      getOptionLabel={(option) => option.value}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField {...params} label={label} />
+        <TextField
+          {...params}          
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+          placeholder={placeholder}
+        />
       )}
+      onChange={handleChange}
     />
   );
 };
