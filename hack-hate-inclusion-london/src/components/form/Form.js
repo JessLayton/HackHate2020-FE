@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, Grid, makeStyles } from "@material-ui/core";
+import { Box, Button, Grid, makeStyles } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 
+import Brief from './Brief';
 import AutocompleteField from "./AutocompleteField";
 import YearPicker from "./YearPicker";
 import Checkboxes from "./Checkboxes";
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
   form: {
     marginLeft: "100px",
     marginRight: "100px",
+    marginTop: "20px"
   },
 });
 
@@ -51,6 +53,10 @@ const Form = () => {
   };
 
   return (
+    <>
+    <Box className={classes.form}>
+      <Brief className={classes.form}/>
+    </Box>
     <form className={classes.form} onSubmit={handleSubmit}>
       <Grid container direction="column" spacing={7}>
         <ScrollUp scrollStepInPx="50" delayInMs="16.66"/>
@@ -274,6 +280,7 @@ const Form = () => {
         </Grid>
       </Grid>
     </form>
+    </>
   );
 };
 
