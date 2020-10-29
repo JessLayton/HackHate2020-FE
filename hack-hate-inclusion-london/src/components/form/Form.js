@@ -65,7 +65,7 @@ const Form = () => {
                 value={dateRangeOption}
                 onChange={setDateRangeOption}
                 required
-                placeholder="Quarter"
+                label="Quarter"
               />
             </Grid>
             <Grid item>
@@ -84,7 +84,7 @@ const Form = () => {
               value={organisation}
               onChange={setOrganisation}
               required
-              placeholder="DDPO"
+              label="DDPO"
             />
           </Grid>
         </Grid>

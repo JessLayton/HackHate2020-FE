@@ -5,25 +5,35 @@ import NavigationIcon from "@material-ui/icons/Navigation";
 import Tooltip from "@material-ui/core/Tooltip";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
-  fab: {
+
+const useStyles = makeStyles({
+  fab: (show) => ({
     position: "fixed",
     bottom: "30px",
     right: "40px",
     color: "primary",
-  },
-}));
+    display: show ? 'flex' : 'none'
+  })
+});
 
-const ScrollUp = ({ scrollStepInPx, delayInMs }) => {
-  const classes = useStyles();
+const ScrollUp = () => {
+  const [showFAB, setShowFAB] = React.useState(false);
+  const classes = useStyles(showFAB);
 
-  const scrollStep = () => {  
-    window.scroll(0, window.pageYOffset - {scrollStepInPx});
+  const checkScroll = () => {
+    if (window.pageYOffset > 600) {
+            setShowFAB(true);
+    } else {
+      setShowFAB(false);
+    }        
+  }
+  
+  window.addEventListener("scroll", checkScroll);
+
+  const scrollToTop = () => {   
+    window.scrollTo({top: 0, behavior: "auto"});
   };
 
-  const scrollToTop = () => {    
-    scrollStep.apply(delayInMs);
-  };
 
   return (
     <Tooltip title="Back to top">

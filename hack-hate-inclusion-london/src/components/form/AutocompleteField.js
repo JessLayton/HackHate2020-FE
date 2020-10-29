@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-const AutocompleteField = ({ options, onChange, value, placeholder }) => {
+const AutocompleteField = ({ options, onChange, value, label }) => {
   const handleChange = () => {
     onChange({ ...value });
   };
@@ -19,7 +19,7 @@ const AutocompleteField = ({ options, onChange, value, placeholder }) => {
           }}
           variant="outlined"
           required
-          placeholder={placeholder}
+          label={label}
         />
       )}
       onChange={handleChange}

@@ -14,6 +14,8 @@ const YearPicker = ({ onChange, value }) => {
         value={value}
         onChange={handleChange}
         inputVariant="outlined"
+        label="Year"
+        required
       />
     </MuiPickersUtilsProvider>
   );
