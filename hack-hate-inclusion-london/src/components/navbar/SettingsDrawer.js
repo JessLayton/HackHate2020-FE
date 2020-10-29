@@ -6,12 +6,29 @@ import fontFamilies from '../../theme/fontFamilies';
 import { ThemeContext } from '../../theme/ThemeChanger';
 import ThemeColourBoxes from './ThemeColourBoxes';
 
+const drawerWidth = (fontSize) => {
+  switch(fontSize) {
+    case 12:
+      return '350px';
+    case 14:
+      return '400px';
+    case 16:
+      return '450px';
+    case 18:
+      return '500px';
+    case 20:
+      return '550px';
+    default:
+      return '500px'
+  }
+}
+
 const useStyles = makeStyles({
-  sideSpacing: {
+  sideSpacing: (currentTheme) => ({
     marginLeft: '20px',
     marginRight: '20px',
-    width: '420px',
-  },
+    width: drawerWidth(currentTheme.typography.fontSize),
+  }),
   titleBackground: (currentTheme) => ({
     backgroundColor: currentTheme.palette.primary.main,
     marginBottom: '10px',
@@ -138,12 +155,12 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
   );
 
   return (
-    <Drawer open={true} anchor='right' onClose={toggleOpen}>
+    <Drawer open={open} anchor='right' onClose={toggleOpen}>
       <Box className={classes.titleBackground}>
         <Typography variant='h4' component='h2' className={classes.titleStyles}>User Settings</Typography>
       </Box>
       <Grid container direction='column' spacing={4} className={classes.sideSpacing}>
-        <Grid container item spacing={1}>
+        <Grid container item spacing={1} direction='column'>
           <Grid item>
             <Typography variant='h6' component='h3'> App Colour Theme Options</Typography>
           </Grid>
@@ -157,7 +174,7 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
             {getFontSizeOptions()}
         </Grid>
         <Divider/>
-        <Grid container item spacing={1}>
+        <Grid container item spacing={1} direction='column'>
           <Grid item>
             <Typography variant='h6' component='h3'> App Font Style Options</Typography>
           </Grid>
