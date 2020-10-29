@@ -14,12 +14,15 @@ import ScrollUp from "./ScrollUp";
 import ethnicities, { initialisedEthnicities } from "../../resources/ethnicities";
 import referralsAndEnquiries, { initialisedReferralsAndEnquiries } from "../../resources/referralsAndEnquiries";
 import supportTypes, { initialisedSupportTypes } from "../../resources/supportTypes";
-import gendersAndSexualities, { initialisedGendersAndSexualities} from "../../resources/gendersAndSexualities";
 import caseAttributes, { initialisedCaseAttributes } from "../../resources/caseAttributes";
 import unreportedCases, { initialisedUnreportedCases } from "../../resources/unreportedCases";
 import ageGroups, { initialisedAgeGroups } from "../../resources/ageGroups";
 import DDPOs, { initialisedDDPOs } from "../../resources/DDPOs";
 import yearQuarters, { initialisedQuarters } from "../../resources/yearQuarters";
+import impairments, { initialisedImpairments } from "../../resources/impairments";
+import genders, { initialisedGenders } from "../../resources/gender";
+import sex, { initialisedSex } from "../../resources/sex";
+import sexualities, { initialisedSexualities } from "../../resources/sexualities";
 
 const useStyles = makeStyles({
   form: {
@@ -37,7 +40,10 @@ const Form = () => {
   const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
   const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(initialisedUnreportedCases);
   const [ethnicityCount, setEthnicityCount] = React.useState(initialisedEthnicities);
-  const [identityCount, setIdentityCount] = React.useState(initialisedGendersAndSexualities);
+  const [genderCount, setGenderCount] = React.useState(initialisedGenders);
+  const [sexCount, setSexCount] = React.useState(initialisedSex);
+  const [sexualitiesCount, setSexualitiesCount] = React.useState(initialisedSexualities);
+  const [impairmentCount, setImpairmentCount] = React.useState(initialisedImpairments);
   const [caseAttributeCount, setAttributeCount] = React.useState(initialisedCaseAttributes);
   const [ageCount, setAgeCount] = React.useState(initialisedAgeGroups);
 
@@ -191,7 +197,7 @@ const Form = () => {
         <Divider />
         <Grid container item direction="column" spacing={2}>
           <Grid item>
-            <p>9. Ethnicity of persons being supported</p>
+            <p>9. Ethnicity of persons being supported - Please provide a number</p>
           </Grid>
           <Grid container item direction="column" spacing={2}>
             <NumberFieldsGroup
@@ -205,15 +211,56 @@ const Form = () => {
         <Divider />
         <Grid container item direction="column" spacing={2}>
           <Grid item>
-            <p>10. Gender / Sexual orientation of persons supported, by %</p>
+            <p>10. Service users which identify as male or female - Please provide a number</p>
           </Grid>
           <Grid container item direction="column" spacing={2}>
             <NumberFieldsGroup
-              inputs={gendersAndSexualities}
-              value={identityCount}
-              onChange={setIdentityCount}
+              inputs={sex}
+              value={sexCount}
+              onChange={setSexCount}
               minValue={0}
-              maxValue={100}
+            />
+          </Grid>
+        </Grid>
+        <Divider />
+        <Grid container item direction="column" spacing={2}>
+          <Grid item>
+            <p>11. Users which describe sexual orientation as the following terms - Please provide a number</p>
+          </Grid>
+          <Grid container item direction="column" spacing={2}>
+            <NumberFieldsGroup
+              inputs={sexualities}
+              value={sexualitiesCount}
+              onChange={setSexualitiesCount}
+              minValue={0}
+            />
+          </Grid>
+        </Grid>
+        <Divider />
+        <Grid container item direction="column" spacing={2}>
+          <Grid item>
+            <p>12.Service users which identify as the same gender to the sex they were registered with at birth - Please provide a number</p>
+          </Grid>
+          <Grid container item direction="column" spacing={2}>
+            <NumberFieldsGroup
+              inputs={genders}
+              value={genderCount}
+              onChange={setGenderCount}
+              minValue={0}
+            />
+          </Grid>
+        </Grid>
+        <Divider />
+        <Grid container item direction="column" spacing={2}>
+          <Grid item>
+            <p>13. Service users with the following disabilities or impairments - Please provide a number</p>
+          </Grid>
+          <Grid container item direction="column" spacing={2}>
+            <NumberFieldsGroup
+              inputs={impairments}
+              value={impairmentCount}
+              onChange={setImpairmentCount}
+              minValue={0}
             />
           </Grid>
         </Grid>
@@ -221,7 +268,7 @@ const Form = () => {
         <Grid container item direction="column" spacing={2}>
           <Grid item>
             <p>
-              11. Of the cases being dealt with, how many were related to the
+              14. Of the cases being dealt with, how many were related to the
               below - Please provide a number
             </p>
           </Grid>
@@ -238,7 +285,7 @@ const Form = () => {
         <Grid container item direction="column" spacing={2}>
           <Grid item>
             <p>
-              12. Brief case study highlighting emotional impact of Disability
+              15. Brief case study highlighting emotional impact of Disability
               Hate Crime and / or challenges / positives dealing with Police /
               CPS
             </p>
@@ -255,7 +302,7 @@ const Form = () => {
         <Grid container item direction="column" spacing={2}>
           <Grid item>
             <p>
-              13. Brief case study highlighting achieving positive outcomes
+              16. Brief case study highlighting achieving positive outcomes
               without a report to police
             </p>
           </Grid>

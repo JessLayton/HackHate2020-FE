@@ -14,6 +14,7 @@ const TextBox = ({ value, placeholder, onBlur }) => {
         InputLabelProps={{
           shrink: true,
         }}
+        multiline
       />
     )
 }
