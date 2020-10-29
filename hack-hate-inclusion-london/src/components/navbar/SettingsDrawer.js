@@ -1,11 +1,10 @@
 import React from 'react';
 import { Box, Button, Drawer, Grid, makeStyles, MuiThemeProvider, Slider, Typography, useTheme } from '@material-ui/core';
 
-import { themes } from '../../theme/theme';
+import getTheme, { themes } from '../../theme/theme';
 import fontFamilies from '../../theme/fontFamilies';
 import { ThemeContext } from '../../theme/ThemeChanger';
 import ThemeColourBoxes from './ThemeColourBoxes';
-import getTheme from '../../theme/theme';
 
 const useStyles = makeStyles({
   sideSpacing: {
