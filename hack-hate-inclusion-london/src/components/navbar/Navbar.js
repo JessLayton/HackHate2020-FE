@@ -36,7 +36,7 @@ const Navbar = () => {
             <Grid item>
               <Tooltip title='Open user settings' aria-label='open user settings'>
                 <IconButton aria-label='user settings' onClick={handleToggleSettings}>
-                  <SettingsIcon color='secondary'/>
+                  <SettingsIcon color='secondary' fontSize='large'/>
                 </IconButton>
               </Tooltip>
             </Grid>
