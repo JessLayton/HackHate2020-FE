@@ -7,10 +7,14 @@ import OrgEntry from './components/OrgEntry';
 function App() {
   return (
     <Router>
-      <Navbar/>
+      <Navbar />
       <Switch>
-        <Route exact path="/"><Landing /></Route>
-        <Route path='/ddpo'><OrgEntry /></Route>
+        <Route exact path='/'>
+          <Landing />
+        </Route>
+        <Route path='/ddpo'>
+          <OrgEntry />
+        </Route>
       </Switch>
     </Router>
   );

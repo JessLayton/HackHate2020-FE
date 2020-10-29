@@ -1,6 +1,6 @@
 import { post, get } from './DatabaseConnector';
 
-const addOrganisation = (name) => {
+const addOrganisation = async (name) => {
   try {
     const response = await post('/ddpo', { name });
     console.log(response);
@@ -9,7 +9,7 @@ const addOrganisation = (name) => {
   }
 };
 
-const getAllOrganisations = () => {
+const getAllOrganisations = async () => {
   try {
     const response = await get('/ddpo');
   } catch (err) {

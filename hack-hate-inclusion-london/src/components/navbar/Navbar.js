@@ -1,5 +1,7 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip } from '@material-ui/core';
+import {
+  AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip,
+} from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 import SettingsDrawer from './SettingsDrawer';
@@ -9,8 +11,8 @@ const useStyles = makeStyles({
     height: '100px',
   },
   toolBar: {
-    minHeight: '85px'
-  }
+    minHeight: '85px',
+  },
 });
 
 const Navbar = () => {
@@ -21,7 +23,6 @@ const Navbar = () => {
   const handleToggleSettings = () => {
     setSettingsOpen(!settingsOpen);
   };
-
 
   return (
     <>
@@ -36,15 +37,15 @@ const Navbar = () => {
             <Grid item>
               <Tooltip title='Open user settings' aria-label='open user settings'>
                 <IconButton aria-label='user settings' onClick={handleToggleSettings}>
-                  <SettingsIcon color='secondary' fontSize='large'/>
+                  <SettingsIcon color='secondary' fontSize='large' />
                 </IconButton>
               </Tooltip>
             </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
-      <SettingsDrawer open={settingsOpen} toggleOpen={handleToggleSettings}/>
-      <div className={classes.navbarSpacer}/>
+      <SettingsDrawer open={settingsOpen} toggleOpen={handleToggleSettings} />
+      <div className={classes.navbarSpacer} />
     </>
   );
 };
