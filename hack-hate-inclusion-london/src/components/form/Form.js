@@ -27,15 +27,6 @@ const useStyles = makeStyles({
   },
 });
 
-// const createInitialState = (resources) => {
-//   let initialState = {};
-//   console.log("BIG SAD ********************");
-//   resources.forEach((resource) => {
-//     initialState[resource.label] = 0;
-//   });
-//   return initialState;
-// };
-
 const Form = () => {
   const classes = useStyles();
   const [dateRangeOption, setDateRangeOption] = React.useState(initialisedQuarters);
@@ -62,7 +53,7 @@ const Form = () => {
   return (
     <form className={classes.form} onSubmit={handleSubmit}>
       <Grid container direction="column" spacing={7}>
-        <ScrollUp />
+        <ScrollUp scrollStepInPx="50" delayInMs="16.66"/>
         <Grid container item spacing={2}>
           <Grid item>
             <p>1. Time Period (Quarterly)</p>
