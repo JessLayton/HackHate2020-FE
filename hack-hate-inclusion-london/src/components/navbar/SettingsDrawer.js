@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Button, Divider, Drawer, Grid, makeStyles, MuiThemeProvider, Slider, Typography, useTheme } from '@material-ui/core';
+import { Box, Button, Divider, Drawer, Grid, IconButton, makeStyles, MuiThemeProvider, Slider, Tooltip, Typography, useTheme } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 
 import getTheme, { themes } from '../../theme/theme';
 import fontFamilies from '../../theme/fontFamilies';
@@ -9,17 +10,17 @@ import ThemeColourBoxes from './ThemeColourBoxes';
 const drawerWidth = (fontSize) => {
   switch(fontSize) {
     case 12:
-      return '350px';
-    case 14:
       return '400px';
-    case 16:
+    case 14:
       return '450px';
-    case 18:
+    case 16:
       return '500px';
-    case 20:
+    case 18:
       return '550px';
+    case 20:
+      return '600px';
     default:
-      return '500px'
+      return '650px'
   }
 }
 
@@ -157,7 +158,18 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
   return (
     <Drawer open={open} anchor='right' onClose={toggleOpen}>
       <Box className={classes.titleBackground}>
-        <Typography variant='h4' component='h2' className={classes.titleStyles}>User Settings</Typography>
+        <Grid container justify='space-between' alignItems='center'>
+          <Grid item>
+            <Typography variant='h4' component='h2' className={classes.titleStyles}>User Settings</Typography>
+          </Grid>
+          <Grid item>
+            <Tooltip title='Close settings' aria-label='close-settings'>
+              <IconButton onClick={toggleOpen}>
+                <CloseIcon />
+              </IconButton>
+            </Tooltip>
+          </Grid>
+        </Grid>
       </Box>
       <Grid container direction='column' spacing={4} className={classes.sideSpacing}>
         <Grid container item spacing={1} direction='column'>
