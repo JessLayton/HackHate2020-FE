@@ -2,6 +2,7 @@ import React from "react";
 
 import FAB from "@material-ui/core/FAB";
 import NavigationIcon from "@material-ui/icons/Navigation";
+import Tooltip from "@material-ui/core/Tooltip";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
@@ -9,34 +10,27 @@ const useStyles = makeStyles(() => ({
     position: "fixed",
     bottom: "30px",
     right: "40px",
-    color: "primary"
+    color: "primary",
   },
 }));
 
 const ScrollUp = ({ scrollStepInPx, delayInMs }) => {
   const classes = useStyles();
 
-  const [intervalId, setIntervalId] = React.useState(0);
-  React.useEffect(() => {
-    setIntervalId(0);
-  }, [intervalId]);
-
-  const scrollStep = () => {
-    if (window.pageYOffset === 0) {
-        setIntervalId(0)
-    }
+  const scrollStep = () => {  
     window.scroll(0, window.pageYOffset - {scrollStepInPx});
-  }
-  
-  const scrollToTop = ({intervalId}) => {
-    intervalId = setInterval(scrollStep.apply({delayInMs}));
-    intervalId = setIntervalId({intervalId});
-  }
+  };
+
+  const scrollToTop = () => {    
+    scrollStep.apply(delayInMs);
+  };
 
   return (
-    <FAB className={classes.fab} color="primary" onClick={scrollToTop}>
-      <NavigationIcon />
-    </FAB>
+    <Tooltip title="Back to top">
+      <FAB className={classes.fab} color="primary" onClick={scrollToTop}>
+        <NavigationIcon />
+      </FAB>
+    </Tooltip>
   );
 };
 
