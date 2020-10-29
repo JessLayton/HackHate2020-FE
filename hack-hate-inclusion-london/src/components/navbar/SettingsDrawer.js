@@ -147,7 +147,7 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
           </Grid>
           <Grid item>
             <Typography style={{ fontFamily: fontFamilies[fontFamily] }} >
-              This is some text with the font
+              Example Text
           </Typography>
          </Grid>
         </Grid>
