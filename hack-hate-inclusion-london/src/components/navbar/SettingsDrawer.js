@@ -20,7 +20,7 @@ const drawerWidth = (fontSize) => {
     case 20:
       return '600px';
     default:
-      return '650px'
+      return '450px'
   }
 }
 
