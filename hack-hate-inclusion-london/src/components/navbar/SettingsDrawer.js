@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Drawer, Grid, makeStyles, MuiThemeProvider, Slider, Typography, useTheme } from '@material-ui/core';
+import { Box, Button, Divider, Drawer, Grid, makeStyles, MuiThemeProvider, Slider, Typography, useTheme } from '@material-ui/core';
 
 import getTheme, { themes } from '../../theme/theme';
 import fontFamilies from '../../theme/fontFamilies';
@@ -8,9 +8,9 @@ import ThemeColourBoxes from './ThemeColourBoxes';
 
 const useStyles = makeStyles({
   sideSpacing: {
-    marginLeft: '12px',
-    marginRight: '12px',
-    width: '400px',
+    marginLeft: '20px',
+    marginRight: '20px',
+    width: '420px',
   },
   titleBackground: (currentTheme) => ({
     backgroundColor: currentTheme.palette.primary.main,
@@ -22,6 +22,9 @@ const useStyles = makeStyles({
     paddingTop: '10px',
     color: currentTheme.palette.primary.contrastText,
   }),
+  slider: {
+    marginBottom: '25px',
+  },
 });
 
 const SettingsDrawer = ({ open, toggleOpen }) => {
@@ -35,7 +38,7 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
     setFontSize(newValue);
   };
 
-    const getThemeOptions = () => (
+  const getThemeOptions = () => (
     <Grid container direction='column' spacing={2}>
       {Object.keys(themes).map((themeName) => (
         <Grid item container direction='row' key={themeName} alignItems='center' spacing={1}>
@@ -82,6 +85,7 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
     return (
       <>
         <Slider
+          className={classes.slider}
           value={fontSize}
           min={12}
           max={20}
@@ -134,20 +138,34 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
   );
 
   return (
-    <Drawer open={open} anchor='right' onClose={toggleOpen}>
+    <Drawer open={true} anchor='right' onClose={toggleOpen}>
       <Box className={classes.titleBackground}>
         <Typography variant='h4' component='h2' className={classes.titleStyles}>User Settings</Typography>
       </Box>
-      <Grid container direction='column' spacing={2} className={classes.sideSpacing}>
-        <Grid item>
-          {getThemeOptions()}
+      <Grid container direction='column' spacing={4} className={classes.sideSpacing}>
+        <Grid container item spacing={1}>
+          <Grid item>
+            <Typography variant='h6' component='h3'> App Colour Theme Options</Typography>
+          </Grid>
+          <Grid item>
+            {getThemeOptions()}
+          </Grid>
         </Grid>
-        <Grid item>
-          {getFontSizeOptions()}
+        <Divider/>
+        <Grid item >
+            <Typography variant='h6' component='h3'> App Font Size Options</Typography>
+            {getFontSizeOptions()}
         </Grid>
-        <Grid item>
-          {getFontOptions()}
+        <Divider/>
+        <Grid container item spacing={1}>
+          <Grid item>
+            <Typography variant='h6' component='h3'> App Font Style Options</Typography>
+          </Grid>
+          <Grid item>
+            {getFontOptions()}
+          </Grid>
         </Grid>
+        <Divider/>
       </Grid>
     </Drawer>
   );

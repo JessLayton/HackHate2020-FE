@@ -36,11 +36,16 @@ const themes = {
   monoChrome,
 }
 
+const typography = {
+  button: {
+    fontWeight: 600,
+  },
+}
+
 const getTheme = (themeDetails) => {
   const { themeName='defaultTheme', fontSize, font } = themeDetails;
   const theme = themes[themeName] || themes['defaultTheme'];
 
-  const typography = {};
   if (fontSize) {
     typography.fontSize = fontSize;
   } 
