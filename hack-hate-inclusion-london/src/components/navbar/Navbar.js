@@ -1,19 +1,20 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
-import useTheme from '@material-ui/core/styles/useTheme';
 
 import SettingsDrawer from './SettingsDrawer';
 
 const useStyles = makeStyles({
-  navbarSpacer: theme => ({
-    height: theme.navbar ? theme.navbar.height : '100px',
-  }),
+  navbarSpacer: {
+    height: '100px',
+  },
+  toolBar: {
+    minHeight: '85px'
+  }
 });
 
 const Navbar = () => {
-  const theme = useTheme();
-  const classes = useStyles(theme);
+  const classes = useStyles();
 
   const [settingsOpen, setSettingsOpen] = React.useState(false);
 
@@ -25,7 +26,7 @@ const Navbar = () => {
   return (
     <>
       <AppBar>
-        <Toolbar>
+        <Toolbar className={classes.toolBar}>
           <Grid container direction='row' justify='space-between' alignItems='center'>
             <Grid item>
               <Typography variant='h3' component='h1'>
