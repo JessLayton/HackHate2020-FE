@@ -1,3 +1,5 @@
+import createInitialState from "../components/form/InitialState"
+
 const supportTypes = [
   { label: "Hate Crime support - support to report / criminal justice system" },
   { label: "Emotional Support" },
@@ -7,4 +9,7 @@ const supportTypes = [
   },
   { label: "Other support" },
 ];
+
+export const initialisedSupportTypes = createInitialState(supportTypes);
+
 export default supportTypes;

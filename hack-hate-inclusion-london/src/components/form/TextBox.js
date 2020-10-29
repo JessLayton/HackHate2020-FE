@@ -1,14 +1,14 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 
-const TextBox = ({ value, placeholder, onChange }) => {
+const TextBox = ({ value, placeholder, onBlur }) => {
     const handleChange = (event) => {
-        onChange(event.target.value);
+        onBlur(event.target.value);
       };
     return(
         <TextField
-        value={value}
-        onChange={handleChange}
+        defaultValue={value}
+        onBlur={handleChange}
         variant="outlined"
         placeholder={placeholder}
         InputLabelProps={{

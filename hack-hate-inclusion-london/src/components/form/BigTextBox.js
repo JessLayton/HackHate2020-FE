@@ -1,15 +1,15 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 
-const BigTextBox = ({ label, value, onChange }) => {
+const BigTextBox = ({ label, value, onBlur }) => {
   const handleChange = (event) => {
-    onChange(event.target.value);
+    onBlur(event.target.value);
   };
 
   return (
     <TextField
-      value={value}
-      onChange={handleChange}
+      defaultValue={value}
+      onBlur={handleChange}
       label={label}
       multiline
       fullWidth

@@ -1,3 +1,4 @@
+import createInitialState from "../components/form/InitialState"
 const ethnicities = [
   { label: "White - English / Welsh / Scottish / Northern Irish / British" },
   { label: "White - Irish" },
@@ -16,4 +17,6 @@ const ethnicities = [
   { label: "Black - British" },
   { label: "Black - Other" },
 ];
+export const initialisedEthnicities =  createInitialState(ethnicities);
+
 export default ethnicities;

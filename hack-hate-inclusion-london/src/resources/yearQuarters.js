@@ -1,3 +1,5 @@
+import createInitialState from "../components/form/InitialState"
+
 const yearQuarters = [
   { value: "April - June" },
   { value: "July - September" },
@@ -5,4 +7,5 @@ const yearQuarters = [
   { value: "January - March" },
 ];
 
+export const initialisedQuarters = createInitialState(yearQuarters);
 export default yearQuarters;

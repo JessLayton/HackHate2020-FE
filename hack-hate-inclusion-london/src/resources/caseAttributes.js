@@ -1,3 +1,5 @@
+import createInitialState from "../components/form/InitialState"
+
 const caseAttributes = [
   { label: "COVID - facemasks" },
   { label: "Neighbour Dispute" },
@@ -11,4 +13,6 @@ const caseAttributes = [
   { label: "Public transport" },
   { label: "Other" },
 ];
+export const initialisedCaseAttributes = createInitialState(caseAttributes);
+
 export default caseAttributes;

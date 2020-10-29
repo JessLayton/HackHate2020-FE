@@ -10,15 +10,15 @@ import TextBox from "./TextBox";
 import BigTextBox from "./BigTextBox";
 import ScrollUp from "./ScrollUp";
 
-import ethnicities from "../../resources/ethnicities";
-import referralsAndEnquiries from "../../resources/referralsAndEnquiries";
-import supportTypes from "../../resources/supportTypes";
-import gendersAndSexualities from "../../resources/gendersAndSexualities";
-import caseAttributes from "../../resources/caseAttributes";
-import unreportedCases from "../../resources/unreportedCases";
-import ageGroups from "../../resources/ageGroups";
-import DDPOs from "../../resources/DDPOs";
-import yearQuarters from "../../resources/yearQuarters";
+import ethnicities, { initialisedEthnicities } from "../../resources/ethnicities";
+import referralsAndEnquiries, { initialisedReferralsAndEnquiries } from "../../resources/referralsAndEnquiries";
+import supportTypes, { initialisedSupportTypes } from "../../resources/supportTypes";
+import gendersAndSexualities, { initialisedGendersAndSexualities} from "../../resources/gendersAndSexualities";
+import caseAttributes, { initialisedCaseAttributes } from "../../resources/caseAttributes";
+import unreportedCases, { initialisedUnreportedCases } from "../../resources/unreportedCases";
+import ageGroups, { initialisedAgeGroups } from "../../resources/ageGroups";
+import DDPOs, { initialisedDDPOs } from "../../resources/DDPOs";
+import yearQuarters, { initialisedQuarters } from "../../resources/yearQuarters";
 
 const useStyles = makeStyles({
   form: {
@@ -27,41 +27,27 @@ const useStyles = makeStyles({
   },
 });
 
-const createInitialState = (resources) => {
-  let initialState = {};
-  resources.forEach((resource) => {
-    initialState[resource.label] = 0;
-  });
-  return initialState;
-};
+// const createInitialState = (resources) => {
+//   let initialState = {};
+//   console.log("BIG SAD ********************");
+//   resources.forEach((resource) => {
+//     initialState[resource.label] = 0;
+//   });
+//   return initialState;
+// };
 
 const Form = () => {
   const classes = useStyles();
-  const [dateRangeOption, setDateRangeOption] = React.useState(() =>
-    createInitialState(yearQuarters)
-  );
-  const [organisation, setOrganisation] = React.useState(() =>
-    createInitialState(DDPOs)
-  );
-  const [referralsCount, setReferralsCount] = React.useState(() =>
-    createInitialState(referralsAndEnquiries)
-  );
-  const [supportCount, setSupportCount] = React.useState(() =>
-    createInitialState(supportTypes)
-  );
-  const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(() =>
-    createInitialState(unreportedCases)
-  );
-  const [ethnicityCount, setEthnicityCount] = React.useState(() =>
-    createInitialState(ethnicities)
-  );
-  const [identityCount, setIdentityCount] = React.useState(() =>
-    createInitialState(gendersAndSexualities)
-  );
-  const [caseAttributeCount, setAttributeCount] = React.useState(() =>
-    createInitialState(caseAttributes)
-  );
-  const [ageCount, setAgeCount] = React.useState(createInitialState(ageGroups));
+  const [dateRangeOption, setDateRangeOption] = React.useState(initialisedQuarters);
+  const [organisation, setOrganisation] = React.useState(initialisedDDPOs);
+  const [referralsCount, setReferralsCount] = React.useState(initialisedReferralsAndEnquiries);
+  const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
+  const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(initialisedUnreportedCases);
+  const [ethnicityCount, setEthnicityCount] = React.useState(initialisedEthnicities);
+  const [identityCount, setIdentityCount] = React.useState(initialisedGendersAndSexualities);
+  const [caseAttributeCount, setAttributeCount] = React.useState(initialisedCaseAttributes);
+  const [ageCount, setAgeCount] = React.useState(initialisedAgeGroups);
+
   const [selectedDate, setDate] = React.useState(new Date());
   const [keyIssuesPara, setKeyIssuesPara] = React.useState("");
   const [emotionalImpactCS, setEmotionalImpactCS] = React.useState("");
@@ -148,7 +134,7 @@ const Form = () => {
           <BigTextBox
             label="Key issues/outcomes (300 words max)"
             value={keyIssuesPara}
-            onChange={setKeyIssuesPara}
+            onBlur={setKeyIssuesPara}
           />
         </Grid>
         <Divider />
@@ -186,7 +172,7 @@ const Form = () => {
             <TextBox
               placeholder="Give Details"
               value={otherDetails}
-              onChange={setOtherDetails}
+              onBlur={setOtherDetails}
             />
             </Grid>
           </Grid>
@@ -264,7 +250,7 @@ const Form = () => {
             <BigTextBox
               label="Case Study (300 words max)"
               value={emotionalImpactCS}
-              onChange={setEmotionalImpactCS}
+              onBlur={setEmotionalImpactCS}
             />
           </Grid>
         </Grid>
@@ -280,7 +266,7 @@ const Form = () => {
             <BigTextBox
               label="Case Study (300 words max)"
               value={outcomesCS}
-              onChange={setOutcomesCS}
+              onBlur={setOutcomesCS}
             />
           </Grid>
         </Grid>

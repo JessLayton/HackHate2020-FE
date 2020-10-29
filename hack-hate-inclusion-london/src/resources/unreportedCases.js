@@ -1,3 +1,5 @@
+import createInitialState from "../components/form/InitialState"
+
 const unreportedCases = [
   { label: "Not enough evidence" },
   { label: "Client decision - I don't trust Police" },
@@ -10,5 +12,7 @@ const unreportedCases = [
   },
   { label: "Other" },
 ];
+
+export const initialisedUnreportedCases = createInitialState(unreportedCases);
 
 export default unreportedCases;

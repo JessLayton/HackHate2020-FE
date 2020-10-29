@@ -1,3 +1,5 @@
+import createInitialState from "../components/form/InitialState"
+
 const boroughs = [
   { label: "Barking and Dagenham", isChecked: false },
   { label: "Barnet", isChecked: false },
@@ -35,5 +37,6 @@ const boroughs = [
     isChecked: false,
   },
 ];
+export const initialisedBoroughs = createInitialState(boroughs);
 
 export default boroughs;

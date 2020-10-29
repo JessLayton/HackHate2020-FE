@@ -1,3 +1,5 @@
+import createInitialState from "../components/form/InitialState"
+
 const gendersAndSexualities = [
   { label: "Cis Male" },
   { label: "Cis Female" },
@@ -9,4 +11,7 @@ const gendersAndSexualities = [
   { label: "Lesbian" },
   { label: "Other" },
 ];
+
+export const initialisedGendersAndSexualities = createInitialState(gendersAndSexualities);
+
 export default gendersAndSexualities;
