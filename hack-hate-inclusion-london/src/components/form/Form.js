@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Grid, makeStyles } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 
+import { postForm } from "../../connections/DatabaseService";
 import Brief from './Brief';
 import AutocompleteField from "./AutocompleteField";
 import YearPicker from "./YearPicker";
@@ -54,6 +55,7 @@ const Form = () => {
   const [otherDetails, setOtherDetails] = React.useState("");
 
   const handleSubmit = (event) => {
+    postForm();
     event.preventDefault();
     alert("Thank you for submitting");
   };
@@ -121,7 +123,7 @@ const Form = () => {
             <NumberFieldsGroup
               inputs={referralsAndEnquiries}
               value={referralsCount}
-              onChange={setReferralsCount}
+              onBlur={setReferralsCount}
               minValue={0}
               miniLabel={referralsAndEnquiries}
             />
@@ -149,7 +151,7 @@ const Form = () => {
             <NumberFieldsGroup
               inputs={supportTypes}
               value={supportCount}
-              onChange={setSupportCount}
+              onBlur={setSupportCount}
               minValue={0}
             />
           </Grid>
@@ -167,7 +169,7 @@ const Form = () => {
             <NumberFieldsGroup
               inputs={unreportedCases}
               value={unreportedCaseCount}
-              onChange={setUnreportedCaseCount}
+              onBlur={setUnreportedCaseCount}
               minValue={0}
             />
             </Grid>
@@ -189,7 +191,7 @@ const Form = () => {
             <NumberFieldsGroup
               inputs={ageGroups}
               value={ageCount}
-              onChange={setAgeCount}
+              onBlur={setAgeCount}
               minValue={0}
             />
           </Grid>
@@ -203,7 +205,7 @@ const Form = () => {
             <NumberFieldsGroup
               inputs={ethnicities}
               value={ethnicityCount}
-              onChange={setEthnicityCount}
+              onBlur={setEthnicityCount}
               minValue={0}
             />
           </Grid>
@@ -217,7 +219,7 @@ const Form = () => {
             <NumberFieldsGroup
               inputs={sex}
               value={sexCount}
-              onChange={setSexCount}
+              onBlur={setSexCount}
               minValue={0}
             />
           </Grid>
@@ -231,7 +233,7 @@ const Form = () => {
             <NumberFieldsGroup
               inputs={sexualities}
               value={sexualitiesCount}
-              onChange={setSexualitiesCount}
+              onBlur={setSexualitiesCount}
               minValue={0}
             />
           </Grid>
@@ -245,7 +247,7 @@ const Form = () => {
             <NumberFieldsGroup
               inputs={genders}
               value={genderCount}
-              onChange={setGenderCount}
+              onBlur={setGenderCount}
               minValue={0}
             />
           </Grid>
@@ -259,7 +261,7 @@ const Form = () => {
             <NumberFieldsGroup
               inputs={impairments}
               value={impairmentCount}
-              onChange={setImpairmentCount}
+              onBlur={setImpairmentCount}
               minValue={0}
             />
           </Grid>
@@ -276,7 +278,7 @@ const Form = () => {
             <NumberFieldsGroup
               inputs={caseAttributes}
               value={caseAttributeCount}
-              onChange={setAttributeCount}
+              onBlur={setAttributeCount}
               minValue={0}
             />
           </Grid>

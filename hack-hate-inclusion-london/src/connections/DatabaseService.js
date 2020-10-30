@@ -1,15 +1,15 @@
 import { post, get } from './DatabaseConnector';
 
-const submitForm = () => {
+const postForm = async () => {
   try {
-    const response = await post('/formData');
+    const response = await post('/api/form');
     console.log(response);
   } catch (err) {
     console.error(err);
   }
 };
 
-const addOrganisation = (name) => {
+const addOrganisation = async (name) => {
   try {
     const response = await post('/ddpo', { name });
     console.log(response);
@@ -18,12 +18,13 @@ const addOrganisation = (name) => {
   }
 };
 
-const getAllOrganisations = () => {
+const getAllOrganisations = async () => {
   try {
     const response = await get('/ddpo');
+    console.log(response);
   } catch (err) {
     console.error(err);
   }
 };
 
-export { submitForm, addOrganisation, getAllOrganisations };
+export { postForm, addOrganisation, getAllOrganisations };
