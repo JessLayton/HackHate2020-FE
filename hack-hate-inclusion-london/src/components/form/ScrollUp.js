@@ -1,19 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import FAB from "@material-ui/core/FAB";
-import NavigationIcon from "@material-ui/icons/Navigation";
-import Tooltip from "@material-ui/core/Tooltip";
-import { makeStyles } from "@material-ui/core/styles";
-
+import FAB from '@material-ui/core/FAB';
+import NavigationIcon from '@material-ui/icons/Navigation';
+import Tooltip from '@material-ui/core/Tooltip';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   fab: (show) => ({
-    position: "fixed",
-    bottom: "30px",
-    right: "40px",
-    color: "primary",
-    display: show ? 'flex' : 'none'
-  })
+    position: 'fixed',
+    bottom: '30px',
+    right: '40px',
+    color: 'primary',
+    display: show ? 'flex' : 'none',
+  }),
 });
 
 const ScrollUp = () => {
@@ -22,22 +21,21 @@ const ScrollUp = () => {
 
   const checkScroll = () => {
     if (window.pageYOffset > 600) {
-            setShowFAB(true);
+      setShowFAB(true);
     } else {
       setShowFAB(false);
-    }        
-  }
-  
-  window.addEventListener("scroll", checkScroll);
-
-  const scrollToTop = () => {   
-    window.scrollTo({top: 0, behavior: "auto"});
+    }
   };
 
+  window.addEventListener('scroll', checkScroll);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
 
   return (
-    <Tooltip title="Back to top">
-      <FAB className={classes.fab} color="primary" onClick={scrollToTop}>
+    <Tooltip title='Back to top'>
+      <FAB className={classes.fab} color='primary' onClick={scrollToTop}>
         <NavigationIcon />
       </FAB>
     </Tooltip>

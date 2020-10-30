@@ -1,5 +1,5 @@
-import React from "react";
-import TextField from "@material-ui/core/TextField";
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
 
 const BigTextBox = ({ label, value, onBlur }) => {
   const handleChange = (event) => {
@@ -18,7 +18,7 @@ const BigTextBox = ({ label, value, onBlur }) => {
       InputLabelProps={{
         shrink: true,
       }}
-      variant="outlined"
+      variant='outlined'
     />
   );
 };

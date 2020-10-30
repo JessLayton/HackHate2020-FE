@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip,
-} from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
-
 import SettingsDrawer from './SettingsDrawer';
 
 const useStyles = makeStyles({
@@ -12,6 +9,10 @@ const useStyles = makeStyles({
   },
   toolBar: {
     minHeight: '85px',
+  },
+  logo: {
+    maxHeight: '75px',
+    maxWidth: '75px',
   },
 });
 
@@ -29,18 +30,23 @@ const Navbar = () => {
       <AppBar>
         <Toolbar className={classes.toolBar}>
           <Grid container direction='row' justify='space-between' alignItems='center'>
-            <Grid item>
-              <Typography variant='h3' component='h1'>
-                Hack Hate 2020
-              </Typography>
+            <Grid container item spacing={2} alignItems='center'>
+              <Grid item>
+                <img src='data-collator-logo.png' width='55px' height='55px' alt='Data Collator Logo'/>
+              </Grid>
+              <Grid item>
+                <Typography variant='h3' component='h1'>
+                  Data Collator
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Tooltip title='Open user settings' aria-label='open user settings'>
-                <IconButton aria-label='user settings' onClick={handleToggleSettings}>
-                  <SettingsIcon color='secondary' fontSize='large' />
-                </IconButton>
-              </Tooltip>
-            </Grid>
+          </Grid>
+          <Grid item>
+            <Tooltip title='Open user settings' aria-label='open user settings'>
+              <IconButton aria-label='user settings' onClick={handleToggleSettings}>
+                <SettingsIcon color='secondary' fontSize='large' />
+              </IconButton>
+            </Tooltip>
           </Grid>
         </Toolbar>
       </AppBar>

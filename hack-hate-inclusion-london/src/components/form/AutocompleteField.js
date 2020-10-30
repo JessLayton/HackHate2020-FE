@@ -1,10 +1,10 @@
-import React from "react";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const AutocompleteField = ({ options, onChange, value, label }) => {
-  const handleChange = () => {
-    onChange({ ...value });
+  const handleChange = (event, value) => {
+    onChange(value);
   };
   return (
     <Autocomplete
@@ -13,11 +13,11 @@ const AutocompleteField = ({ options, onChange, value, label }) => {
       style={{ width: 300 }}
       renderInput={(params) => (
         <TextField
-          {...params}          
+          {...params}
           InputLabelProps={{
             shrink: true,
           }}
-          variant="outlined"
+          variant='outlined'
           required
           label={label}
         />

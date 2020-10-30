@@ -1,12 +1,54 @@
 import { post, get } from './DatabaseConnector';
 
-const postForm = async () => {
+const postForm = async (formData) => {
   try {
-    const response = await post('/api/form');
-    console.log(response);
+    // const response = await post('/api/form', { formData });
+    // console.log(response);
+    console.log(formData);
   } catch (err) {
     console.error(err);
   }
+};
+
+const constructForm = (
+  quarter,
+  selectedDate,
+  organisation,
+  referralsCount,
+  supportCount,
+  unreportedCaseCount,
+  ethnicityCount,
+  genderCount,
+  sexCount,
+  sexualitiesCount,
+  impairmentCount,
+  caseAttributeCount,
+  ageCount,
+  keyIssuesPara,
+  emotionalImpactCS,
+  outcomesCS,
+  otherDetails
+) => {
+  const formData = {
+    quarter,
+    selectedDate: selectedDate.getFullYear(),
+    organisation,
+    referralsCount,
+    supportCount,
+    unreportedCaseCount,
+    ethnicityCount,
+    genderCount,
+    sexCount,
+    sexualitiesCount,
+    impairmentCount,
+    caseAttributeCount,
+    ageCount,
+    keyIssuesPara,
+    emotionalImpactCS,
+    outcomesCS,
+    otherDetails,
+  };
+  postForm(formData);
 };
 
 const addOrganisation = async (name) => {
@@ -30,4 +72,4 @@ const getAllOrganisations = async () => {
   return response;
 };
 
-export { postForm, addOrganisation, getAllOrganisations };
+export { constructForm, addOrganisation, getAllOrganisations };
