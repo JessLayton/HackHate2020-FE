@@ -23,7 +23,7 @@ const OrgEntry = () => {
 
   const handleSubmit = async () => {
     const response = await addOrganisation(orgName);
-    alert(response);
+    alert(`Added ${response.data.data.name}`);
   };
 
   const validateEntry = () => {
@@ -49,7 +49,7 @@ const OrgEntry = () => {
             <TextField
               id='ddpo-name-input'
               required
-              variant='filled'
+              variant='outlined'
               label='Organisation Registration'
               placeholder='Enter an organisation name...'
               InputLabelProps={{ shrink: true }}
