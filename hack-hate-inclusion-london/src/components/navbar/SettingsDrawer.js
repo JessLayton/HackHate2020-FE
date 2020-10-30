@@ -1,6 +1,9 @@
 import React from 'react';
-import { Box, Button, Divider, Drawer, Grid, IconButton, makeStyles, MuiThemeProvider, Slider, Tooltip, Typography, useTheme } from '@material-ui/core';
+import {
+  Box, Button, Divider, Drawer, Grid, IconButton, makeStyles, MuiThemeProvider, Slider, Tooltip, Typography, useTheme,
+} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import PropTypes from 'prop-types';
 
 import getTheme, { themes } from '../../theme/theme';
 import fontFamilies from '../../theme/fontFamilies';
@@ -8,7 +11,7 @@ import { ThemeContext } from '../../theme/ThemeChanger';
 import ThemeColourBoxes from './ThemeColourBoxes';
 
 const drawerWidth = (fontSize) => {
-  switch(fontSize) {
+  switch (fontSize) {
     case 12:
       return '400px';
     case 14:
@@ -20,9 +23,9 @@ const drawerWidth = (fontSize) => {
     case 20:
       return '600px';
     default:
-      return '450px'
+      return '450px';
   }
-}
+};
 
 const useStyles = makeStyles({
   sideSpacing: (currentTheme) => ({
@@ -61,16 +64,18 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
       {Object.keys(themes).map((themeName) => (
         <Grid item container direction='row' key={themeName} alignItems='center' spacing={1}>
           <Grid item>
-            <Button 
+            <Button
               variant='contained'
               color='primary'
-              onClick={() => {setThemeDetails({ themeName })}}
+              onClick={() => {
+                setThemeDetails({ themeName });
+              }}
             >
               Set Theme
             </Button>
           </Grid>
           <Grid item>
-            <ThemeColourBoxes exampleTheme={themes[themeName]}/>
+            <ThemeColourBoxes exampleTheme={themes[themeName]} />
           </Grid>
         </Grid>
       ))}
@@ -102,54 +107,47 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
     ];
     return (
       <>
-        <Slider
-          className={classes.slider}
-          value={fontSize}
-          min={12}
-          max={20}
-          step={2}
-          marks={marks}
-          onChange={handleFontSizeChange}
-        />
+        <Slider className={classes.slider} value={fontSize} min={12} max={20} step={2} marks={marks} onChange={handleFontSizeChange} />
         <Grid container alignItems='center' spacing={2}>
           <Grid item>
             <Button
               variant='contained'
               color='primary'
-              onClick={() => {setThemeDetails({ fontSize })}}
+              onClick={() => {
+                setThemeDetails({ fontSize });
+              }}
             >
               Set Font Size
             </Button>
           </Grid>
           <Grid item>
-            <MuiThemeProvider theme={getTheme({ fontSize: fontSize, font: currentTheme.typography.fontFamily })}>
-              <Typography>
-                Example font size
-              </Typography>
+            <MuiThemeProvider theme={getTheme({ fontSize, font: currentTheme.typography.fontFamily })}>
+              <Typography>Example font size</Typography>
             </MuiThemeProvider>
           </Grid>
         </Grid>
       </>
-  )};
+    );
+  };
 
   const getFontOptions = () => (
     <Grid container direction='column' spacing={2}>
-      {Object.keys(fontFamilies).map((fontFamily, index) => (
-        <Grid item container key={index} alignItems='center' spacing={1}>
+      {Object.keys(fontFamilies).map((fontFamily) => (
+        <Grid item container key={fontFamily} alignItems='center' spacing={1}>
           <Grid item>
             <Button
               variant='contained'
               color='primary'
-              onClick={() => {setThemeDetails({ font: fontFamilies[fontFamily] })}}
+              onClick={() => {
+                setThemeDetails({ font: fontFamilies[fontFamily] });
+              }}
             >
               Set Font
             </Button>
           </Grid>
           <Grid item>
-            <Typography style={{ fontFamily: fontFamilies[fontFamily] }} >
-              Example Text
-          </Typography>
-         </Grid>
+            <Typography style={{ fontFamily: fontFamilies[fontFamily] }}>Example Text</Typography>
+          </Grid>
         </Grid>
       ))}
     </Grid>
@@ -160,7 +158,9 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
       <Box className={classes.titleBackground}>
         <Grid container justify='space-between' alignItems='center'>
           <Grid item>
-            <Typography variant='h4' component='h2' className={classes.titleStyles}>User Settings</Typography>
+            <Typography variant='h4' component='h2' className={classes.titleStyles}>
+              User Settings
+            </Typography>
           </Grid>
           <Grid item>
             <Tooltip title='Close settings' aria-label='close-settings'>
@@ -174,30 +174,40 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
       <Grid container direction='column' spacing={4} className={classes.sideSpacing}>
         <Grid container item spacing={1} direction='column'>
           <Grid item>
-            <Typography variant='h6' component='h3'> App Colour Theme Options</Typography>
+            <Typography variant='h6' component='h3'>
+              {' '}
+              App Colour Theme Options
+            </Typography>
           </Grid>
-          <Grid item>
-            {getThemeOptions()}
-          </Grid>
+          <Grid item>{getThemeOptions()}</Grid>
         </Grid>
-        <Divider/>
-        <Grid item >
-            <Typography variant='h6' component='h3'> App Font Size Options</Typography>
-            {getFontSizeOptions()}
+        <Divider />
+        <Grid item>
+          <Typography variant='h6' component='h3'>
+            {' '}
+            App Font Size Options
+          </Typography>
+          {getFontSizeOptions()}
         </Grid>
-        <Divider/>
+        <Divider />
         <Grid container item spacing={1} direction='column'>
           <Grid item>
-            <Typography variant='h6' component='h3'> App Font Style Options</Typography>
+            <Typography variant='h6' component='h3'>
+              {' '}
+              App Font Style Options
+            </Typography>
           </Grid>
-          <Grid item>
-            {getFontOptions()}
-          </Grid>
+          <Grid item>{getFontOptions()}</Grid>
         </Grid>
-        <Divider/>
+        <Divider />
       </Grid>
     </Drawer>
   );
+};
+
+SettingsDrawer.propTypes = {
+  open: PropTypes.bool.isRequired,
+  toggleOpen: PropTypes.func.isRequired,
 };
 
 export default SettingsDrawer;

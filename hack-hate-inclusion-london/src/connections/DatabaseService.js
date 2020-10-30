@@ -10,21 +10,24 @@ const postForm = async () => {
 };
 
 const addOrganisation = async (name) => {
+  let response;
   try {
-    const response = await post('/ddpo', { name });
+    response = await post('/api/addDDPO', { name });
     console.log(response);
   } catch (err) {
     console.error(err);
   }
+  return response;
 };
 
 const getAllOrganisations = async () => {
+  let response;
   try {
-    const response = await get('/ddpo');
-    console.log(response);
+    response = await get('/api/getDDPOs');
   } catch (err) {
     console.error(err);
   }
+  return response;
 };
 
 export { postForm, addOrganisation, getAllOrganisations };

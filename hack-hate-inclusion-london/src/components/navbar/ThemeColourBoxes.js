@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, makeStyles, Tooltip } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   themeColourBox: {
@@ -24,16 +25,20 @@ const ThemeColourBoxes = ({ exampleTheme }) => {
   return (
     <Grid container direction='row'>
       <Tooltip title='Primary' aria-label='primary-colour'>
-        <div className={`${classes.themeColourBox} ${classes.primaryColour}`}/>
+        <div className={`${classes.themeColourBox} ${classes.primaryColour}`} />
       </Tooltip>
       <Tooltip title='Secondary' aria-label='secondary-colour'>
-        <div className={`${classes.themeColourBox} ${classes.secondaryColour}`}/>
+        <div className={`${classes.themeColourBox} ${classes.secondaryColour}`} />
       </Tooltip>
       <Tooltip title='Error' aria-label='error-colour'>
-        <div className={`${classes.themeColourBox} ${classes.errorColour}`}/>
+        <div className={`${classes.themeColourBox} ${classes.errorColour}`} />
       </Tooltip>
     </Grid>
-  )
+  );
+};
+
+ThemeColourBoxes.propTypes = {
+  exampleTheme: PropTypes.shape().isRequired,
 };
 
 export default ThemeColourBoxes;

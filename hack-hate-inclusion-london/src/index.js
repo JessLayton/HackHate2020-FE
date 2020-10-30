@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 import { CssBaseline } from '@material-ui/core';
 
-import ThemeChanger from './theme/ThemeChanger'
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+import ThemeChanger from './theme/ThemeChanger';
 
 ReactDOM.render(
   <ThemeChanger>
