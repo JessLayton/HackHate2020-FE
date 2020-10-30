@@ -29,5 +29,5 @@ module.exports = {
     'linebreak-style': ['error', 'windows'],
     'no-param-reassign': [2, { props: false }],
     'jsx-quotes': [2, 'prefer-single']
-  }
+  },
 };
