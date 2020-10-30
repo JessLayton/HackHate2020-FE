@@ -1,20 +1,24 @@
 import { post, get } from './DatabaseConnector';
 
 const addOrganisation = async (name) => {
+  let response;
   try {
-    const response = await post('/ddpo', { name });
+    response = await post('/api/addDDPO', { name });
     console.log(response);
   } catch (err) {
     console.error(err);
   }
+  return response;
 };
 
 const getAllOrganisations = async () => {
+  let response;
   try {
-    const response = await get('/ddpo');
+    response = await get('/api/getDDPOs');
   } catch (err) {
     console.error(err);
   }
+  return response;
 };
 
 export { addOrganisation, getAllOrganisations };

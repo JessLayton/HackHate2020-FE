@@ -1,15 +1,29 @@
-import { Button, TextField, Tooltip } from '@material-ui/core';
+import {
+  Box, Button, Grid, makeStyles, TextField, Tooltip, Typography,
+} from '@material-ui/core';
 import React from 'react';
 
+import { addOrganisation } from '../connections/DatabaseService';
+
+const useStyles = makeStyles({
+  margin: {
+    marginLeft: '100px',
+    marginRight: '100px',
+  },
+});
+
 const OrgEntry = () => {
+  const classes = useStyles();
+
   const [orgName, setOrgName] = React.useState('');
 
   const handleChange = (event) => {
     setOrgName(event.target.value);
   };
 
-  const handleSubmit = () => {
-    alert(orgName);
+  const handleSubmit = async () => {
+    const response = await addOrganisation(orgName);
+    alert(response);
   };
 
   const validateEntry = () => {
@@ -20,29 +34,40 @@ const OrgEntry = () => {
   };
 
   return (
-    <>
-      <TextField
-        id='ddpo-name-input'
-        required
-        variant='filled'
-        label='Organisation Registration'
-        placeHolder='Enter an organisation name...'
-        InputLabelProps={{ shrink: true }}
-        value={orgName}
-        onChange={handleChange}
-        helperText='Please enter the name of your organisation here so that we can store the data '
-      />
-      <Tooltip>
-        <Button 
-          variant='contained'
-          onClick={handleSubmit}
-          disabled={!validateEntry}
-        >
-          Add Organisation
-        </Button>
-      </Tooltip>
-
-    </>
+    <Box className={classes.margin}>
+      <Grid container spacing={2} direction='column'>
+        <Grid item>
+          <Typography variant='h3' component='h2'>
+            Add A DDPO
+          </Typography>
+        </Grid>
+        <Grid container item direction='column' spacing={1}>
+          <Grid item>
+            <Typography>Please enter the name of your organisation:</Typography>
+          </Grid>
+          <Grid item>
+            <TextField
+              id='ddpo-name-input'
+              required
+              variant='filled'
+              label='Organisation Registration'
+              placeholder='Enter an organisation name...'
+              InputLabelProps={{ shrink: true }}
+              value={orgName}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Tooltip title='Submit'>
+            <Button variant='contained' color='primary' onClick={handleSubmit} disabled={!validateEntry}>
+              Add Organisation
+            </Button>
+          </Tooltip>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
