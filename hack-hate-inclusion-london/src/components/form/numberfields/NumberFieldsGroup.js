@@ -4,7 +4,8 @@ import NumberField from './NumberField';
 
 const NumberFields = ({ inputs, value, onBlur, minValue, maxValue }) => {
   const handleChange = (key, newValue) => {
-    onBlur({ ...value, [key]: newValue });
+
+    onBlur({ ...value, [key]: newValue === "" ? 0 : newValue });
   };
   return (
     <Grid container direction='column' spacing={2}>

@@ -3,29 +3,30 @@ import { useHistory } from 'react-router-dom';
 import { Box, Button, Grid, makeStyles, Link } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
-import { constructForm } from './constructForm';
-import Brief from '../Brief';
-import AutocompleteField from '../textfields/AutocompleteField';
-import YearPicker from '../pickers/YearPicker';
-import Checkboxes from '../checkboxes/Checkboxes';
-import NumberFieldsGroup from '../numberfields/NumberFieldsGroup';
-import TextBox from '../textfields/TextBox';
-import BigTextBox from '../textfields/BigTextBox';
+import { constructForm } from './constructForm/constructForm';
+import Brief from './Brief';
+import AutocompleteField from './textfields/AutocompleteField';
+import YearPicker from './pickers/YearPicker';
+import Checkboxes from './checkboxes/Checkboxes';
+import NumberFieldsGroup from './numberfields/NumberFieldsGroup';
+import TextBox from './textfields/TextBox';
+import BigTextBox from './textfields/BigTextBox';
 import ScrollUp from './ScrollUp';
+import DDPOStore from '../ddpo/DDPOStore';
 
-import ethnicities, { initialisedEthnicities } from '../../../resources/ethnicities';
-import referralsAndEnquiries, { initialisedReferralsAndEnquiries } from '../../../resources/referralsAndEnquiries';
-import supportTypes, { initialisedSupportTypes } from '../../../resources/supportTypes';
-import caseAttributes, { initialisedCaseAttributes } from '../../../resources/caseAttributes';
-import unreportedCases, { initialisedUnreportedCases } from '../../../resources/unreportedCases';
-import ageGroups, { initialisedAgeGroups } from '../../../resources/ageGroups';
-import DDPOs from '../../../resources/DDPOs';
-import yearQuarters from '../../../resources/yearQuarters';
-import impairments, { initialisedImpairments } from '../../../resources/impairments';
-import genders, { initialisedGenders } from '../../../resources/gender';
-import sex, { initialisedSex } from '../../../resources/sex';
-import orientations, { initialisedOrientations } from '../../../resources/orientations';
-import boroughsList from '../../../resources/boroughs';
+import ethnicities, { initialisedEthnicities } from '../../resources/ethnicities';
+import referralsAndEnquiries, { initialisedReferralsAndEnquiries } from '../../resources/referralsAndEnquiries';
+import supportTypes, { initialisedSupportTypes } from '../../resources/supportTypes';
+import caseAttributes, { initialisedCaseAttributes } from '../../resources/caseAttributes';
+import unreportedCases, { initialisedUnreportedCases } from '../../resources/unreportedCases';
+import ageGroups, { initialisedAgeGroups } from '../../resources/ageGroups';
+import yearQuarters from '../../resources/yearQuarters';
+import impairments, { initialisedImpairments } from '../../resources/impairments';
+import genders, { initialisedGenders } from '../../resources/gender';
+import sex, { initialisedSex } from '../../resources/sex';
+import orientations, { initialisedOrientations } from '../../resources/orientations';
+import boroughsList from '../../resources/boroughs';
+import { observer } from 'mobx-react-lite';
 
 const useStyles = makeStyles({
   form: {
@@ -35,11 +36,11 @@ const useStyles = makeStyles({
   },
 });
   
-const Form = () => {
+const Form = observer(() => {
   const classes = useStyles();
   const [quarter, setQuarter] = React.useState('');
   const [year, setYear] = React.useState(new Date());
-  const [organisation, setOrganisation] = React.useState();
+  const [organisation, setOrganisation] = React.useState('');
   const [boroughs, setBoroughs] = React.useState(boroughsList);
   const [referralsCount, setReferralsCount] = React.useState(initialisedReferralsAndEnquiries);
   const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
@@ -83,7 +84,7 @@ const Form = () => {
             </Grid>
             <Grid container item direction='row' spacing={2}>
               <Grid item>
-                <AutocompleteField options={yearQuarters} value={quarter} onChange={setQuarter} required label='Quarter' />
+                <AutocompleteField options={yearQuarters} onChange={setQuarter} required label='Quarter' />
               </Grid>
               <Grid item>
                 <YearPicker value={year} onChange={setYear} required />
@@ -97,7 +98,7 @@ const Form = () => {
             </Grid>
             <Grid container item>
               <Grid item>
-                <AutocompleteField options={DDPOs} value={organisation} onChange={setOrganisation} required label='DDPO' />
+                <AutocompleteField options={DDPOStore.ddpos} onChange={setOrganisation} required label='DDPO' />
                 <Grid item>
                   <Link href='/ddpo'>Don't see your DDPO? Click here to add a DDPO</Link>
                 </Grid>
@@ -243,7 +244,7 @@ const Form = () => {
 
     </>
   );
-};
+});
 
 
 export default Form;

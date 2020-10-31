@@ -11,7 +11,7 @@ const getCheckedBoroughs = (boroughs) => {
   };
   
   const getQuarterValue = (quarter) => {
-    switch (quarter.value) {
+    switch (quarter.name) {
       case 'January - March':
         return 1;
       case 'April - June':
@@ -49,8 +49,8 @@ export const constructForm = async (
     const formData = {
       quarter: getQuarterValue(quarter),
       year: year.getFullYear(),
-      name_ddpo: organisation.value,
-      boroughs_covered: getCheckedBoroughs(boroughs),
+      name_ddpo: organisation.name,
+      borough_covered: getCheckedBoroughs(boroughs),
       hate_crime_cases,
       cases_reported,
       cases_not_reported,

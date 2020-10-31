@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SettingsDrawer from './SettingsDrawer';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   navbarSpacer: {
@@ -11,19 +12,25 @@ const useStyles = makeStyles({
     minHeight: '85px',
   },
   logo: {
-    maxHeight: '75px',
-    maxWidth: '75px',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
 });
 
 const Navbar = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const [settingsOpen, setSettingsOpen] = React.useState(false);
 
   const handleToggleSettings = () => {
     setSettingsOpen(!settingsOpen);
   };
+
+  const onLogoClick = () => {
+    history.push('/');
+  }
 
   return (
     <>
@@ -32,7 +39,13 @@ const Navbar = () => {
           <Grid container direction='row' justify='space-between' alignItems='center'>
             <Grid container item spacing={2} alignItems='center'>
               <Grid item>
-                <img src='data-collator-logo.png' width='55px' height='55px' alt='Data Collator Logo'/>
+                <img
+                  src='data-collator-logo.png'
+                  width='55px' height='55px'
+                  alt='Data Collator Logo'
+                  onClick={onLogoClick}
+                  className={classes.logo}
+                />
               </Grid>
               <Grid item>
                 <Typography variant='h3' component='h1'>
