@@ -1,8 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Box, Button, Grid, makeStyles, Link } from '@material-ui/core';
+import {
+  Box, Button, Grid, makeStyles, Link,
+} from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
+import { observer } from 'mobx-react-lite';
 import { constructForm } from './constructForm/constructForm';
 import Brief from './Brief';
 import AutocompleteField from './textfields/AutocompleteField';
@@ -26,7 +29,6 @@ import genders, { initialisedGenders } from '../../resources/gender';
 import sex, { initialisedSex } from '../../resources/sex';
 import orientations, { initialisedOrientations } from '../../resources/orientations';
 import boroughsList from '../../resources/boroughs';
-import { observer } from 'mobx-react-lite';
 
 const useStyles = makeStyles({
   form: {
@@ -78,7 +80,7 @@ const Form = observer(() => {
         ageCount,
         keyIssuesPara,
         emotionalImpactCS,
-        outcomesCS
+        outcomesCS,
       );
       if (success) {
         history.push('/thankyou');
@@ -94,11 +96,11 @@ const Form = observer(() => {
 
   return (
     <>
+      <ScrollUp />
       <Box className={classes.form}>
         <Brief />
         <form onSubmit={handleSubmit}>
           <Grid container direction='column' spacing={7}>
-            <ScrollUp scrollStepInPx='50' delayInMs='16.66' />
             <Grid container item spacing={2}>
               <Grid item>
                 <p>1. Time Period (Quarterly)</p>

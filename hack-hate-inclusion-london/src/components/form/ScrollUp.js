@@ -34,7 +34,7 @@ const ScrollUp = () => {
   };
 
   return (
-    <Tooltip title='Back to top' aria-label='back to top of form'>
+    <Tooltip title='Back to top' aria-label='back-to-top-of-form'>
       <FAB className={classes.fab} color='primary' onClick={scrollToTop}>
         <NavigationIcon />
       </FAB>
