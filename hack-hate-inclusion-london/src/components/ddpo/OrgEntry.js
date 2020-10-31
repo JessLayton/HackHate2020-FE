@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Box, Button, Divider, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import { addOrganisation } from '../../connections/DatabaseService';
@@ -47,7 +47,7 @@ const OrgEntry = () => {
     if (validateEntry(orgName)) {
       const response = await addOrganisation(orgName);
       if (response && response.data && response.data.status === 'success') {
-        DDPOStore.addDdpo(response.data);
+        DDPOStore.addDdpo(response.data.data);
         SnackbarStore.showSuccess(`Added DDPO: ${response.data.data.name}`);
       } else {
         SnackbarStore.showError('Failed to add DDPO');
@@ -92,6 +92,9 @@ const OrgEntry = () => {
           <Button variant='contained' color='primary' onClick={handleSubmit}>
             Add Organisation
           </Button>
+        </Grid>
+        <Grid item>
+          <Divider />
         </Grid>
         <Grid item>
           <Button variant='contained' color='primary' onClick={returnToForm}>
