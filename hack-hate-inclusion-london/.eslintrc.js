@@ -3,7 +3,10 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['plugin:react/recommended'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb'
+  ],
   parser: 'babel-eslint',
   globals: {
     Atomics: 'readonly',
