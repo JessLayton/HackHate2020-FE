@@ -14,6 +14,9 @@ const defaultTheme = {
     error: {
       main: '#aa2e25',
     },
+    success: {
+      main: '#4caf50',
+    },
   },
 };
 
@@ -26,7 +29,10 @@ const monoChrome = {
       main: grey[50],
     },
     error: {
-      main: grey[400],
+      main: grey[700],
+    },
+    success: {
+      main: grey[700],
     },
   },
 };
