@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
-import Landing from './components/Landing';
+import Form from './components/form/constructForm/Form';
 import ThanksPage from './components/ThanksPage';
 import OrgEntry from './components/OrgEntry';
 import Snackbar from './snackbar/Snackbar';
@@ -13,7 +13,7 @@ function App() {
       <Snackbar />
       <Switch>
         <Route exact path='/'>
-          <Landing />
+          <Form />
         </Route>
         <Route path='/ddpo'>
           <OrgEntry />
