@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
-import Form from './components/form/constructForm/Form';
+import Form from './components/form/Form';
 import ThanksPage from './components/ThanksPage';
 import OrgEntry from './components/ddpo/OrgEntry';
 import Snackbar from './snackbar/Snackbar';
