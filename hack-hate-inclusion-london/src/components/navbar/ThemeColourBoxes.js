@@ -18,6 +18,9 @@ const useStyles = makeStyles({
   errorColour: (exampleTheme) => ({
     backgroundColor: exampleTheme.palette.error.main,
   }),
+  successColour: (exampleTheme) => ({
+    backgroundColor: exampleTheme.palette.success.main,
+  }),
 });
 
 const ThemeColourBoxes = ({ exampleTheme }) => {
@@ -32,6 +35,9 @@ const ThemeColourBoxes = ({ exampleTheme }) => {
       </Tooltip>
       <Tooltip title='Error' aria-label='error-colour'>
         <div className={`${classes.themeColourBox} ${classes.errorColour}`} />
+      </Tooltip>
+      <Tooltip title='Success' aria-label='success-colour'>
+        <div className={`${classes.themeColourBox} ${classes.successColour}`} />
       </Tooltip>
     </Grid>
   );
