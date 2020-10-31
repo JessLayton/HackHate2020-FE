@@ -9,7 +9,7 @@ const NumberField = ({ label, defaultValue, onBlur, minValue, maxValue }) => {
   return (
     <Grid container direction='column' spacing={1}>
       <Grid item>
-        <label for={label} >{label}</label>
+        <label for={label}>{label}</label>
       </Grid>
       <Grid item>
         <TextField
