@@ -9,7 +9,7 @@ const NumberField = ({ label, defaultValue, onBlur, minValue, maxValue }) => {
   return (
     <Grid container direction='column' spacing={1}>
       <Grid item>
-        <label>{label}</label>
+        <label for={label} >{label}</label>
       </Grid>
       <Grid item>
         <TextField
@@ -18,7 +18,7 @@ const NumberField = ({ label, defaultValue, onBlur, minValue, maxValue }) => {
           InputLabelProps={{
             shrink: true,
           }}
-          InputProps={{ inputProps: { min: minValue, max: maxValue } }}
+          InputProps={{ inputProps: { min: minValue, max: maxValue , id: label} }}
           onBlur={handleChange}
           variant='outlined'
           size='small'
