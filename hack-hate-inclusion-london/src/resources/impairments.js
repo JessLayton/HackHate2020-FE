@@ -1,16 +1,16 @@
 import createInitialState from "../components/form/InitialState"
 
 const impairments = [
-  { label: "Physical" },
-  { label: "Cognitive" },
-  { label: "Sensory" },  
-  { label: "Learning Difficulties" },  
-  { label: "Neuro Diverse" },  
-  { label: "Deaf" },  
-  { label: "Deafened / hard of hearing" },  
-  { label: "Mental health issues" },  
-  { label: "Long-term issues" },  
-  { label: "Other" },  
+  { label: "Physical", key: "physical"  },
+  { label: "Cognitive", key: "cognitive"  },
+  { label: "Sensory", key: "sensory"  },  
+  { label: "Learning Difficulties", key: "learning_difficulties"  },  
+  { label: "Neuro Diverse", key: "neurodiverse"  },  
+  { label: "Deaf", key: "deaf"  },  
+  { label: "Deafened / hard of hearing", key: "hoh"  },  
+  { label: "Mental health issues", key: "mental_health"  },  
+  { label: "Long-term issues", key: "long_term"  },  
+  { label: "Other", key: "other"  },  
 ];
 
 export const initialisedImpairments = createInitialState(impairments);

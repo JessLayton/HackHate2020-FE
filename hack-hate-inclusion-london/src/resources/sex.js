@@ -1,9 +1,9 @@
 import createInitialState from "../components/form/InitialState"
 
 const sex = [
-  { label: "Male" },
-  { label: "Female" }, 
-  { label: "Other" },
+  { label: "Male", key: "male"},
+  { label: "Female", key: "female"}, 
+  { label: "Other", key: "other"},
 ];
 
 export const initialisedSex = createInitialState(sex);

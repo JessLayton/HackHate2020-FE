@@ -1,7 +1,7 @@
 const createInitialState = (resources) => {
   let initialState = {};
   resources.forEach((resource) => {
-    initialState[resource.label] = 0;
+    initialState[resource.key] = 0;
   });
   return initialState;
 };

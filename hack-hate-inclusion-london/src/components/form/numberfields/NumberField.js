@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 const NumberField = ({ label, value, onBlur, minValue, maxValue }) => {
   const handleChange = (event) => {
-    onBlur(label, event.target.value);
+    onBlur(event.target.value);
   };
   return (
     <Grid container direction='column' spacing={1}>

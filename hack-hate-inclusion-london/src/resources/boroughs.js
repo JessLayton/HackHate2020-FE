@@ -10,12 +10,13 @@ const boroughs = [
   { label: "Croydon", isChecked: false },
   { label: "Ealing", isChecked: false },
   { label: "Enfield", isChecked: false },
-  { label: "Barking", isChecked: false },
   { label: "Greenwich", isChecked: false },
   { label: "Hackney", isChecked: false },
   { label: "Hammersmith and Fulham", isChecked: false },
   { label: "Haringey", isChecked: false },
   { label: "Harrow", isChecked: false },
+  { label: "Havering", isChecked: false },
+  { label: "Hillingdon", isChecked: false },
   { label: "Hounslow", isChecked: false },
   { label: "Islington", isChecked: false },
   { label: "Kensington upon Thames", isChecked: false },
@@ -33,7 +34,7 @@ const boroughs = [
   { label: "Westminster", isChecked: false },
   {
     label:
-      "City of London (Principal division of Greater London)",
+      "City of London (Principal division, not a London borough)",
     isChecked: false,
   },
 ];

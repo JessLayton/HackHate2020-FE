@@ -3,14 +3,14 @@ import { useHistory } from 'react-router-dom';
 import { Box, Button, Grid, makeStyles, Link } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
-import { constructForm } from '../../connections/DatabaseService';
+import { constructForm } from './constructForm';
 import Brief from './Brief';
-import AutocompleteField from './AutocompleteField';
+import AutocompleteField from './textfields/AutocompleteField';
 import YearPicker from './YearPicker';
-import Checkboxes from './Checkboxes';
-import NumberFieldsGroup from './NumberFieldsGroup';
-import TextBox from './TextBox';
-import BigTextBox from './BigTextBox';
+import Checkboxes from './checkboxes/Checkboxes';
+import NumberFieldsGroup from './numberfields/NumberFieldsGroup';
+import TextBox from './textfields/TextBox';
+import BigTextBox from './textfields/BigTextBox';
 import ScrollUp from './ScrollUp';
 
 import ethnicities, { initialisedEthnicities } from '../../resources/ethnicities';
@@ -24,7 +24,8 @@ import yearQuarters from '../../resources/yearQuarters';
 import impairments, { initialisedImpairments } from '../../resources/impairments';
 import genders, { initialisedGenders } from '../../resources/gender';
 import sex, { initialisedSex } from '../../resources/sex';
-import sexualities, { initialisedSexualities } from '../../resources/sexualities';
+import orientations, { initialisedOrientations } from '../../resources/orientations';
+import boroughsList from '../../resources/boroughs';
 
 const useStyles = makeStyles({
   form: {
@@ -37,15 +38,16 @@ const useStyles = makeStyles({
 const Form = () => {
   const classes = useStyles();
   const [quarter, setQuarter] = React.useState('');
-  const [selectedDate, setDate] = React.useState(new Date());
+  const [year, setYear] = React.useState(new Date());
   const [organisation, setOrganisation] = React.useState();
+  const [boroughs, setBoroughs] = React.useState(boroughsList);
   const [referralsCount, setReferralsCount] = React.useState(initialisedReferralsAndEnquiries);
   const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
   const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(initialisedUnreportedCases);
   const [ethnicityCount, setEthnicityCount] = React.useState(initialisedEthnicities);
   const [genderCount, setGenderCount] = React.useState(initialisedGenders);
   const [sexCount, setSexCount] = React.useState(initialisedSex);
-  const [sexualitiesCount, setSexualitiesCount] = React.useState(initialisedSexualities);
+  const [orientationsCount, setOrientationCount] = React.useState(initialisedOrientations);
   const [impairmentCount, setImpairmentCount] = React.useState(initialisedImpairments);
   const [caseAttributeCount, setAttributeCount] = React.useState(initialisedCaseAttributes);
   const [ageCount, setAgeCount] = React.useState(initialisedAgeGroups);
@@ -58,9 +60,12 @@ const Form = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {      
-      constructForm(quarter, selectedDate, organisation, referralsCount, supportCount, unreportedCaseCount, ethnicityCount, genderCount, sexCount, sexualitiesCount, impairmentCount, caseAttributeCount, ageCount, keyIssuesPara, emotionalImpactCS, outcomesCS, otherDetails);     
-      // history.push('/thankyou');
+      const success = await constructForm(quarter, year, organisation, boroughs, referralsCount, supportCount, unreportedCaseCount, ethnicityCount, genderCount, sexCount, orientationsCount, impairmentCount, caseAttributeCount, ageCount, keyIssuesPara, emotionalImpactCS, outcomesCS, otherDetails);   
+      if (success) {
+        history.push("/thankyou");
+      }  
     } catch (error) {
+      console.error(error);
       alert('Failed to submit');
     }
   };
@@ -81,7 +86,7 @@ const Form = () => {
                 <AutocompleteField options={yearQuarters} value={quarter} onChange={setQuarter} required label='Quarter' />
               </Grid>
               <Grid item>
-                <YearPicker value={selectedDate} onChange={setDate} required />
+                <YearPicker value={year} onChange={setYear} required />
               </Grid>
             </Grid>
           </Grid>
@@ -105,7 +110,7 @@ const Form = () => {
               <p>3. Boroughs Covered (Tick all that apply)</p>
             </Grid>
             <Grid item>
-              <Checkboxes />
+              <Checkboxes checkedItems={boroughs} onChange={setBoroughs} />
             </Grid>
           </Grid>
           <Divider />
@@ -178,7 +183,7 @@ const Form = () => {
               <p>11. Users which describe sexual orientation as the following terms - Please provide a number</p>
             </Grid>
             <Grid container item direction='column' spacing={2}>
-              <NumberFieldsGroup inputs={sexualities} value={sexualitiesCount} onBlur={setSexualitiesCount} minValue={0} />
+              <NumberFieldsGroup inputs={orientations} value={orientationsCount} onBlur={setOrientationCount} minValue={0} />
             </Grid>
           </Grid>
           <Divider />
