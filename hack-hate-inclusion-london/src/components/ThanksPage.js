@@ -19,8 +19,8 @@ const ThanksPage = () => {
   };
 
   return (
-    <Grid container direction='row' spacing={8}>
-      <Grid container item className={classes.message} direction='row' justify='center' spacing={3}>
+    <Grid container spacing={8} className={classes.message} justify='center'>
+      <Grid container item justify='center' spacing={3}>
         <Grid item>
           <Typography component='h2' variant='h4'>
             Thank you filling out this form.
@@ -30,12 +30,10 @@ const ThanksPage = () => {
           <Typography variant='body1'>This data will create a strong body of evidence on the work carried out by DDPOs to support Disabled Victims of Hate Crime.</Typography>
         </Grid>
       </Grid>
-      <Grid container item direction='row' justify='center'>
-        <Grid item>
-          <Button variant='contained' color='primary' onClick={returnToForm}>
-            Back
-          </Button>
-        </Grid>
+      <Grid item>
+        <Button variant='contained' color='primary' onClick={returnToForm}>
+          Back
+        </Button>
       </Grid>
     </Grid>
   );
