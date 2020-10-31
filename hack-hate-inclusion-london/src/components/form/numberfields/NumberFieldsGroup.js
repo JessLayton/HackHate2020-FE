@@ -8,8 +8,8 @@ const NumberFields = ({ inputs, value, onBlur, minValue, maxValue }) => {
   };
   return (
     <Grid container direction='column' spacing={2}>
-      {inputs.map((input, index) => (
-        <Grid item key={index}>
+      {inputs.map((input) => (
+        <Grid item key={input.key}>
           <NumberField
             label={input.label}
             name={input.label}
