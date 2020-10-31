@@ -39,13 +39,15 @@ const Navbar = () => {
           <Grid container direction='row' justify='space-between' alignItems='center'>
             <Grid container item spacing={2} alignItems='center'>
               <Grid item>
-                <img
-                  src='data-collator-logo.png'
-                  width='55px' height='55px'
-                  alt='Data Collator Logo'
-                  onClick={onLogoClick}
-                  className={classes.logo}
-                />
+                <Tooltip title='Go to home' aria-label='navigate-to-home'> 
+                  <img
+                    src='data-collator-logo.png'
+                    width='55px' height='55px'
+                    alt='Data Collator Logo'
+                    onClick={onLogoClick}
+                    className={classes.logo}
+                  />
+                </Tooltip>               
               </Grid>
               <Grid item>
                 <Typography variant='h3' component='h1'>
