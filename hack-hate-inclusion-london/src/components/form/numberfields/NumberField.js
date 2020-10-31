@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
-const NumberField = ({ label, value, onBlur, minValue, maxValue }) => {
+const NumberField = ({ label, defaultValue, onBlur, minValue, maxValue }) => {
   const handleChange = (event) => {
     onBlur(event.target.value);
   };
@@ -13,7 +13,7 @@ const NumberField = ({ label, value, onBlur, minValue, maxValue }) => {
       </Grid>
       <Grid item>
         <TextField
-          defaultValue={value}
+          defaultValue={defaultValue}
           type='number'
           InputLabelProps={{
             shrink: true,
