@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-  AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip,
-} from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
-
 import SettingsDrawer from './SettingsDrawer';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   navbarSpacer: {
@@ -13,10 +11,16 @@ const useStyles = makeStyles({
   toolBar: {
     minHeight: '85px',
   },
+  logo: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
 });
 
 const Navbar = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const [settingsOpen, setSettingsOpen] = React.useState(false);
 
@@ -24,23 +28,40 @@ const Navbar = () => {
     setSettingsOpen(!settingsOpen);
   };
 
+  const onLogoClick = () => {
+    history.push('/');
+  }
+
   return (
     <>
       <AppBar>
         <Toolbar className={classes.toolBar}>
           <Grid container direction='row' justify='space-between' alignItems='center'>
-            <Grid item>
-              <Typography variant='h3' component='h1'>
-                Hack Hate 2020
-              </Typography>
+            <Grid container item spacing={2} alignItems='center'>
+              <Grid item>
+                <Tooltip title='Go to home' aria-label='navigate-to-home'> 
+                  <img
+                    src='data-collator-logo.png'
+                    width='55px' height='55px'
+                    alt='Data Collator Logo'
+                    onClick={onLogoClick}
+                    className={classes.logo}
+                  />
+                </Tooltip>               
+              </Grid>
+              <Grid item>
+                <Typography variant='h3' component='h1'>
+                  Data Collator
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Tooltip title='Open user settings' aria-label='open user settings'>
-                <IconButton aria-label='user settings' onClick={handleToggleSettings}>
-                  <SettingsIcon color='secondary' fontSize='large' />
-                </IconButton>
-              </Tooltip>
-            </Grid>
+          </Grid>
+          <Grid item>
+            <Tooltip title='Open user settings' aria-label='open user settings'>
+              <IconButton aria-label='user settings' onClick={handleToggleSettings}>
+                <SettingsIcon color='secondary' fontSize='large' />
+              </IconButton>
+            </Tooltip>
           </Grid>
         </Toolbar>
       </AppBar>

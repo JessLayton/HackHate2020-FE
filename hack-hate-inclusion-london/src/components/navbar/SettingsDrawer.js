@@ -165,7 +165,7 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
           <Grid item>
             <Tooltip title='Close settings' aria-label='close-settings'>
               <IconButton onClick={toggleOpen}>
-                <CloseIcon />
+                <CloseIcon color='secondary'/>
               </IconButton>
             </Tooltip>
           </Grid>
