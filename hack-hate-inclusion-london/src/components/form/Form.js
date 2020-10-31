@@ -12,6 +12,7 @@ import NumberFieldsGroup from './numberfields/NumberFieldsGroup';
 import TextBox from './textfields/TextBox';
 import BigTextBox from './textfields/BigTextBox';
 import ScrollUp from './ScrollUp';
+import SnackbarStore from '../../snackbar/SnackbarStore';
 import DDPOStore from '../ddpo/DDPOStore';
 
 import ethnicities, { initialisedEthnicities } from '../../resources/ethnicities';
@@ -60,14 +61,18 @@ const Form = observer(() => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let success;
     try {      
-      const success = await constructForm(quarter, year, organisation, boroughs, referralsCount, supportCount, unreportedCaseCount, ethnicityCount, genderCount, sexCount, orientationsCount, impairmentCount, caseAttributeCount, ageCount, keyIssuesPara, emotionalImpactCS, outcomesCS, otherDetails);   
+      success = await constructForm(quarter, year, organisation, boroughs, referralsCount, supportCount, unreportedCaseCount, ethnicityCount, genderCount, sexCount, orientationsCount, impairmentCount, caseAttributeCount, ageCount, keyIssuesPara, emotionalImpactCS, outcomesCS, otherDetails);   
       if (success) {
         history.push("/thankyou");
+        SnackbarStore.showSuccess(`Submitted form for ${organisation.name}`);
       }  
     } catch (error) {
-      console.error(error);
-      alert('Failed to submit');
+      console.error(error);      
+    }
+    if (!success) {
+      SnackbarStore.showError('Form was not submitted');
     }
   };
 

@@ -50,7 +50,7 @@ export const constructForm = async (
       quarter: getQuarterValue(quarter),
       year: year.getFullYear(),
       name_ddpo: organisation.name,
-      borough_covered: getCheckedBoroughs(boroughs),
+      boroughs_covered: getCheckedBoroughs(boroughs),
       hate_crime_cases,
       cases_reported,
       cases_not_reported,

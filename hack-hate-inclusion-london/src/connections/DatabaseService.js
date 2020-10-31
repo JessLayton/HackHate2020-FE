@@ -3,9 +3,7 @@ import { post, get } from './DatabaseConnector';
 const postForm = async (formData) => {
   let success;
   try {
-    const response = await post('/api/form', { formData });
-    console.log(response);
-    console.log(formData);
+    const response = await post('/api/form', formData);
     success = response && response.data && response.data.status === 'success';
   } catch (err) {
     console.error(err);
