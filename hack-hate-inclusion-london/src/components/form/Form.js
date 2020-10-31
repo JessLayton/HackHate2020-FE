@@ -1,11 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import {
-  Box, Button, Grid, makeStyles, Link,
-} from '@material-ui/core';
+import { observer } from 'mobx-react-lite';
+
+import { Box, Button, Grid, makeStyles, Link } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
-import { observer } from 'mobx-react-lite';
 import { constructForm } from './constructForm/constructForm';
 import Brief from './Brief';
 import AutocompleteField from './textfields/AutocompleteField';
