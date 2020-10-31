@@ -4,6 +4,7 @@ import {
 import React from 'react';
 
 import { addOrganisation } from '../connections/DatabaseService';
+import SnackbarStore from '../snackbar/SnackbarStore';
 
 const useStyles = makeStyles({
   margin: {
@@ -23,7 +24,9 @@ const OrgEntry = () => {
 
   const handleSubmit = async () => {
     const response = await addOrganisation(orgName);
-    alert(`Added ${response.data.data.name}`);
+    if (response) {
+      SnackbarStore.showSuccess(`Added ${response.data.data.name}`);
+    }
   };
 
   const validateEntry = () => {

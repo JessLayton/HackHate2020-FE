@@ -4,7 +4,6 @@ import MuiSnackbar from '@material-ui/core/Snackbar';
 import { Alert as MuiAlert, AlertTitle } from '@material-ui/lab';
 
 import SnackbarStore from './SnackbarStore';
-import { makeStyles } from '@material-ui/core';
 
 const getTitle = (severity) => {
   switch (severity) {
@@ -29,18 +28,7 @@ const Alert = ({ severity, onClose, message }) => (
   </MuiAlert>
 );
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: '5px',
-    },
-  },
-});
-
 const Snackbar = observer(() => {
-  const classes = useStyles();
-
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
