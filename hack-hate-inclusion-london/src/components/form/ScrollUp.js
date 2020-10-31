@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FAB from '@material-ui/core/FAB';
+import FAB from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
