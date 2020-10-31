@@ -1,4 +1,4 @@
-import createInitialState from "../components/form/InitialState"
+import createInitialState from "../components/form/constructForm/InitialState"
 
 const impairments = [
   { label: "Physical", key: "physical"  },

@@ -1,4 +1,4 @@
-import createInitialState from "../components/form/InitialState"
+import createInitialState from "../components/form/constructForm/InitialState"
 const ethnicities = [
   { label: "White - English / Welsh / Scottish / Northern Irish / British", key: "white_eng_plus" },
   { label: "White - Irish", key: "white_irish" },

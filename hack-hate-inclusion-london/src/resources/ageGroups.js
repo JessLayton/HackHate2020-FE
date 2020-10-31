@@ -1,4 +1,4 @@
-import createInitialState from "../components/form/InitialState"
+import createInitialState from "../components/form/constructForm/InitialState"
 
 const ageGroups = [
   { label: "Under 18", key: "under-18" },

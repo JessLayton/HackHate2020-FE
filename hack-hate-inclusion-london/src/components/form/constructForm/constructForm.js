@@ -1,4 +1,4 @@
-import { postForm } from '../../connections/DatabaseService';
+import { postForm } from '../../../connections/DatabaseService';
 
 const getCheckedBoroughs = (boroughs) => {
     const checkedBoroughs = [];

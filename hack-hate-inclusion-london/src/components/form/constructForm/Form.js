@@ -4,28 +4,28 @@ import { Box, Button, Grid, makeStyles, Link } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
 import { constructForm } from './constructForm';
-import Brief from './Brief';
-import AutocompleteField from './textfields/AutocompleteField';
-import YearPicker from './YearPicker';
-import Checkboxes from './checkboxes/Checkboxes';
-import NumberFieldsGroup from './numberfields/NumberFieldsGroup';
-import TextBox from './textfields/TextBox';
-import BigTextBox from './textfields/BigTextBox';
+import Brief from '../Brief';
+import AutocompleteField from '../textfields/AutocompleteField';
+import YearPicker from '../pickers/YearPicker';
+import Checkboxes from '../checkboxes/Checkboxes';
+import NumberFieldsGroup from '../numberfields/NumberFieldsGroup';
+import TextBox from '../textfields/TextBox';
+import BigTextBox from '../textfields/BigTextBox';
 import ScrollUp from './ScrollUp';
 
-import ethnicities, { initialisedEthnicities } from '../../resources/ethnicities';
-import referralsAndEnquiries, { initialisedReferralsAndEnquiries } from '../../resources/referralsAndEnquiries';
-import supportTypes, { initialisedSupportTypes } from '../../resources/supportTypes';
-import caseAttributes, { initialisedCaseAttributes } from '../../resources/caseAttributes';
-import unreportedCases, { initialisedUnreportedCases } from '../../resources/unreportedCases';
-import ageGroups, { initialisedAgeGroups } from '../../resources/ageGroups';
-import DDPOs from '../../resources/DDPOs';
-import yearQuarters from '../../resources/yearQuarters';
-import impairments, { initialisedImpairments } from '../../resources/impairments';
-import genders, { initialisedGenders } from '../../resources/gender';
-import sex, { initialisedSex } from '../../resources/sex';
-import orientations, { initialisedOrientations } from '../../resources/orientations';
-import boroughsList from '../../resources/boroughs';
+import ethnicities, { initialisedEthnicities } from '../../../resources/ethnicities';
+import referralsAndEnquiries, { initialisedReferralsAndEnquiries } from '../../../resources/referralsAndEnquiries';
+import supportTypes, { initialisedSupportTypes } from '../../../resources/supportTypes';
+import caseAttributes, { initialisedCaseAttributes } from '../../../resources/caseAttributes';
+import unreportedCases, { initialisedUnreportedCases } from '../../../resources/unreportedCases';
+import ageGroups, { initialisedAgeGroups } from '../../../resources/ageGroups';
+import DDPOs from '../../../resources/DDPOs';
+import yearQuarters from '../../../resources/yearQuarters';
+import impairments, { initialisedImpairments } from '../../../resources/impairments';
+import genders, { initialisedGenders } from '../../../resources/gender';
+import sex, { initialisedSex } from '../../../resources/sex';
+import orientations, { initialisedOrientations } from '../../../resources/orientations';
+import boroughsList from '../../../resources/boroughs';
 
 const useStyles = makeStyles({
   form: {
