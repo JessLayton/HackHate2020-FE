@@ -32,7 +32,7 @@ const getAllOrganisations = async () => {
   } catch (err) {
     console.error(err);
   }
-  return response;
+  return response.data.data;
 };
 
 export { postForm, addOrganisation, getAllOrganisations };
