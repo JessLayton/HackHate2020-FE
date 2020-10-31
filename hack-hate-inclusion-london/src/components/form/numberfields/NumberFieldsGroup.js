@@ -4,14 +4,20 @@ import NumberField from './NumberField';
 
 const NumberFields = ({ inputs, value, onBlur, minValue, maxValue }) => {
   const handleChange = (key, newValue) => {
-
-    onBlur({ ...value, [key]: newValue === "" ? 0 : newValue });
+    onBlur({ ...value, [key]: newValue === '' ? 0 : newValue });
   };
   return (
     <Grid container direction='column' spacing={2}>
       {inputs.map((input, index) => (
         <Grid item key={index}>
-          <NumberField label={input.label} name={input.label} onBlur={(newValue) => handleChange(input.key, newValue)} defaultValue={value[input.key]} minValue={minValue} maxValue={maxValue} />
+          <NumberField
+            label={input.label}
+            name={input.label}
+            onBlur={(newValue) => handleChange(input.key, newValue)}
+            defaultValue={value[input.key]}
+            minValue={minValue}
+            maxValue={maxValue}
+          />
         </Grid>
       ))}
     </Grid>

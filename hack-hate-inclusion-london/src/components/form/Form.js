@@ -9,7 +9,6 @@ import AutocompleteField from './textfields/AutocompleteField';
 import YearPicker from './pickers/YearPicker';
 import Checkboxes from './checkboxes/Checkboxes';
 import NumberFieldsGroup from './numberfields/NumberFieldsGroup';
-import TextBox from './textfields/TextBox';
 import BigTextBox from './textfields/BigTextBox';
 import ScrollUp from './ScrollUp';
 import SnackbarStore from '../../snackbar/SnackbarStore';
@@ -36,7 +35,7 @@ const useStyles = makeStyles({
     marginTop: '20px',
   },
 });
-  
+
 const Form = observer(() => {
   const classes = useStyles();
   const [quarter, setQuarter] = React.useState('');
@@ -56,20 +55,37 @@ const Form = observer(() => {
   const [keyIssuesPara, setKeyIssuesPara] = React.useState('');
   const [emotionalImpactCS, setEmotionalImpactCS] = React.useState('');
   const [outcomesCS, setOutcomesCS] = React.useState('');
-  const [otherDetails, setOtherDetails] = React.useState('');
   const history = useHistory();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     let success;
-    try {      
-      success = await constructForm(quarter, year, organisation, boroughs, referralsCount, supportCount, unreportedCaseCount, ethnicityCount, genderCount, sexCount, orientationsCount, impairmentCount, caseAttributeCount, ageCount, keyIssuesPara, emotionalImpactCS, outcomesCS, otherDetails);   
+    try {
+      success = await constructForm(
+        quarter,
+        year,
+        organisation,
+        boroughs,
+        referralsCount,
+        supportCount,
+        unreportedCaseCount,
+        ethnicityCount,
+        genderCount,
+        sexCount,
+        orientationsCount,
+        impairmentCount,
+        caseAttributeCount,
+        ageCount,
+        keyIssuesPara,
+        emotionalImpactCS,
+        outcomesCS
+      );
       if (success) {
-        history.push("/thankyou");
+        history.push('/thankyou');
         SnackbarStore.showSuccess(`Submitted form for ${organisation.name}`);
-      }  
+      }
     } catch (error) {
-      console.error(error);      
+      console.error(error);
     }
     if (!success) {
       SnackbarStore.showError('Form was not submitted');
@@ -80,176 +96,170 @@ const Form = observer(() => {
     <>
       <Box className={classes.form}>
         <Brief />
-      <form onSubmit={handleSubmit}>
-        <Grid container direction='column' spacing={7}>
-          <ScrollUp scrollStepInPx='50' delayInMs='16.66' />
-          <Grid container item spacing={2}>
-            <Grid item>
-              <p>1. Time Period (Quarterly)</p>
-            </Grid>
-            <Grid container item direction='row' spacing={2}>
+        <form onSubmit={handleSubmit}>
+          <Grid container direction='column' spacing={7}>
+            <ScrollUp scrollStepInPx='50' delayInMs='16.66' />
+            <Grid container item spacing={2}>
               <Grid item>
-                <AutocompleteField options={yearQuarters} onChange={setQuarter} required label='Quarter' />
+                <p>1. Time Period (Quarterly)</p>
               </Grid>
-              <Grid item>
-                <YearPicker value={year} onChange={setYear} required />
-              </Grid>
-            </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>2. Name of DDPO</p>
-            </Grid>
-            <Grid container item>
-              <Grid item>
-                <AutocompleteField options={DDPOStore.ddpos} onChange={setOrganisation} required label='DDPO' />
+              <Grid container item direction='row' spacing={2}>
                 <Grid item>
-                  <Link href='/ddpo'>Don't see your DDPO? Click here to add a DDPO</Link>
+                  <AutocompleteField options={yearQuarters} onChange={setQuarter} required label='Quarter' />
+                </Grid>
+                <Grid item>
+                  <YearPicker value={year} onChange={setYear} required />
                 </Grid>
               </Grid>
             </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>3. Boroughs Covered (Tick all that apply)</p>
-            </Grid>
-            <Grid item>
-              <Checkboxes checkedItems={boroughs} onChange={setBoroughs} />
-            </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>4. Details of referrals / enquiries during this quarter - Please provide a number</p>
-            </Grid>
+            <Divider />
             <Grid container item direction='column' spacing={2}>
-              <NumberFieldsGroup inputs={referralsAndEnquiries} value={referralsCount} onBlur={setReferralsCount} minValue={0} miniLabel={referralsAndEnquiries} />
+              <Grid item>
+                <p>2. Name of DDPO</p>
+              </Grid>
+              <Grid container item>
+                <Grid item>
+                  <AutocompleteField options={DDPOStore.ddpos} onChange={setOrganisation} required label='DDPO' />
+                  <Grid item>
+                    <Link href='/ddpo'>Don't see your DDPO? Click here to add a DDPO</Link>
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item>
-            <p>5. For DDPOs who are not collecting detailed data, please provide a short paragraph (up to 300 words) highlighting key issues, challenges / positive outcomes.</p>
-            <BigTextBox label='Key issues/outcomes (300 words max)' value={keyIssuesPara} onBlur={setKeyIssuesPara} />
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>6. Type of support provided - Please provide a number</p>
-            </Grid>
+            <Divider />
             <Grid container item direction='column' spacing={2}>
-              <NumberFieldsGroup inputs={supportTypes} value={supportCount} onBlur={setSupportCount} minValue={0} />
+              <Grid item>
+                <p>3. Boroughs Covered (Tick all that apply)</p>
+              </Grid>
+              <Grid item>
+                <Checkboxes checkedItems={boroughs} onChange={setBoroughs} />
+              </Grid>
             </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>7. Cases not reported to Police - Please state main reasons why, with number of cases</p>
+            <Divider />
+            <Grid container item direction='column' spacing={2}>
+              <Grid item>
+                <p>4. Details of referrals / enquiries during this quarter - Please provide a number</p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={referralsAndEnquiries} value={referralsCount} onBlur={setReferralsCount} minValue={0} miniLabel={referralsAndEnquiries} />
+              </Grid>
             </Grid>
-            <Grid container item direction='column' spacing={1}>
+            <Divider />
+            <Grid container item>
+              <p>5. For DDPOs who are not collecting detailed data, please provide a short paragraph (up to 300 words) highlighting key issues, challenges / positive outcomes.</p>
+              <BigTextBox label='Key issues/outcomes (300 words max)' value={keyIssuesPara} onBlur={setKeyIssuesPara} />
+            </Grid>
+            <Divider />
+            <Grid container item direction='column' spacing={2}>
+              <Grid item>
+                <p>6. Type of support provided - Please provide a number</p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={supportTypes} value={supportCount} onBlur={setSupportCount} minValue={0} />
+              </Grid>
+            </Grid>
+            <Divider />
+            <Grid container item direction='column' spacing={2}>
+              <Grid item>
+                <p>7. Cases not reported to Police - Please state main reasons why, with number of cases</p>
+              </Grid>
+
               <Grid item>
                 <NumberFieldsGroup inputs={unreportedCases} value={unreportedCaseCount} onBlur={setUnreportedCaseCount} minValue={0} />
               </Grid>
+            </Grid>
+            <Divider />
+            <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <TextBox placeholder='Give Details' value={otherDetails} onBlur={setOtherDetails} />
+                <p>8. Age of persons being supported - Please provide a number</p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={ageGroups} value={ageCount} onBlur={setAgeCount} minValue={0} />
               </Grid>
             </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>8. Age of persons being supported - Please provide a number</p>
-            </Grid>
+            <Divider />
             <Grid container item direction='column' spacing={2}>
-              <NumberFieldsGroup inputs={ageGroups} value={ageCount} onBlur={setAgeCount} minValue={0} />
+              <Grid item>
+                <p>9. Ethnicity of persons being supported - Please provide a number</p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={ethnicities} value={ethnicityCount} onBlur={setEthnicityCount} minValue={0} />
+              </Grid>
             </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>9. Ethnicity of persons being supported - Please provide a number</p>
-            </Grid>
+            <Divider />
             <Grid container item direction='column' spacing={2}>
-              <NumberFieldsGroup inputs={ethnicities} value={ethnicityCount} onBlur={setEthnicityCount} minValue={0} />
+              <Grid item>
+                <p>10. Service users which identify as male or female - Please provide a number</p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={sex} value={sexCount} onBlur={setSexCount} minValue={0} />
+              </Grid>
             </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>10. Service users which identify as male or female - Please provide a number</p>
-            </Grid>
+            <Divider />
             <Grid container item direction='column' spacing={2}>
-              <NumberFieldsGroup inputs={sex} value={sexCount} onBlur={setSexCount} minValue={0} />
+              <Grid item>
+                <p>11. Users which describe sexual orientation as the following terms - Please provide a number</p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={orientations} value={orientationsCount} onBlur={setOrientationCount} minValue={0} />
+              </Grid>
             </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>11. Users which describe sexual orientation as the following terms - Please provide a number</p>
-            </Grid>
+            <Divider />
             <Grid container item direction='column' spacing={2}>
-              <NumberFieldsGroup inputs={orientations} value={orientationsCount} onBlur={setOrientationCount} minValue={0} />
+              <Grid item>
+                <p>12.Service users which identify as the same gender to the sex they were registered with at birth - Please provide a number</p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={genders} value={genderCount} onBlur={setGenderCount} minValue={0} />
+              </Grid>
             </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>12.Service users which identify as the same gender to the sex they were registered with at birth - Please provide a number</p>
-            </Grid>
+            <Divider />
             <Grid container item direction='column' spacing={2}>
-              <NumberFieldsGroup inputs={genders} value={genderCount} onBlur={setGenderCount} minValue={0} />
+              <Grid item>
+                <p>13. Service users with the following disabilities or impairments - Please provide a number</p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={impairments} value={impairmentCount} onBlur={setImpairmentCount} minValue={0} />
+              </Grid>
             </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>13. Service users with the following disabilities or impairments - Please provide a number</p>
-            </Grid>
+            <Divider />
             <Grid container item direction='column' spacing={2}>
-              <NumberFieldsGroup inputs={impairments} value={impairmentCount} onBlur={setImpairmentCount} minValue={0} />
+              <Grid item>
+                <p>14. Of the cases being dealt with, how many were related to the below - Please provide a number</p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={caseAttributes} value={caseAttributeCount} onBlur={setAttributeCount} minValue={0} />
+              </Grid>
             </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>14. Of the cases being dealt with, how many were related to the below - Please provide a number</p>
-            </Grid>
+            <Divider />
             <Grid container item direction='column' spacing={2}>
-              <NumberFieldsGroup inputs={caseAttributes} value={caseAttributeCount} onBlur={setAttributeCount} minValue={0} />
+              <Grid item>
+                <p>15. Brief case study highlighting emotional impact of Disability Hate Crime and / or challenges / positives dealing with Police / CPS</p>
+              </Grid>
+              <Grid item>
+                <BigTextBox label='Case Study (300 words max)' value={emotionalImpactCS} onBlur={setEmotionalImpactCS} />
+              </Grid>
+            </Grid>
+            <Divider />
+            <Grid container item direction='column' spacing={2}>
+              <Grid item>
+                <p>16. Brief case study highlighting achieving positive outcomes without a report to police</p>
+              </Grid>
+              <Grid item>
+                <BigTextBox label='Case Study (300 words max)' value={outcomesCS} onBlur={setOutcomesCS} />
+              </Grid>
+            </Grid>
+            <Divider />
+            <Grid item>
+              <Button type='submit' variant='contained' color='primary' size='large'>
+                Submit
+              </Button>
             </Grid>
           </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>15. Brief case study highlighting emotional impact of Disability Hate Crime and / or challenges / positives dealing with Police / CPS</p>
-            </Grid>
-            <Grid item>
-              <BigTextBox label='Case Study (300 words max)' value={emotionalImpactCS} onBlur={setEmotionalImpactCS} />
-            </Grid>
-          </Grid>
-          <Divider />
-          <Grid container item direction='column' spacing={2}>
-            <Grid item>
-              <p>16. Brief case study highlighting achieving positive outcomes without a report to police</p>
-            </Grid>
-            <Grid item>
-              <BigTextBox label='Case Study (300 words max)' value={outcomesCS} onBlur={setOutcomesCS} />
-            </Grid>
-          </Grid>
-          <Divider />
-          <Grid item>
-            <Button type='submit' variant='contained' color='primary' size='large'>
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+        </form>
       </Box>
-
     </>
   );
 });
-
 
 export default Form;
