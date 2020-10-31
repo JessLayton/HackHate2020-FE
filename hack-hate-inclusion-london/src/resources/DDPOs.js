@@ -1,4 +1,4 @@
-import createInitialState from "../components/form/InitialState"
+import createInitialState from "../components/form/constructForm/InitialState"
 
 const DDPOs = [
   { value: "Beans society" },

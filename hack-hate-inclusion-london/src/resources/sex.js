@@ -1,4 +1,4 @@
-import createInitialState from "../components/form/InitialState"
+import createInitialState from "../components/form/constructForm/InitialState"
 
 const sex = [
   { label: "Male", key: "male"},

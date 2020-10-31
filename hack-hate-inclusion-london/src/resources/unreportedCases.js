@@ -1,4 +1,4 @@
-import createInitialState from "../components/form/InitialState"
+import createInitialState from "../components/form/constructForm/InitialState"
 
 const unreportedCases = [
   { label: "Not enough evidence", key: "lack_evidence" },

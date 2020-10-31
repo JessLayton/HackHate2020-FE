@@ -1,4 +1,4 @@
-import createInitialState from "../components/form/InitialState"
+import createInitialState from "../components/form/constructForm/InitialState"
 
 const referralsAndEnquiries = [
   { label: "New referrals / enquiries for Disability Hate Crime cases", key: "hate_crime_cases" },
