@@ -4,7 +4,6 @@ import {
 import React from 'react';
 
 import { addOrganisation } from '../connections/DatabaseService';
-import SnackbarStore from '../snackbar/SnackbarStore';
 
 const useStyles = makeStyles({
   margin: {
