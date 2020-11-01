@@ -14,7 +14,10 @@ class store {
   }
 
   async loadDdpos() {
-    this.ddpos = await getAllOrganisations();
+    const resopnse = await getAllOrganisations();
+    if (response && response.data && response.data.data) {
+      this.ddpos = response;
+    }
   }
 
   addDdpo(ddpo) {
