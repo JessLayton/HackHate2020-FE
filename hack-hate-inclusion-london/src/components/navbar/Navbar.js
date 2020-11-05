@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip, Button } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SettingsDrawer from './SettingsDrawer';
 import { useHistory } from 'react-router-dom';
@@ -32,12 +32,20 @@ const Navbar = () => {
     history.push('/');
   }
 
+  const navigateToDash = () => {
+    history.push('/dash');
+  }
+
+  const navigateToForm = () => {
+    history.push('/form');
+  }
+
   return (
     <>
       <AppBar>
         <Toolbar className={classes.toolBar}>
           <Grid container direction='row' justify='space-between' alignItems='center'>
-            <Grid container item spacing={2} alignItems='center'>
+            <Grid container item spacing={3} alignItems='center'>
               <Grid item>
                 <Tooltip title='Go to home' aria-label='navigate-to-home'> 
                   <img
@@ -55,6 +63,12 @@ const Navbar = () => {
                 </Typography>
               </Grid>
             </Grid>
+          </Grid>
+          <Grid item>
+           <Button color='secondary' onClick={navigateToDash}>Dashboard</Button>
+          </Grid>
+          <Grid item>
+           <Button color='secondary' onClick={navigateToForm}>Form</Button>
           </Grid>
           <Grid item>
             <Tooltip title='Open user settings' aria-label='open user settings'>

@@ -51,7 +51,7 @@ const OrgEntry = () => {
   };
 
   const returnToForm = () => {
-    history.push('/');
+    history.push('/form');
   };
 
   return (
