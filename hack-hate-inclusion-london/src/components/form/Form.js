@@ -2,7 +2,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
-import { Box, Button, Grid, makeStyles, Link } from '@material-ui/core';
+import {
+  Box, Button, Grid, makeStyles, Link,
+} from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
 import { constructForm } from './constructForm/constructForm';
@@ -58,38 +60,59 @@ const Form = observer(() => {
   const [outcomesCS, setOutcomesCS] = React.useState('');
   const history = useHistory();
 
+  const validWordCount = (entry) => (entry.split(' ').filter((word) => word !== '').length <= 300);
+
+  const validateForm = () => {
+    const invalidQuestions = [];
+    if (!validWordCount(keyIssuesPara)) {
+      invalidQuestions.push(5);
+    }
+    if (!validWordCount(emotionalImpactCS)) {
+      invalidQuestions.push(15);
+    }
+    if (!validWordCount(outcomesCS)) {
+      invalidQuestions.push(16);
+    }
+    return { valid: invalidQuestions.length === 0, invalidQuestions };
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let success;
-    try {
-      success = await constructForm(
-        quarter,
-        year,
-        organisation,
-        boroughs,
-        referralsCount,
-        supportCount,
-        unreportedCaseCount,
-        ethnicityCount,
-        genderCount,
-        sexCount,
-        orientationsCount,
-        impairmentCount,
-        caseAttributeCount,
-        ageCount,
-        keyIssuesPara,
-        emotionalImpactCS,
-        outcomesCS,
-      );
-      if (success) {
-        history.push('/thankyou');
-        SnackbarStore.showSuccess(`Submitted form for ${organisation.name}`);
+    const formIsValid = validateForm();
+    if (formIsValid.valid) {
+      let success;
+      try {
+        success = await constructForm(
+          quarter,
+          year,
+          organisation,
+          boroughs,
+          referralsCount,
+          supportCount,
+          unreportedCaseCount,
+          ethnicityCount,
+          genderCount,
+          sexCount,
+          orientationsCount,
+          impairmentCount,
+          caseAttributeCount,
+          ageCount,
+          keyIssuesPara,
+          emotionalImpactCS,
+          outcomesCS,
+        );
+        if (success) {
+          history.push('/thankyou');
+          SnackbarStore.showSuccess(`Submitted form for ${organisation.name}`);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-    }
-    if (!success) {
-      SnackbarStore.showError('Form was not submitted');
+      if (!success) {
+        SnackbarStore.showError('Form was not submitted');
+      }
+    } else {
+      SnackbarStore.showError(`The following question(s) are not filled in correctly: ${formIsValid.invalidQuestions.join(', ')}`);
     }
   };
 
@@ -148,7 +171,7 @@ const Form = observer(() => {
             <Divider />
             <Grid container item>
               <p>5. For DDPOs who are not collecting detailed data, please provide a short paragraph (up to 300 words) highlighting key issues, challenges / positive outcomes.</p>
-              <BigTextBox label='Key issues/outcomes (300 words max)' value={keyIssuesPara} onBlur={setKeyIssuesPara} />
+              <BigTextBox label='Key issues/outcomes (300 words max)' value={keyIssuesPara} onBlur={setKeyIssuesPara} validate={validWordCount} />
             </Grid>
             <Divider />
             <Grid container item direction='column' spacing={2}>
@@ -164,7 +187,6 @@ const Form = observer(() => {
               <Grid item>
                 <p>7. Cases not reported to Police - Please state main reasons why, with number of cases</p>
               </Grid>
-
               <Grid item>
                 <NumberFieldsGroup inputs={unreportedCases} value={unreportedCaseCount} onBlur={setUnreportedCaseCount} minValue={0} />
               </Grid>
@@ -238,7 +260,7 @@ const Form = observer(() => {
                 <p>15. Brief case study highlighting emotional impact of Disability Hate Crime and / or challenges / positives dealing with Police / CPS</p>
               </Grid>
               <Grid item>
-                <BigTextBox label='Case Study (300 words max)' value={emotionalImpactCS} onBlur={setEmotionalImpactCS} />
+                <BigTextBox label='Case Study (300 words max)' value={emotionalImpactCS} onBlur={setEmotionalImpactCS} validate={validWordCount} />
               </Grid>
             </Grid>
             <Divider />
@@ -247,7 +269,7 @@ const Form = observer(() => {
                 <p>16. Brief case study highlighting achieving positive outcomes without a report to police</p>
               </Grid>
               <Grid item>
-                <BigTextBox label='Case Study (300 words max)' value={outcomesCS} onBlur={setOutcomesCS} />
+                <BigTextBox label='Case Study (300 words max)' value={outcomesCS} onBlur={setOutcomesCS} validate={validWordCount} />
               </Grid>
             </Grid>
             <Divider />
