@@ -20,17 +20,15 @@ const OrgEntry = () => {
 
   const validateEntry = (newOrg = orgName) => {
     if (!newOrg) {
-      SnackbarStore.showError('Invalid Entry. Please enter an organisation name');
       setError(true);
-      return false;
+      return { valid: false, message: 'Invalid Entry. Please enter an organisation name' };
     }
-    if (DDPOStore.getDdpos().some((org) => org.name === newOrg)) {
-      SnackbarStore.showError('DDPO already exists');
+    else if (DDPOStore.getDdpos().some((org) => org.name === newOrg)) {
       setError(true);
-      return false;
+      return { valid: false, message: 'DDPO already exists' };
     }
     setError(false);
-    return true;
+    return {valid: true, message: 'Valid' };
   };
 
   const handleValidate = (event) => {
@@ -38,7 +36,8 @@ const OrgEntry = () => {
   };
 
   const handleSubmit = async () => {
-    if (validateEntry(orgName)) {
+    const { valid, message }  = validateEntry(orgName);
+    if (valid) {
       const response = await addOrganisation(orgName);
       if (response && response.data && response.data.status === 'success') {
         DDPOStore.addDdpo(response.data.data);
@@ -46,6 +45,8 @@ const OrgEntry = () => {
       } else {
         SnackbarStore.showError('Failed to add DDPO');
       }
+    } else {
+      SnackbarStore.showError(message);
     }
   };
 
