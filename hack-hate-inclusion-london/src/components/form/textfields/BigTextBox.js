@@ -9,10 +9,6 @@ const BigTextBox = ({ label, value, onBlur, validate }) => {
     handleValidate(event.target.value);
   };
 
-  // const validEntry = (event) => {
-  //   return (event.target.value.split(' ').length <= 300) ? true : false;
-  // }
-
   const handleValidate = (value) => {
     if (validate(value)) {
       setError(false);
