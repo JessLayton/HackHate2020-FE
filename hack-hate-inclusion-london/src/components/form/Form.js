@@ -60,7 +60,7 @@ const Form = observer(() => {
   const [outcomesCS, setOutcomesCS] = React.useState('');
   const history = useHistory();
 
-  const validWordCount = (entry) => (entry.split(' ').length <= 300);
+  const validWordCount = (entry) => (entry.split(' ').filter((word) => word !== '').length <= 300);
 
   const validateForm = () => {
     const invalidQuestions = [];
