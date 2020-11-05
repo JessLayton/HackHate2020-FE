@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
-import { Box, Button, Grid, makeStyles, Link } from '@material-ui/core';
+import { Button, Grid, Link } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
 import { constructForm } from './constructForm/constructForm';
@@ -29,16 +29,7 @@ import sex, { initialisedSex } from '../../resources/sex';
 import orientations, { initialisedOrientations } from '../../resources/orientations';
 import boroughsList from '../../resources/boroughs';
 
-const useStyles = makeStyles({
-  form: {
-    marginLeft: '100px',
-    marginRight: '100px',
-    marginTop: '20px',
-  },
-});
-
 const Form = observer(() => {
-  const classes = useStyles();
   const [quarter, setQuarter] = React.useState('');
   const [year, setYear] = React.useState(new Date());
   const [organisation, setOrganisation] = React.useState('');
@@ -94,12 +85,12 @@ const Form = observer(() => {
   };
 
   return (
-    <>
+    <Grid container justify='center'>
+          <Grid container item xs={11} sm={10}>
       <ScrollUp />
-      <Box className={classes.form}>
         <Brief />
         <form onSubmit={handleSubmit}>
-          <Grid container direction='column' spacing={7}>
+          <Grid container item direction='column' spacing={7}>
             <Grid container item spacing={2}>
               <Grid item>
                 <p>1. Time Period (Quarterly)</p>
@@ -258,8 +249,8 @@ const Form = observer(() => {
             </Grid>
           </Grid>
         </form>
-      </Box>
-    </>
+      </Grid>
+    </Grid>
   );
 });
 
