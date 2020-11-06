@@ -9,7 +9,7 @@ See the backend repository: https://github.com/JessLayton/HackHate2020-BE
 
 See the dashboard repository: https://github.com/JessLayton/HackHate2020-Dashboard
 
-![Settings drawer](./images/data-collator-logo.png =200x200)
+![Settings drawer](./images/data-collator-logo.png)
 
 ## Installation
 
