@@ -32,7 +32,7 @@ const ThanksPage = () => {
       </Grid>
       <Grid item>
         <Button variant='contained' color='primary' onClick={returnToForm}>
-          Back
+          Home
         </Button>
       </Grid>
     </Grid>
