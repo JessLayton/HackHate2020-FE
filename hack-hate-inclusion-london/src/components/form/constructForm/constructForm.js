@@ -45,7 +45,6 @@ export const constructForm = async (
   outcomesCS
 ) => {
   const { cases_reported, cases_not_reported, hate_crime_cases, self, from_authorities } = referralsCount;
-
   const formData = {
     quarter: getQuarterValue(quarter),
     year: year.getFullYear(),
@@ -68,5 +67,6 @@ export const constructForm = async (
     casestudy_impact: emotionalImpactCS,
     casestudy_outcome: outcomesCS,
   };
+  console.log(formData);
   return await postForm(formData);
 };
