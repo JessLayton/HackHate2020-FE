@@ -17,7 +17,7 @@ const YearPicker = ({ onChange, value }) => {
 
 YearPicker.propTypes = {
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.instanceOf(Date).isRequired,
 };
 
 export default YearPicker;

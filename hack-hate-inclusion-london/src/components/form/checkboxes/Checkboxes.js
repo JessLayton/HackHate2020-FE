@@ -41,7 +41,9 @@ const Checkboxes = ({ checkedItems, onChange }) => {
 };
 
 Checkboxes.propTypes = {
-  checkedItems: PropTypes.arrayOf(PropTypes.string).isRequired,
+  checkedItems: PropTypes.arrayOf(PropTypes.shape({
+    isChecked: PropTypes.bool,
+  })).isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

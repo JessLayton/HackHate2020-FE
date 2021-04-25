@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
 const NumberField = ({
-  label, defaultValue, onBlur, minValue, maxValue,
+  label, defaultValue, onBlur, minValue,
 }) => {
   const handleChange = (event) => {
     onBlur(event.target.value);
@@ -21,7 +21,7 @@ const NumberField = ({
           InputLabelProps={{
             shrink: true,
           }}
-          InputProps={{ inputProps: { min: minValue, max: maxValue, id: label } }}
+          InputProps={{ inputProps: { min: minValue, id: label } }}
           onBlur={handleChange}
           variant='outlined'
           size='small'
@@ -36,7 +36,6 @@ NumberField.propTypes = {
   defaultValue: PropTypes.number.isRequired,
   onBlur: PropTypes.func.isRequired,
   minValue: PropTypes.number.isRequired,
-  maxValue: PropTypes.number.isRequired,
 };
 
 NumberField.defaultProps = {

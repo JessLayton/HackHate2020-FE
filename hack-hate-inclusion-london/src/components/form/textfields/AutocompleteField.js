@@ -31,7 +31,7 @@ const AutocompleteField = ({ options, onChange, label }) => {
 
 AutocompleteField.propTypes = {
   label: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
