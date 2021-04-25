@@ -1,10 +1,10 @@
-import createInitialState from "../components/form/constructForm/InitialState"
+import createInitialState from '../components/form/constructForm/InitialState';
 
 const orientations = [
-  { label: "Heterosexual", key: "heterosexual" },
-  { label: "Homosexual or lesbian", key: "homosexual"  },
-  { label: "Bi-sexual", key: "bisexual"  },
-  { label: "Other", key: "other"  },
+  { label: 'Heterosexual', key: 'heterosexual' },
+  { label: 'Homosexual or lesbian', key: 'homosexual' },
+  { label: 'Bi-sexual', key: 'bisexual' },
+  { label: 'Other', key: 'other' },
 ];
 
 export const initialisedOrientations = createInitialState(orientations);

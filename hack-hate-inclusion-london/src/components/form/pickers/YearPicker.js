@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
@@ -12,6 +13,11 @@ const YearPicker = ({ onChange, value }) => {
       <DatePicker views={['year']} value={value} onChange={handleChange} inputVariant='outlined' label='Year' required />
     </MuiPickersUtilsProvider>
   );
+};
+
+YearPicker.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
 };
 
 export default YearPicker;
