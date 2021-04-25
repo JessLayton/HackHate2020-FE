@@ -7,6 +7,7 @@ const supportTypes = [
     label:
       "General support - issues relating to  harrassment / housing / financial / safeguarding", key: "general"
   },
+  { label: "Signposted to support elsewhere", key: "signposted" },
   { label: "Other support", key: "other" },
 ];
 

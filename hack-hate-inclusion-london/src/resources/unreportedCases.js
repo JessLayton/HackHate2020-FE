@@ -10,7 +10,7 @@ const unreportedCases = [
     label:
       "Client decision - I need someone to talk to in confidence without making a report", key: "talk"
   },
-  { label: "Other", key: "other" },
+  { label: "Client had other reasons", key: "other" },
 ];
 
 export const initialisedUnreportedCases = createInitialState(unreportedCases);
