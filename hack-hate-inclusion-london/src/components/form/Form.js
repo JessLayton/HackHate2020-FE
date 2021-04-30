@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { Button, Grid, Link } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
-import { constructForm } from './constructForm/constructForm';
+import constructForm from './constructForm/constructForm';
 import Brief from './Brief';
 import AutocompleteField from './textfields/AutocompleteField';
 import YearPicker from './pickers/YearPicker';
@@ -107,8 +107,8 @@ const Form = observer(() => {
 
   return (
     <Grid container justify='center'>
-          <Grid container item xs={11} sm={10}>
-      <ScrollUp />
+      <Grid container item xs={11} sm={10}>
+        <ScrollUp />
         <Brief />
         <form onSubmit={handleSubmit}>
           <Grid container item direction='column' spacing={7}>
@@ -134,7 +134,7 @@ const Form = observer(() => {
                 <Grid item>
                   <AutocompleteField options={DDPOStore.ddpos} onChange={setOrganisation} required label='DDPO' />
                   <Grid item>
-                    <Link href='/ddpo'>Don't see your DDPO? Click here to add a DDPO</Link>
+                    <Link href='/ddpo'>Do&quot;t see your DDPO? Click here to add a DDPO</Link>
                   </Grid>
                 </Grid>
               </Grid>

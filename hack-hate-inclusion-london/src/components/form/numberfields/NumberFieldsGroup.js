@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import NumberField from './NumberField';
 
-const NumberFields = ({ inputs, value, onBlur, minValue, maxValue }) => {
+const NumberFields = ({
+  inputs, value, onBlur, minValue,
+}) => {
   const handleChange = (key, newValue) => {
     onBlur({ ...value, [key]: newValue === '' ? 0 : newValue });
   };
@@ -16,12 +19,18 @@ const NumberFields = ({ inputs, value, onBlur, minValue, maxValue }) => {
             onBlur={(newValue) => handleChange(input.key, newValue)}
             defaultValue={value[input.key]}
             minValue={minValue}
-            maxValue={maxValue}
           />
         </Grid>
       ))}
     </Grid>
   );
+};
+
+NumberFields.propTypes = {
+  inputs: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  value: PropTypes.shape({}).isRequired,
+  onBlur: PropTypes.func.isRequired,
+  minValue: PropTypes.number.isRequired,
 };
 
 export default NumberFields;

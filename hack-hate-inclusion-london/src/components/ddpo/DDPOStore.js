@@ -2,7 +2,7 @@ import { makeObservable, observable, action } from 'mobx';
 
 import { getAllOrganisations } from '../../connections/DatabaseService';
 
-class store {
+class Store {
   ddpos = [];
 
   constructor() {
@@ -27,7 +27,7 @@ class store {
   getDdpos() {
     return this.ddpos;
   }
-};
+}
 
-const DDPOStore = new store();
+const DDPOStore = new Store();
 export default DDPOStore;

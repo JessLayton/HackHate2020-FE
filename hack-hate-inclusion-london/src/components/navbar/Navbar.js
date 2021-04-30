@@ -1,8 +1,10 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip, Button } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
+import {
+  AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip, Button,
+} from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SettingsDrawer from './SettingsDrawer';
-import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   navbarSpacer: {
@@ -10,11 +12,6 @@ const useStyles = makeStyles({
   },
   toolBar: {
     minHeight: '85px',
-  },
-  logo: {
-    '&:hover': {
-      cursor: 'pointer',
-    },
   },
 });
 
@@ -28,17 +25,13 @@ const Navbar = () => {
     setSettingsOpen(!settingsOpen);
   };
 
-  const onLogoClick = () => {
-    history.push('/');
-  }
-
   const navigateToDash = () => {
     history.push('/dash');
-  }
+  };
 
   const navigateToForm = () => {
     history.push('/form');
-  }
+  };
 
   return (
     <>
@@ -47,15 +40,16 @@ const Navbar = () => {
           <Grid container direction='row' justify='space-between' alignItems='center'>
             <Grid container item spacing={3} alignItems='center'>
               <Grid item>
-                <Tooltip title='Go to home' aria-label='navigate-to-home'> 
-                  <img
-                    src='data-collator-logo.png'
-                    width='55px' height='55px'
-                    alt='Data Collator Logo'
-                    onClick={onLogoClick}
-                    className={classes.logo}
-                  />
-                </Tooltip>               
+                <Tooltip title='Go to home' aria-label='navigate-to-home'>
+                  <Link to='/'>
+                    <img
+                      src='data-collator-logo.png'
+                      width='55px'
+                      height='55px'
+                      alt='Data Collator Logo'
+                    />
+                  </Link>
+                </Tooltip>
               </Grid>
               <Grid item>
                 <Typography variant='h3' component='h1'>
@@ -65,10 +59,10 @@ const Navbar = () => {
             </Grid>
           </Grid>
           <Grid item>
-           <Button color='secondary' onClick={navigateToDash}>Dashboard</Button>
+            <Button color='secondary' onClick={navigateToDash}>Dashboard</Button>
           </Grid>
           <Grid item>
-           <Button color='secondary' onClick={navigateToForm}>Form</Button>
+            <Button color='secondary' onClick={navigateToForm}>Form</Button>
           </Grid>
           <Grid item>
             <Tooltip title='Open user settings' aria-label='open user settings'>

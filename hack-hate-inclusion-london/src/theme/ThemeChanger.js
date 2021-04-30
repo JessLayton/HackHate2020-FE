@@ -1,11 +1,12 @@
 import { MuiThemeProvider } from '@material-ui/core';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import getTheme from './theme';
 
 export const ThemeContext = React.createContext();
 
-const ThemeChanger =  (props) => {
+const ThemeChanger = ({ children }) => {
   const initialTheme = localStorage.getItem('appTheme') || 'defaultTheme';
   const initialFontSize = Number(localStorage.getItem('appFontSize') || 14);
   const initialFont = localStorage.getItem('appFont');
@@ -27,20 +28,23 @@ const ThemeChanger =  (props) => {
       localStorage.setItem('appFont', newThemeDetails.font);
       setFont(newThemeDetails.font);
     }
-
   };
 
   const theme = getTheme({
     themeName,
     font,
-    fontSize
+    fontSize,
   });
 
   return (
     <ThemeContext.Provider value={setThemeDetails}>
-      <MuiThemeProvider theme={theme}>{props.children}</MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     </ThemeContext.Provider>
   );
+};
+
+ThemeChanger.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default ThemeChanger;

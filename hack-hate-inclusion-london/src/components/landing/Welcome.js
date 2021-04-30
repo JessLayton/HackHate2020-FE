@@ -32,8 +32,8 @@ const Welcome = () => {
         </Grid>
         <Grid>
           <Typography variant='body1'>
-              The Data Collator provides a unified way for all DDPOs to submit the records that they have collected on victims of hate crimes.
-              Analysis of this data (viewable through the dashboard) will help us gain better understanding of the reporting and impact of these hate crimes.
+            The Data Collator provides a unified way for all DDPOs to submit the records that they have collected on victims of hate crimes.
+            Analysis of this data (viewable through the dashboard) will help us gain better understanding of the reporting and impact of these hate crimes.
           </Typography>
         </Grid>
       </Grid>
