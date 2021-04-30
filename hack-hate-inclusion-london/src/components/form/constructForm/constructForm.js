@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { postForm } from '../../../connections/DatabaseService';
 
 const getCheckedBoroughs = (boroughs) => {
@@ -25,7 +26,7 @@ const getQuarterValue = (quarter) => {
   }
 };
 
-export const constructForm = async (
+const constructForm = async (
   quarter,
   year,
   organisation,
@@ -47,7 +48,7 @@ export const constructForm = async (
   impairmentCount,
   keyIssuesPara,
   emotionalImpactCS,
-  outcomesCS
+  outcomesCS,
 ) => {
   const formData = {
     quarter: getQuarterValue(quarter),
@@ -73,5 +74,7 @@ export const constructForm = async (
     casestudy_impact: emotionalImpactCS,
     casestudy_outcome: outcomesCS,
   };
-  return await postForm(formData);
+  return postForm(formData);
 };
+
+export default constructForm;

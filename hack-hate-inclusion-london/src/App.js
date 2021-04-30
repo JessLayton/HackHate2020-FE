@@ -12,7 +12,7 @@ import DDPOStore from './components/ddpo/DDPOStore';
 function App() {
   React.useEffect(() => {
     DDPOStore.loadDdpos();
-  }, [])
+  }, []);
   return (
     <Router>
       <Navbar />
@@ -36,6 +36,6 @@ function App() {
       </Switch>
     </Router>
   );
-};
+}
 
 export default App;

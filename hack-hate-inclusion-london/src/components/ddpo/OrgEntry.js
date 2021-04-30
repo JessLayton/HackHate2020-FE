@@ -23,12 +23,12 @@ const OrgEntry = () => {
       setError(true);
       return { valid: false, message: 'Invalid Entry. Please enter an organisation name' };
     }
-    else if (DDPOStore.getDdpos().some((org) => org.name === newOrg)) {
+    if (DDPOStore.getDdpos().some((org) => org.name === newOrg)) {
       setError(true);
       return { valid: false, message: 'DDPO already exists' };
     }
     setError(false);
-    return {valid: true, message: 'Valid' };
+    return { valid: true, message: 'Valid' };
   };
 
   const handleValidate = (event) => {
@@ -36,7 +36,7 @@ const OrgEntry = () => {
   };
 
   const handleSubmit = async () => {
-    const { valid, message }  = validateEntry(orgName);
+    const { valid, message } = validateEntry(orgName);
     if (valid) {
       const response = await addOrganisation(orgName);
       if (response && response.data && response.data.data) {

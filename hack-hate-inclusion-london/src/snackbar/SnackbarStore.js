@@ -1,8 +1,10 @@
 import { makeObservable, observable, action } from 'mobx';
 
-class store {
+class Store {
   open = false;
+
   message = '';
+
   variant = 'success';
 
   constructor() {
@@ -25,15 +27,14 @@ class store {
     this.open = true;
     this.variant = 'error';
   }
-  
+
   showSuccess(messageText) {
     this.closeCurrentMessage();
     this.message = messageText;
     this.open = true;
     this.variant = 'success';
   }
-
 }
 
-const SnackbarStore = new store();
+const SnackbarStore = new Store();
 export default SnackbarStore;

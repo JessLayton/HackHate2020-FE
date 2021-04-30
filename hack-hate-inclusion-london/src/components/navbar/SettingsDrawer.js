@@ -165,7 +165,7 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
           <Grid item>
             <Tooltip title='Close settings' aria-label='close-settings'>
               <IconButton onClick={toggleOpen}>
-                <CloseIcon color='secondary'/>
+                <CloseIcon color='secondary' />
               </IconButton>
             </Tooltip>
           </Grid>
@@ -175,7 +175,6 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
         <Grid container item spacing={1} direction='column'>
           <Grid item>
             <Typography variant='h6' component='h3'>
-              {' '}
               App Colour Theme Options
             </Typography>
           </Grid>
@@ -184,7 +183,6 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
         <Divider />
         <Grid item>
           <Typography variant='h6' component='h3'>
-            {' '}
             App Font Size Options
           </Typography>
           {getFontSizeOptions()}

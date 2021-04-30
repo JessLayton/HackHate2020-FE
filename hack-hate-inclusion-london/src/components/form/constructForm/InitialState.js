@@ -1,5 +1,5 @@
 const createInitialState = (resources) => {
-  let initialState = {};
+  const initialState = {};
   resources.forEach((resource) => {
     initialState[resource.key] = 0;
   });

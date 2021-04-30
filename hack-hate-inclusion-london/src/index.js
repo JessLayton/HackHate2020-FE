@@ -12,7 +12,6 @@ ReactDOM.render(
     <CssBaseline />
     <App />
   </ThemeChanger>,
-  // eslint-disable-next-line no-undef
   document.getElementById('root'),
 );
 
