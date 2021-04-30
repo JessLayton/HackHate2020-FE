@@ -26,7 +26,6 @@ const getAllOrganisations = async () => {
   let response;
   try {
     response = await get('/api/getDDPOs');
-
   } catch (err) {
     console.error(err);
   }

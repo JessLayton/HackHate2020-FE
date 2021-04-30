@@ -40,7 +40,7 @@ const Form = observer(() => {
   const [organisation, setOrganisation] = React.useState('');
   const [boroughs, setBoroughs] = React.useState(boroughsList);
   const [referralsCount, setReferralsCount] = React.useState(initialisedReferralsAndEnquiries);
-  const [reportingCount, setReportingCount] = React.useState(initialisedReportingDetails)
+  const [reportingCount, setReportingCount] = React.useState(initialisedReportingDetails);
   const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
   const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(initialisedUnreportedCases);
   const [intersectionCrimesCount, setIntersectionalCrimesCount] = React.useState(initialisedIntersectionalCrimes);
@@ -184,7 +184,10 @@ const Form = observer(() => {
             </Grid>
             <Divider />
             <Grid container item>
-              <p>6. For DDPOs who are not collecting the data outlined below, please provide a short paragraph (up to 300 words) highlighting key issues, challenges / positive outcomes.</p>
+              <p>
+                6. For DDPOs who are not collecting the data outlined below,
+                please provide a short paragraph (up to 300 words) highlighting key issues, challenges / positive outcomes.
+              </p>
               <BigTextBox label='Key issues/outcomes (300 words max)' value={keyIssuesPara} onBlur={setKeyIssuesPara} validate={validWordCount} />
             </Grid>
             <Divider />
@@ -208,7 +211,10 @@ const Form = observer(() => {
             <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>9. Intersectionality and Disability Hate Crime: Please indicate how many people you supported felt the hate crime targeted another aspect of their identity and was also a: </p>
+                <p>
+                  9. Intersectionality and Disability Hate Crime:
+                  Please indicate how many people you supported felt the hate crime targeted another aspect of their identity and was also a:
+                </p>
               </Grid>
               <Grid item>
                 <NumberFieldsGroup inputs={intersectionalCrimes} value={intersectionCrimesCount} onBlur={setIntersectionalCrimesCount} minValue={0} />
@@ -261,7 +267,10 @@ const Form = observer(() => {
             <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>13. Details of where the hate crime occurred, the actions involved, and what they were regarding? (This is to highlight the multiple issues a victim can experience) </p>   
+                <p>
+                  13. Details of where the hate crime occurred, the actions involved, and what they were regarding?
+                  (This is to highlight the multiple issues a victim can experience)
+                </p>
                 <p>a) Where the hate crime occurred: </p>
               </Grid>
               <Grid container item direction='column' spacing={2}>
@@ -303,9 +312,16 @@ const Form = observer(() => {
             </Grid>
             <Divider />
             <Grid container item direction='column' spacing={2}>
-            <Grid item>
-                <p>In filling out the below, please be conscious of confidentiality and GDPR guidelines, keep the case study anonymous and avoid personalised details that could lead to individuals being identified.</p>
-                <p>For the case studies below, please include the length of time taken with the client and if you feel your support improved their awareness / knowledge of rights, confidence, feelings of safety, of being listened to, feeling less isolated. Please also include what other services within your DDPO the client accessed, or any other services you signposted / referred to.</p>
+              <Grid item>
+                <p>
+                  In filling out the below, please be conscious of confidentiality and GDPR guidelines,
+                  keep the case study anonymous and avoid personalised details that could lead to individuals being identified.
+                </p>
+                <p>
+                  For the case studies below, please include the length of time taken with the client
+                  and if you feel your support improved their awareness / knowledge of rights, confidence, feelings of safety, of being listened to, feeling less isolated.
+                  Please also include what other services within your DDPO the client accessed, or any other services you signposted / referred to.
+                </p>
               </Grid>
               <Grid item>
                 <p>15. Brief case study highlighting emotional impact of Disability Hate Crime and / or challenges / positives dealing with Police / CPS</p>
