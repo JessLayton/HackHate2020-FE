@@ -10,7 +10,7 @@ const YearPicker = ({ onChange, value }) => {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <DatePicker views={['year']} value={value} onChange={handleChange} inputVariant='outlined' label='Year' required />
+      <DatePicker views={['year']} value={value} onChange={handleChange} inputVariant='outlined' label='Year' required minDate='2000' />
     </MuiPickersUtilsProvider>
   );
 };

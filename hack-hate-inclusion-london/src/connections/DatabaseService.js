@@ -4,7 +4,7 @@ const postForm = async (formData) => {
   let success;
   try {
     const response = await post('/api/form', formData);
-    success = response && response.data && response.data.status === 'success';
+    success = response && response.data;
   } catch (err) {
     console.error(err);
     success = false;

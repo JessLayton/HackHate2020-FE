@@ -1,9 +1,11 @@
 import createInitialState from '../components/form/constructForm/InitialState';
 
 const genders = [
-  { label: 'Gender same as sex registered at birth', key: 'same' },
-  { label: 'Gender different to sex registered at birth', key: 'different' },
-  { label: 'Rather not say', key: 'not_say' },
+  { label: 'Cisgender', key: 'cis' },
+  { label: 'Transgender / Nonbinary', key: 'trans_nonbinary' },
+  { label: 'Gender identity not listed', key: 'unlisted' },
+  { label: 'Not recorded / unknown', key: 'unknown' },
+
 ];
 
 export const initialisedGenders = createInitialState(genders);

@@ -1,9 +1,11 @@
 import createInitialState from '../components/form/constructForm/InitialState';
 
 const sex = [
-  { label: 'Male', key: 'male' },
   { label: 'Female', key: 'female' },
-  { label: 'Other', key: 'other' },
+  { label: 'Male', key: 'male' },
+  { label: 'Intersex', key: 'intersex' },
+  { label: 'Sex not listed', key: 'other' },
+  { label: 'Not recorded / unknown', key: 'other' },
 ];
 
 export const initialisedSex = createInitialState(sex);

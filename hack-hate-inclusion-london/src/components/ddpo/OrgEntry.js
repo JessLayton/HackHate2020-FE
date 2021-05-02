@@ -39,7 +39,7 @@ const OrgEntry = () => {
     const { valid, message } = validateEntry(orgName);
     if (valid) {
       const response = await addOrganisation(orgName);
-      if (response && response.data && response.data.status === 'success') {
+      if (response && response.data && response.data.data) {
         DDPOStore.addDdpo(response.data.data);
         SnackbarStore.showSuccess(`Added DDPO: ${response.data.data.name}`);
       } else {

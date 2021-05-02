@@ -18,15 +18,20 @@ import DDPOStore from '../ddpo/DDPOStore';
 
 import ethnicities, { initialisedEthnicities } from '../../resources/ethnicities';
 import referralsAndEnquiries, { initialisedReferralsAndEnquiries } from '../../resources/referralsAndEnquiries';
+import reportingDetails, { initialisedReportingDetails } from '../../resources/reportingDetails';
 import supportTypes, { initialisedSupportTypes } from '../../resources/supportTypes';
-import caseAttributes, { initialisedCaseAttributes } from '../../resources/caseAttributes';
 import unreportedCases, { initialisedUnreportedCases } from '../../resources/unreportedCases';
+import intersectionalCrimes, { initialisedIntersectionalCrimes } from '../../resources/intersectionalCrime';
 import ageGroups, { initialisedAgeGroups } from '../../resources/ageGroups';
 import yearQuarters from '../../resources/yearQuarters';
 import impairments, { initialisedImpairments } from '../../resources/impairments';
 import genders, { initialisedGenders } from '../../resources/gender';
 import sex, { initialisedSex } from '../../resources/sex';
 import orientations, { initialisedOrientations } from '../../resources/orientations';
+import whereDetails, { initialisedWhereDetails } from '../../resources/whereDetails';
+import hateCrime, { initialisedHateCrime } from '../../resources/hateCrime';
+import committedBy, { initialisedCommittedBy } from '../../resources/commitedBy';
+import currentIssues, { initialisedCurrentIssues } from '../../resources/currentIssues';
 import boroughsList from '../../resources/boroughs';
 
 const Form = observer(() => {
@@ -35,14 +40,19 @@ const Form = observer(() => {
   const [organisation, setOrganisation] = React.useState('');
   const [boroughs, setBoroughs] = React.useState(boroughsList);
   const [referralsCount, setReferralsCount] = React.useState(initialisedReferralsAndEnquiries);
+  const [reportingCount, setReportingCount] = React.useState(initialisedReportingDetails);
   const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
   const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(initialisedUnreportedCases);
+  const [intersectionCrimesCount, setIntersectionalCrimesCount] = React.useState(initialisedIntersectionalCrimes);
   const [ethnicityCount, setEthnicityCount] = React.useState(initialisedEthnicities);
   const [genderCount, setGenderCount] = React.useState(initialisedGenders);
   const [sexCount, setSexCount] = React.useState(initialisedSex);
   const [orientationsCount, setOrientationCount] = React.useState(initialisedOrientations);
+  const [whereCount, setWhereCount] = React.useState(initialisedWhereDetails);
+  const [hateCrimeCount, setHateCrimeCount] = React.useState(initialisedHateCrime);
+  const [committedByCount, setCommittedByCount] = React.useState(initialisedCommittedBy);
+  const [currentIssuesCount, setCurrentIssuesCount] = React.useState(initialisedCurrentIssues);
   const [impairmentCount, setImpairmentCount] = React.useState(initialisedImpairments);
-  const [caseAttributeCount, setAttributeCount] = React.useState(initialisedCaseAttributes);
   const [ageCount, setAgeCount] = React.useState(initialisedAgeGroups);
   const [keyIssuesPara, setKeyIssuesPara] = React.useState('');
   const [emotionalImpactCS, setEmotionalImpactCS] = React.useState('');
@@ -77,15 +87,20 @@ const Form = observer(() => {
           organisation,
           boroughs,
           referralsCount,
+          reportingCount,
           supportCount,
           unreportedCaseCount,
+          intersectionCrimesCount,
+          ageCount,
           ethnicityCount,
           genderCount,
           sexCount,
           orientationsCount,
+          whereCount,
+          hateCrimeCount,
+          committedByCount,
+          currentIssuesCount,
           impairmentCount,
-          caseAttributeCount,
-          ageCount,
           keyIssuesPara,
           emotionalImpactCS,
           outcomesCS,
@@ -151,21 +166,34 @@ const Form = observer(() => {
             <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>4. Details of referrals / enquiries during this quarter - Please provide a number</p>
+                <p>4. Details of referrals / enquiries during this quarter</p>
               </Grid>
               <Grid container item direction='column' spacing={2}>
                 <NumberFieldsGroup inputs={referralsAndEnquiries} value={referralsCount} onBlur={setReferralsCount} minValue={0} miniLabel={referralsAndEnquiries} />
               </Grid>
             </Grid>
             <Divider />
+            <Divider />
+            <Grid container item direction='column' spacing={2}>
+              <Grid item>
+                <p>5. Details of reporting during this quarter</p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={reportingDetails} value={reportingCount} onBlur={setReportingCount} minValue={0} miniLabel={reportingDetails} />
+              </Grid>
+            </Grid>
+            <Divider />
             <Grid container item>
-              <p>5. For DDPOs who are not collecting detailed data, please provide a short paragraph (up to 300 words) highlighting key issues, challenges / positive outcomes.</p>
+              <p>
+                6. For DDPOs who are not collecting the data outlined below,
+                please provide a short paragraph (up to 300 words) highlighting key issues, challenges / positive outcomes.
+              </p>
               <BigTextBox label='Key issues/outcomes (300 words max)' value={keyIssuesPara} onBlur={setKeyIssuesPara} validate={validWordCount} />
             </Grid>
             <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>6. Type of support provided - Please provide a number</p>
+                <p>7. Type of support provided - Please provide a number for each</p>
               </Grid>
               <Grid container item direction='column' spacing={2}>
                 <NumberFieldsGroup inputs={supportTypes} value={supportCount} onBlur={setSupportCount} minValue={0} />
@@ -174,7 +202,7 @@ const Form = observer(() => {
             <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>7. Cases not reported to Police - Please state main reasons why, with number of cases</p>
+                <p>8. For cases not reported to police, please indicate main reasons why - Please provide a number for each</p>
               </Grid>
               <Grid item>
                 <NumberFieldsGroup inputs={unreportedCases} value={unreportedCaseCount} onBlur={setUnreportedCaseCount} minValue={0} />
@@ -183,7 +211,19 @@ const Form = observer(() => {
             <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>8. Age of persons being supported - Please provide a number</p>
+                <p>
+                  9. Intersectionality and Disability Hate Crime:
+                  Please indicate how many people you supported felt the hate crime targeted another aspect of their identity and was also a:
+                </p>
+              </Grid>
+              <Grid item>
+                <NumberFieldsGroup inputs={intersectionalCrimes} value={intersectionCrimesCount} onBlur={setIntersectionalCrimesCount} minValue={0} />
+              </Grid>
+            </Grid>
+            <Divider />
+            <Grid container item direction='column' spacing={2}>
+              <Grid item>
+                <p>10. Age of victims being supported - Please provide a number</p>
               </Grid>
               <Grid container item direction='column' spacing={2}>
                 <NumberFieldsGroup inputs={ageGroups} value={ageCount} onBlur={setAgeCount} minValue={0} />
@@ -192,7 +232,7 @@ const Form = observer(() => {
             <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>9. Ethnicity of persons being supported - Please provide a number</p>
+                <p>11. Ethnicity of victims being supported - Please provide a number</p>
               </Grid>
               <Grid container item direction='column' spacing={2}>
                 <NumberFieldsGroup inputs={ethnicities} value={ethnicityCount} onBlur={setEthnicityCount} minValue={0} />
@@ -201,25 +241,24 @@ const Form = observer(() => {
             <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>10. Service users which identify as male or female - Please provide a number</p>
+                <p>12. </p>
+                <p>a) What number of your clients are: </p>
               </Grid>
               <Grid container item direction='column' spacing={2}>
                 <NumberFieldsGroup inputs={sex} value={sexCount} onBlur={setSexCount} minValue={0} />
               </Grid>
             </Grid>
-            <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>11. Users which describe sexual orientation as the following terms - Please provide a number</p>
+                <p>b) What number of your clients are: </p>
               </Grid>
               <Grid container item direction='column' spacing={2}>
                 <NumberFieldsGroup inputs={orientations} value={orientationsCount} onBlur={setOrientationCount} minValue={0} />
               </Grid>
             </Grid>
-            <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>12.Service users which identify as the same gender to the sex they were registered with at birth - Please provide a number</p>
+                <p>c) What number of your clients are: </p>
               </Grid>
               <Grid container item direction='column' spacing={2}>
                 <NumberFieldsGroup inputs={genders} value={genderCount} onBlur={setGenderCount} minValue={0} />
@@ -228,7 +267,44 @@ const Form = observer(() => {
             <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>13. Service users with the following disabilities or impairments - Please provide a number</p>
+                <p>
+                  13. Details of where the hate crime occurred, the actions involved, and what they were regarding?
+                  (This is to highlight the multiple issues a victim can experience)
+                </p>
+                <p>a) Where the hate crime occurred: </p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={whereDetails} value={whereCount} onBlur={setWhereCount} minValue={0} />
+              </Grid>
+            </Grid>
+            <Grid container item direction='column' spacing={2}>
+              <Grid item>
+                <p>b) Form of hate crime: </p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={hateCrime} value={hateCrimeCount} onBlur={setHateCrimeCount} minValue={0} />
+              </Grid>
+            </Grid>
+            <Grid container item direction='column' spacing={2}>
+              <Grid item>
+                <p>c) Hate crime committed by: </p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={committedBy} value={committedByCount} onBlur={setCommittedByCount} minValue={0} />
+              </Grid>
+            </Grid>
+            <Grid container item direction='column' spacing={2}>
+              <Grid item>
+                <p>d) How many were specifically regarding (relating to current/key issues): </p>
+              </Grid>
+              <Grid container item direction='column' spacing={2}>
+                <NumberFieldsGroup inputs={currentIssues} value={currentIssuesCount} onBlur={setCurrentIssuesCount} minValue={0} />
+              </Grid>
+            </Grid>
+            <Divider />
+            <Grid container item direction='column' spacing={2}>
+              <Grid item>
+                <p>14. What number of your clients identify the following as their impairment / condition?  </p>
               </Grid>
               <Grid container item direction='column' spacing={2}>
                 <NumberFieldsGroup inputs={impairments} value={impairmentCount} onBlur={setImpairmentCount} minValue={0} />
@@ -237,28 +313,29 @@ const Form = observer(() => {
             <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
-                <p>14. Of the cases being dealt with, how many were related to the below - Please provide a number</p>
+                <p>
+                  In filling out the below, please be conscious of confidentiality and GDPR guidelines,
+                  keep the case study anonymous and avoid personalised details that could lead to individuals being identified.
+                </p>
+                <p>
+                  For the case studies below, please include the length of time taken with the client
+                  and if you feel your support improved their awareness / knowledge of rights, confidence, feelings of safety, of being listened to, feeling less isolated.
+                  Please also include what other services within your DDPO the client accessed, or any other services you signposted / referred to.
+                </p>
               </Grid>
-              <Grid container item direction='column' spacing={2}>
-                <NumberFieldsGroup inputs={caseAttributes} value={caseAttributeCount} onBlur={setAttributeCount} minValue={0} />
-              </Grid>
-            </Grid>
-            <Divider />
-            <Grid container item direction='column' spacing={2}>
               <Grid item>
                 <p>15. Brief case study highlighting emotional impact of Disability Hate Crime and / or challenges / positives dealing with Police / CPS</p>
               </Grid>
               <Grid item>
-                <BigTextBox label='Case Study (300 words max)' value={emotionalImpactCS} onBlur={setEmotionalImpactCS} validate={validWordCount} />
+                <BigTextBox label='Case Study (Up to 300 words)' value={emotionalImpactCS} onBlur={setEmotionalImpactCS} validate={validWordCount} />
               </Grid>
             </Grid>
-            <Divider />
             <Grid container item direction='column' spacing={2}>
               <Grid item>
                 <p>16. Brief case study highlighting achieving positive outcomes without a report to police</p>
               </Grid>
               <Grid item>
-                <BigTextBox label='Case Study (300 words max)' value={outcomesCS} onBlur={setOutcomesCS} validate={validWordCount} />
+                <BigTextBox label='Case Study (Up to 300 words)' value={outcomesCS} onBlur={setOutcomesCS} validate={validWordCount} />
               </Grid>
             </Grid>
             <Divider />
