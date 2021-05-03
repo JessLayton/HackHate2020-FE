@@ -14,19 +14,10 @@ const Brief = () => (
             Collective Data for the London DDPO HC Partnership
           </Typography>
         </Grid>
-        <Grid container item direction='column' spacing={1}>
-          <Grid item>
-            <Typography variant='body1'>
-              Thank you for filling out this form. This data will create a strong body of evidence on the work carried out by DDPOs to support Disabled Victims of Hate Crime.
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant='body1'>
-              For the case studies, please include length of time taken with individual and if you feel your support has improved their awareness / knowledge of rights,
-              confidence, feelings of safety, being listened to, feeling less isolated. Please also include what other services within your DDPO the person accessed, or any other
-              services you signposted / referred to.
-            </Typography>
-          </Grid>
+        <Grid item>
+          <Typography variant='body1'>
+            Thank you for filling out this form. This data will create a strong body of evidence on the work carried out by DDPOs to support Disabled Victims of Hate Crime.
+          </Typography>
         </Grid>
       </Grid>
     </Grid>
