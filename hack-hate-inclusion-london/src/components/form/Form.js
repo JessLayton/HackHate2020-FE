@@ -346,19 +346,19 @@ const Form = observer(() => {
                     Please also include what other services within your DDPO the client accessed, or any other services you signposted / referred to.
                   </Typography>
                 </Grid>
-                <Grid item>
-                  <li>Brief case study highlighting emotional impact of Disability Hate Crime and / or challenges / positives dealing with Police / CPS</li>
-                </Grid>
-                <Grid item>
-                  <BigTextBox label='Case Study (Up to 300 words)' value={emotionalImpactCS} onBlur={setEmotionalImpactCS} validate={validWordCount} />
-                </Grid>
-              </Grid>
-              <Grid container item direction='column' spacing={2}>
-                <Grid item>
-                  <li>Brief case study highlighting achieving positive outcomes without a report to police</li>
-                </Grid>
-                <Grid item>
-                  <BigTextBox label='Case Study (Up to 300 words)' value={outcomesCS} onBlur={setOutcomesCS} validate={validWordCount} />
+                <Grid container item direction='column' spacing={2}>
+                  <Grid item>
+                    <li>Brief case study highlighting emotional impact of Disability Hate Crime and / or challenges / positives dealing with Police / CPS</li>
+                  </Grid>
+                  <Grid item>
+                    <BigTextBox label='Case Study (Up to 300 words)' value={emotionalImpactCS} onBlur={setEmotionalImpactCS} validate={validWordCount} />
+                  </Grid>
+                  <Grid item>
+                    <li>Brief case study highlighting achieving positive outcomes without a report to police</li>
+                  </Grid>
+                  <Grid item>
+                    <BigTextBox label='Case Study (Up to 300 words)' value={outcomesCS} onBlur={setOutcomesCS} validate={validWordCount} />
+                  </Grid>
                 </Grid>
               </Grid>
               <Divider />
