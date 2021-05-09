@@ -1,9 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 import {
-  Button, Grid, Link, Typography,
+  Button, Grid, Typography,
 } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 
@@ -152,7 +152,7 @@ const Form = observer(() => {
                   <Grid item>
                     <AutocompleteField options={DDPOStore.ddpos} onChange={setOrganisation} required label='DDPO' />
                     <Grid item>
-                      <Link href='/ddpo'>Don&apos;t see your DDPO? Click here to add a DDPO</Link>
+                      <Link to='/ddpo'>Don&apos;t see your DDPO? Click here to add a DDPO</Link>
                     </Grid>
                   </Grid>
                 </Grid>
