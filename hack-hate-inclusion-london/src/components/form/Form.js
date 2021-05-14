@@ -46,6 +46,7 @@ const Form = observer(() => {
   const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
   const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(initialisedUnreportedCases);
   const [intersectionCrimesCount, setIntersectionalCrimesCount] = React.useState(initialisedIntersectionalCrimes);
+  const [ageCount, setAgeCount] = React.useState(initialisedAgeGroups);
   const [ethnicityCount, setEthnicityCount] = React.useState(initialisedEthnicities);
   const [genderCount, setGenderCount] = React.useState(initialisedGenders);
   const [sexCount, setSexCount] = React.useState(initialisedSex);
@@ -55,7 +56,6 @@ const Form = observer(() => {
   const [committedByCount, setCommittedByCount] = React.useState(initialisedCommittedBy);
   const [currentIssuesCount, setCurrentIssuesCount] = React.useState(initialisedCurrentIssues);
   const [impairmentCount, setImpairmentCount] = React.useState(initialisedImpairments);
-  const [ageCount, setAgeCount] = React.useState(initialisedAgeGroups);
   const [keyIssuesPara, setKeyIssuesPara] = React.useState('');
   const [emotionalImpactCS, setEmotionalImpactCS] = React.useState('');
   const [outcomesCS, setOutcomesCS] = React.useState('');
