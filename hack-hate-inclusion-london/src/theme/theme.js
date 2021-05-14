@@ -4,11 +4,11 @@ import grey from '@material-ui/core/colors/grey';
 const defaultTheme = {
   palette: {
     primary: {
-      main: '#00bcd4',
-      contrastText: '#005b67',
+      main: '#004D57',
+      contrastText: '#9EEBE3',
     },
     secondary: {
-      main: '#005b67',
+      main: '#9EEBE3',
     },
     error: {
       main: '#aa2e25',
