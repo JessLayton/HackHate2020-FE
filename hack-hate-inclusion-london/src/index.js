@@ -7,12 +7,25 @@ import * as serviceWorker from './serviceWorker';
 
 import ThemeChanger from './theme/ThemeChanger';
 
-ReactDOM.render(
-  <ThemeChanger>
-    <CssBaseline />
-    <App />
-  </ThemeChanger>,
-  document.getElementById('root'),
-);
+if (process.env.NODE_ENV !== 'production') {
+  import('react-axe').then((axe) => {
+    axe.default(React, ReactDOM, 1000);
+    ReactDOM.render(
+      <ThemeChanger>
+        <CssBaseline />
+        <App />
+      </ThemeChanger>,
+      document.getElementById('root'),
+    );
+  });
+} else {
+  ReactDOM.render(
+    <ThemeChanger>
+      <CssBaseline />
+      <App />
+    </ThemeChanger>,
+    document.getElementById('root'),
+  );
+}
 
 serviceWorker.unregister();

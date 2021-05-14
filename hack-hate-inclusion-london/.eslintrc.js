@@ -6,7 +6,7 @@ module.exports = {
   extends: [
     'react-app',
     'airbnb',
-    'plugin:jsx-a11y/recommended',
+    'plugin:jsx-a11y/strict',
   ],
   parser: 'babel-eslint',
   globals: {
