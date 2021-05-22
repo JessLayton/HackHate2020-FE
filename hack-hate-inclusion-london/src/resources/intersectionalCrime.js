@@ -4,7 +4,7 @@ const intersectionalCrimes = [
   { label: 'Racial Hate Crime', key: 'racial' },
   { label: 'Religious Hate Crime', key: 'religious' },
   { label: 'Sexual Orientation Hate Crime', key: 'orientation' },
-  { label: 'Transgender / Nonbinary Hate Crime', key: 'transgender_nonbinary' },
+  { label: 'Transgender / Nonbinary Hate Crime', key: 'transgenderNonbinary' },
   { label: 'Misogynistic Hate Crime', key: 'misogynistic' },
   { label: 'Ageist Hate Crime', key: 'ageist' },
 ];
