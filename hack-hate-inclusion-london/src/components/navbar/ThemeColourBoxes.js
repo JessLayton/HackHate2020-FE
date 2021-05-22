@@ -1,6 +1,8 @@
 import React from 'react';
-import { Grid, makeStyles, Tooltip } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
+
+import AccessibleTooltip from '../accessible-components/AccessibleTooltip';
 
 const useStyles = makeStyles({
   themeColourBox: {
@@ -27,18 +29,18 @@ const ThemeColourBoxes = ({ exampleTheme }) => {
   const classes = useStyles(exampleTheme);
   return (
     <Grid container direction='row'>
-      <Tooltip title='Primary' aria-label='primary-colour'>
+      <AccessibleTooltip title='Primary colour'>
         <div className={`${classes.themeColourBox} ${classes.primaryColour}`} />
-      </Tooltip>
-      <Tooltip title='Secondary' aria-label='secondary-colour'>
+      </AccessibleTooltip>
+      <AccessibleTooltip title='Secondary'>
         <div className={`${classes.themeColourBox} ${classes.secondaryColour}`} />
-      </Tooltip>
-      <Tooltip title='Error' aria-label='error-colour'>
+      </AccessibleTooltip>
+      <AccessibleTooltip title='Error'>
         <div className={`${classes.themeColourBox} ${classes.errorColour}`} />
-      </Tooltip>
-      <Tooltip title='Success' aria-label='success-colour'>
+      </AccessibleTooltip>
+      <AccessibleTooltip title='Success'>
         <div className={`${classes.themeColourBox} ${classes.successColour}`} />
-      </Tooltip>
+      </AccessibleTooltip>
     </Grid>
   );
 };

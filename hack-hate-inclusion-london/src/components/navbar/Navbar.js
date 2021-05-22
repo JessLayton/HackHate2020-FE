@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
-  AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip, Button,
+  AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Button,
 } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
+
+import AccessibleTooltip from '../accessible-components/AccessibleTooltip';
 import SettingsDrawer from './SettingsDrawer';
 
 const useStyles = makeStyles({
@@ -40,7 +42,7 @@ const Navbar = () => {
           <Grid container direction='row' justify='space-between' alignItems='center'>
             <Grid container item spacing={3} alignItems='center'>
               <Grid item>
-                <Tooltip title='Go to home' aria-label='navigate-to-home'>
+                <AccessibleTooltip title='Go to home'>
                   <Link to='/'>
                     <img
                       src='data-collator-logo.png'
@@ -49,7 +51,7 @@ const Navbar = () => {
                       alt='Data Collator Logo'
                     />
                   </Link>
-                </Tooltip>
+                </AccessibleTooltip>
               </Grid>
               <Grid item>
                 <Typography variant='h3' component='h1'>
@@ -65,11 +67,11 @@ const Navbar = () => {
             <Button color='secondary' onClick={navigateToForm}>Form</Button>
           </Grid>
           <Grid item>
-            <Tooltip title='Open user settings' aria-label='open user settings'>
+            <AccessibleTooltip title='Open user settings'>
               <IconButton aria-label='user settings' onClick={handleToggleSettings}>
                 <SettingsIcon color='secondary' fontSize='large' />
               </IconButton>
-            </Tooltip>
+            </AccessibleTooltip>
           </Grid>
         </Toolbar>
       </AppBar>

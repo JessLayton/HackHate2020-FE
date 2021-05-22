@@ -1,9 +1,9 @@
 import React from 'react';
-
 import FAB from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
-import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
+
+import AccessibleTooltip from '../accessible-components/AccessibleTooltip';
 
 const useStyles = makeStyles({
   fab: (show) => ({
@@ -34,11 +34,11 @@ const ScrollUp = () => {
   };
 
   return (
-    <Tooltip title='Back to top' aria-label='back-to-top-of-form'>
+    <AccessibleTooltip title='Back to top'>
       <FAB className={classes.fab} color='primary' onClick={scrollToTop}>
         <NavigationIcon />
       </FAB>
-    </Tooltip>
+    </AccessibleTooltip>
   );
 };
 

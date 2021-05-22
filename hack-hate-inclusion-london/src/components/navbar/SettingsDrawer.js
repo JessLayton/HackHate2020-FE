@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Box, Button, Divider, Drawer, Grid, IconButton, makeStyles, MuiThemeProvider, Slider, Tooltip, Typography, useTheme,
+  Box, Button, Divider, Drawer, Grid, IconButton, makeStyles, MuiThemeProvider, Slider, Typography, useTheme,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
@@ -9,6 +9,7 @@ import getTheme, { themes } from '../../theme/theme';
 import fontFamilies from '../../theme/fontFamilies';
 import { ThemeContext } from '../../theme/ThemeChanger';
 import ThemeColourBoxes from './ThemeColourBoxes';
+import AccessibleTooltip from '../accessible-components/AccessibleTooltip';
 
 const drawerWidth = (fontSize) => {
   switch (fontSize) {
@@ -163,11 +164,11 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
             </Typography>
           </Grid>
           <Grid item>
-            <Tooltip title='Close settings' aria-label='close-settings'>
+            <AccessibleTooltip title='Close settings'>
               <IconButton onClick={toggleOpen}>
                 <CloseIcon color='secondary' />
               </IconButton>
-            </Tooltip>
+            </AccessibleTooltip>
           </Grid>
         </Grid>
       </Box>
