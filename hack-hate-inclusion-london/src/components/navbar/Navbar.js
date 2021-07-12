@@ -15,6 +15,9 @@ const useStyles = makeStyles({
   toolBar: {
     minHeight: '85px',
   },
+  appBar: {
+    position: 'relative',
+  },
 });
 
 const Navbar = () => {
@@ -37,7 +40,7 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar>
+      <AppBar className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
           <Grid container direction='row' justify='space-between' alignItems='center'>
             <Grid container item spacing={3} alignItems='center'>
@@ -61,7 +64,12 @@ const Navbar = () => {
             </Grid>
           </Grid>
           <Grid item>
-            <Button color='secondary' onClick={navigateToDash}>Dashboard</Button>
+            <Button
+              color='secondary'
+              onClick={navigateToDash}
+            >
+              Dashboard
+            </Button>
           </Grid>
           <Grid item>
             <Button color='secondary' onClick={navigateToForm}>Form</Button>
@@ -76,7 +84,6 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
       <SettingsDrawer open={settingsOpen} toggleOpen={handleToggleSettings} />
-      <div className={classes.navbarSpacer} />
     </>
   );
 };
