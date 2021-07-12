@@ -156,50 +156,52 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
 
   return (
     <Drawer open={open} anchor='right' onClose={toggleOpen}>
-      <Box className={classes.titleBackground}>
-        <Grid container justify='space-between' alignItems='center'>
-          <Grid item>
-            <Typography variant='h4' component='h2' className={classes.titleStyles}>
-              User Settings
-            </Typography>
+      <aside>
+        <Box className={classes.titleBackground}>
+          <Grid container justify='space-between' alignItems='center'>
+            <Grid item>
+              <Typography variant='h4' component='h2' className={classes.titleStyles}>
+                User Settings
+              </Typography>
+            </Grid>
+            <Grid item>
+              <AccessibleTooltip title='Close settings'>
+                <IconButton onClick={toggleOpen}>
+                  <CloseIcon color='secondary' />
+                </IconButton>
+              </AccessibleTooltip>
+            </Grid>
           </Grid>
-          <Grid item>
-            <AccessibleTooltip title='Close settings'>
-              <IconButton onClick={toggleOpen}>
-                <CloseIcon color='secondary' />
-              </IconButton>
-            </AccessibleTooltip>
+        </Box>
+        <Grid container direction='column' spacing={4} className={classes.sideSpacing}>
+          <Grid container item spacing={1} direction='column'>
+            <Grid item>
+              <Typography variant='h6' component='h3'>
+                App Colour Theme Options
+              </Typography>
+            </Grid>
+            <Grid item>{getThemeOptions()}</Grid>
           </Grid>
-        </Grid>
-      </Box>
-      <Grid container direction='column' spacing={4} className={classes.sideSpacing}>
-        <Grid container item spacing={1} direction='column'>
-          <Grid item>
-            <Typography variant='h6' component='h3'>
-              App Colour Theme Options
-            </Typography>
-          </Grid>
-          <Grid item>{getThemeOptions()}</Grid>
-        </Grid>
-        <Divider />
-        <Grid item>
-          <Typography variant='h6' component='h3'>
-            App Font Size Options
-          </Typography>
-          {getFontSizeOptions()}
-        </Grid>
-        <Divider />
-        <Grid container item spacing={1} direction='column'>
+          <Divider />
           <Grid item>
             <Typography variant='h6' component='h3'>
-              {' '}
-              App Font Style Options
+              App Font Size Options
             </Typography>
+            {getFontSizeOptions()}
           </Grid>
-          <Grid item>{getFontOptions()}</Grid>
+          <Divider />
+          <Grid container item spacing={1} direction='column'>
+            <Grid item>
+              <Typography variant='h6' component='h3'>
+                {' '}
+                App Font Style Options
+              </Typography>
+            </Grid>
+            <Grid item>{getFontOptions()}</Grid>
+          </Grid>
+          <Divider />
         </Grid>
-        <Divider />
-      </Grid>
+      </aside>
     </Drawer>
   );
 };
