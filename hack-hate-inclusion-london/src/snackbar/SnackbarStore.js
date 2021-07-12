@@ -7,13 +7,18 @@ class Store {
 
   variant = 'success';
 
+  duration = Number(localStorage.getItem('snackbarHideDuration')) || 3;
+
   constructor() {
     makeObservable(this, {
       open: observable,
       message: observable,
+      variant: observable,
+      duration: observable,
       showError: action,
       showSuccess: action,
       closeCurrentMessage: action,
+      setDuration: action,
     });
   }
 
@@ -33,6 +38,11 @@ class Store {
     this.message = messageText;
     this.open = true;
     this.variant = 'success';
+  }
+
+  setDuration(duration) {
+    this.duration = duration;
+    localStorage.setItem('snackbarHideDuration', duration);
   }
 }
 

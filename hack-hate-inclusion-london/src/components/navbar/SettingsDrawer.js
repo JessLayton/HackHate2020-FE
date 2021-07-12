@@ -10,6 +10,7 @@ import fontFamilies from '../../theme/fontFamilies';
 import { ThemeContext } from '../../theme/ThemeChanger';
 import ThemeColourBoxes from './ThemeColourBoxes';
 import AccessibleTooltip from '../accessible-components/AccessibleTooltip';
+import SnackbarStore from '../../snackbar/SnackbarStore';
 
 const drawerWidth = (fontSize) => {
   switch (fontSize) {
@@ -55,9 +56,19 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
 
   const setThemeDetails = React.useContext(ThemeContext);
   const [fontSize, setFontSize] = React.useState(Number(localStorage.getItem('appFontSize') || 14));
+  const [snackbarHideDuration, setSnackbarHideDuration] = React.useState(SnackbarStore.duration);
+  console.log(typeof snackbarHideDuration, snackbarHideDuration);
 
-  const handleFontSizeChange = (event, newValue) => {
+  const handleFontSizeChange = (_event, newValue) => {
     setFontSize(newValue);
+  };
+
+  const handleSnackbarHideDuration = (_event, newValue) => {
+    setSnackbarHideDuration(newValue);
+  };
+
+  const handleSnackbarHideDurationChangeCommitted = (_event, newValue) => {
+    SnackbarStore.setDuration(newValue);
   };
 
   const getThemeOptions = () => (
@@ -108,7 +119,15 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
     ];
     return (
       <>
-        <Slider className={classes.slider} value={fontSize} min={12} max={20} step={2} marks={marks} onChange={handleFontSizeChange} />
+        <Slider
+          className={classes.slider}
+          value={fontSize}
+          min={12}
+          max={20}
+          step={2}
+          marks={marks}
+          onChange={handleFontSizeChange}
+        />
         <Grid container alignItems='center' spacing={2}>
           <Grid item>
             <Button
@@ -154,6 +173,43 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
     </Grid>
   );
 
+  const getSnackbarHideDurationOptions = () => {
+    const marks = [
+      {
+        value: 3,
+        label: '3 s',
+      },
+      {
+        value: 6,
+        label: '6 s',
+      },
+      {
+        value: 12,
+        label: '12 s',
+      },
+      {
+        value: 20,
+        label: '20 s',
+      },
+      {
+        value: 30,
+        label: '30 s',
+      },
+    ];
+    return (
+      <Slider
+        className={classes.slider}
+        value={snackbarHideDuration}
+        min={3}
+        max={30}
+        step={null}
+        marks={marks}
+        onChange={handleSnackbarHideDuration}
+        onChangeCommitted={handleSnackbarHideDurationChangeCommitted}
+      />
+    );
+  };
+
   return (
     <Drawer open={open} anchor='right' onClose={toggleOpen}>
       <aside>
@@ -193,13 +249,20 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
           <Grid container item spacing={1} direction='column'>
             <Grid item>
               <Typography variant='h6' component='h3'>
-                {' '}
                 App Font Style Options
               </Typography>
             </Grid>
             <Grid item>{getFontOptions()}</Grid>
           </Grid>
           <Divider />
+          <Grid container item spacing={1} direction='column'>
+            <Grid item>
+              <Typography variant='h6' component='h3'>
+                Snackbar Hide Duration
+              </Typography>
+            </Grid>
+            <Grid item>{getSnackbarHideDurationOptions()}</Grid>
+          </Grid>
         </Grid>
       </aside>
     </Drawer>

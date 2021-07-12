@@ -12,6 +12,7 @@ const NumberField = ({
   return (
     <Grid container direction='column' spacing={1}>
       <Grid item>
+        {/* eslint-disable-next-line jsx-a11y/label-has-for */}
         <label htmlFor={label}>{label}</label>
       </Grid>
       <Grid item>

@@ -38,7 +38,7 @@ const Snackbar = observer(() => {
   };
 
   return (
-    <MuiSnackbar open={SnackbarStore.open} autoHideDuration={6000} onClose={handleClose}>
+    <MuiSnackbar open={SnackbarStore.open} autoHideDuration={SnackbarStore.duration * 1000} onClose={handleClose}>
       <Alert
         severity={SnackbarStore.variant}
         message={SnackbarStore.message}
