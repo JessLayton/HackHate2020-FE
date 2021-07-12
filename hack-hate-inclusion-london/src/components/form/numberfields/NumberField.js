@@ -18,9 +18,7 @@ const NumberField = ({
         <TextField
           defaultValue={defaultValue}
           type='number'
-          InputLabelProps={{
-            shrink: true,
-          }}
+          id={label}
           InputProps={{ inputProps: { min: minValue, id: label } }}
           onBlur={handleChange}
           variant='outlined'
