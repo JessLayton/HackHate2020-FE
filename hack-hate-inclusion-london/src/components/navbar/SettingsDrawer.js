@@ -57,7 +57,6 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
   const setThemeDetails = React.useContext(ThemeContext);
   const [fontSize, setFontSize] = React.useState(Number(localStorage.getItem('appFontSize') || 14));
   const [snackbarHideDuration, setSnackbarHideDuration] = React.useState(SnackbarStore.duration);
-  console.log(typeof snackbarHideDuration, snackbarHideDuration);
 
   const handleFontSizeChange = (_event, newValue) => {
     setFontSize(newValue);
