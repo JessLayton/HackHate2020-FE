@@ -15,7 +15,7 @@ const postForm = async (formData) => {
 const addOrganisation = async (name) => {
   let response;
   try {
-    response = await post('/api/ddpo/addDDPO', { name });
+    response = await post('/api/addDDPO', { name });
   } catch (err) {
     console.error(err);
   }
@@ -25,11 +25,23 @@ const addOrganisation = async (name) => {
 const getAllOrganisations = async () => {
   let response;
   try {
-    response = await get('/api/ddpo/getDDPOs');
+    response = await get('/api/getDDPOs');
   } catch (err) {
     console.error(err);
   }
   return response;
 };
 
-export { postForm, addOrganisation, getAllOrganisations };
+const getCaseNotReportedData = async () => {
+  let response;
+  try {
+    response = get('/dash/reasons');
+  } catch (err) {
+    console.error(err);
+  }
+  return response;
+};
+
+export {
+  postForm, addOrganisation, getAllOrganisations, getCaseNotReportedData,
+};
