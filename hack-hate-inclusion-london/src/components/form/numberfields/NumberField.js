@@ -7,7 +7,7 @@ const NumberField = ({
   label, defaultValue, onBlur, minValue,
 }) => {
   const handleChange = (event) => {
-    onBlur(event.target.value);
+    onBlur(Number(event.target.value));
   };
   return (
     <Grid container direction='column' spacing={1}>
