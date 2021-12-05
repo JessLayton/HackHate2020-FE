@@ -161,10 +161,15 @@ const Form = observer(() => {
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <AutocompleteField options={DDPOStore.ddpos} onChange={setOrganisation} required label='DDPO' />
-                      <Grid item>
-                        <Link to='/ddpo'>Don&apos;t see your DDPO? Click here to add a DDPO</Link>
-                      </Grid>
+                      <AutocompleteField
+                        options={DDPOStore.ddpos}
+                        onChange={setOrganisation}
+                        required
+                        label='DDPO'
+                        helperText={(
+                          <Link to='/ddpo'>Don&apos;t see your DDPO? Click here to add a DDPO</Link>
+                        )}
+                      />
                     </Grid>
                     <Grid item>
                       <Divider />
