@@ -1,27 +1,33 @@
-import { Typography, Grid, makeStyles } from '@material-ui/core';
-
 import React from 'react';
-import Plotly from 'plotly.js';
-
-import createPlotlyComponent from 'react-plotly.js/factory';
+import { Typography, Grid, makeStyles } from '@material-ui/core';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
 import { getCaseNotReportedData } from '../../connections/DatabaseService';
 
-const Plot = createPlotlyComponent(Plotly);
-// import { dashLocation } from '../../local/location';
+require('highcharts/modules/accessibility')(Highcharts);
+
+const options = {
+  title: {
+    text: 'My chart',
+  },
+  series: [{
+    data: [1, 2, 3],
+  }],
+  chart: {
+    type: 'column',
+  },
+};
 
 const useStyles = makeStyles({
   dash: {
     marginTop: '20px',
   },
-  iframe: {
-    width: '100%',
-    height: '1300px',
-  },
 });
 
 const Dash = () => {
   const [caseNotReportedData, setCaseNotReportedData] = React.useState();
+  console.log(caseNotReportedData);
 
   React.useEffect(() => {
     const response = getCaseNotReportedData();
@@ -40,10 +46,11 @@ const Dash = () => {
               Dashboard
             </Typography>
           </Grid>
-          <Plot
-            data={caseNotReportedData}
-            layout={{ width: 320, height: 240, title: 'A Fancy Plot' }}
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
           />
+          {/* TODO add data table for screen readers */}
         </Grid>
       </Grid>
     </Grid>
