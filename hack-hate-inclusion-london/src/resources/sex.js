@@ -5,7 +5,7 @@ const sex = [
   { label: 'Male', key: 'male' },
   { label: 'Intersex', key: 'intersex' },
   { label: 'Sex not listed', key: 'other' },
-  { label: 'Not recorded / unknown', key: 'other' },
+  { label: 'Not recorded / unknown', key: 'unknown' },
 ];
 
 export const initialisedSex = createInitialState(sex);
