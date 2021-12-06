@@ -4,15 +4,35 @@ import PropTypes from 'prop-types';
 import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
 
+import { Button, Typography } from '@material-ui/core';
 import CheckBox from './Checkbox';
 
 import boroughs from '../../../resources/boroughs';
 
 const Checkboxes = ({ checkedItems, onChange }) => {
+  const [allChecked, setAllChecked] = React.useState(false);
+  const [allBoroughs, setAllBoroughs] = React.useState(boroughs);
+
   const handleChange = (index, checked) => {
     const updatedItems = [...checkedItems];
     updatedItems[index].isChecked = checked;
     onChange(updatedItems);
+  };
+
+  const handleCheckAll = () => {
+    const isChecked = !allChecked;
+    const boroughsList = allBoroughs;
+    if (isChecked) {
+      boroughsList.forEach((borough) => {
+        borough.isChecked = true;
+      });
+    } else {
+      boroughsList.forEach((borough) => {
+        borough.isChecked = false;
+      });
+    }
+    setAllBoroughs(boroughsList);
+    setAllChecked(isChecked);
   };
 
   const getCheckbox = (borough, index) => (
@@ -27,16 +47,32 @@ const Checkboxes = ({ checkedItems, onChange }) => {
   );
 
   return (
-    <FormGroup>
-      <Grid container direction='row' spacing={1}>
-        <Grid container item xs={12} sm={6} direction='column' spacing={1}>
-          {boroughs.slice(0, Math.floor(boroughs.length / 2)).map((borough, index) => getCheckbox(borough, index))}
-        </Grid>
-        <Grid container item xs={12} sm={6} direction='column' spacing={1}>
-          {boroughs.slice(Math.ceil(boroughs.length / 2)).map((borough, index) => getCheckbox(borough, index + Math.ceil(boroughs.length / 2)))}
+    <Grid container direction='column' spacing={2}>
+      <Grid item>
+        <Grid container direction='row' justify='space-between' alignItems='center'>
+          <Grid item>
+            <Typography>All Boroughs: </Typography>
+          </Grid>
+          <Grid item>
+            <Button onClick={handleCheckAll} variant='contained' color='primary'>
+              {allChecked ? 'Uncheck all' : 'Check All'}
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
-    </FormGroup>
+      <Grid item>
+        <FormGroup>
+          <Grid container direction='row' spacing={1}>
+            <Grid container item xs={12} sm={6} direction='column' spacing={1}>
+              {allBoroughs.slice(0, Math.floor(allBoroughs.length / 2)).map((borough, index) => getCheckbox(borough, index))}
+            </Grid>
+            <Grid container item xs={12} sm={6} direction='column' spacing={1}>
+              {allBoroughs.slice(Math.ceil(allBoroughs.length / 2)).map((borough, index) => getCheckbox(borough, index + Math.ceil(boroughs.length / 2)))}
+            </Grid>
+          </Grid>
+        </FormGroup>
+      </Grid>
+    </Grid>
   );
 };
 

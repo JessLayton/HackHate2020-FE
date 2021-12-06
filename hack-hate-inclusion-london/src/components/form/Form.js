@@ -184,9 +184,6 @@ const Form = observer(() => {
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography>All Boroughs: </Typography>
-                    </Grid>
-                    <Grid item>
                       <Checkboxes checkedItems={boroughs} onChange={setBoroughs} />
                     </Grid>
                     <Grid item>
