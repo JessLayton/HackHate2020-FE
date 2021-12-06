@@ -1,5 +1,5 @@
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import grey from '@material-ui/core/colors/grey';
+import createTheme from '@mui/material/styles/createTheme';
+import grey from '@mui/material/colors/grey';
 
 const defaultTheme = {
   palette: {
@@ -58,7 +58,7 @@ const getTheme = (themeDetails) => {
     typography.fontFamily = font;
   }
   theme.typography = typography;
-  return createMuiTheme(theme);
+  return createTheme(theme);
 };
 
 export { themes, getTheme as default };

@@ -1,4 +1,4 @@
-import { MuiThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -38,7 +38,7 @@ const ThemeChanger = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={setThemeDetails}>
-      <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );
 };

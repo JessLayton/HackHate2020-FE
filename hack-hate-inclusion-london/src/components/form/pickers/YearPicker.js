@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DatePicker, AdapterDateFns, LocalizationProvider } from '@mui/lab';
+import { DatePicker, LocalizationProvider } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 const YearPicker = ({ onChange, value }) => {
   const handleChange = (date) => {

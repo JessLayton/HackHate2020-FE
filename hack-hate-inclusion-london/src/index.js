@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CssBaseline } from '@mui/material';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -8,10 +9,12 @@ import * as serviceWorker from './serviceWorker';
 import ThemeChanger from './theme/ThemeChanger';
 
 ReactDOM.render(
-  <ThemeChanger>
-    <CssBaseline />
-    <App />
-  </ThemeChanger>,
+  <StyledEngineProvider injectFirst>
+    <ThemeChanger>
+      <CssBaseline />
+      <App />
+    </ThemeChanger>
+  </StyledEngineProvider>,
   document.getElementById('root'),
 );
 
