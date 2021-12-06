@@ -23,7 +23,7 @@ const Dash = () => {
 
   const unreportedCasesOptions = {
     title: {
-      text: 'Reasons for Unreported Cases',
+      text: 'Reasons for not reporting cases to the police',
     },
     series: unreportedCasesData,
     chart: {
@@ -36,7 +36,7 @@ const Dash = () => {
 
   const reportingDetailsOptions = {
     title: {
-      text: 'Number of Cases Reported over time',
+      text: 'Disparity in cases reported to the police',
     },
     series: reportingDetailsData,
     chart: {
@@ -77,13 +77,13 @@ const Dash = () => {
           <Grid item>
             <HighchartsReact
               highcharts={Highcharts}
-              options={unreportedCasesOptions}
+              options={reportingDetailsOptions}
             />
           </Grid>
           <Grid item>
             <HighchartsReact
               highcharts={Highcharts}
-              options={reportingDetailsOptions}
+              options={unreportedCasesOptions}
             />
           </Grid>
           {/* TODO add data table for screen readers */}
