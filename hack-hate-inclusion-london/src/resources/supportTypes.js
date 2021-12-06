@@ -1,7 +1,7 @@
 import createInitialState from '../components/form/constructForm/InitialState';
 
 const supportTypes = [
-  { label: 'Hate Crime support - support to report / criminal justice system', key: 'hate_crime' },
+  { label: 'Hate Crime support - support to report / criminal justice system', key: 'hateCrime' },
   { label: 'Emotional Support', key: 'emotional' },
   {
     label:
