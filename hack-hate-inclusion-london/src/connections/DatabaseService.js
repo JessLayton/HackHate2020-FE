@@ -32,16 +32,26 @@ const getAllOrganisations = async () => {
   return response;
 };
 
-const getCaseNotReportedData = async () => {
+const getUnreportedCasesData = async () => {
   let response;
   try {
-    response = get('/dash/reasons');
+    response = await get('/api/dash/reasons');
   } catch (err) {
     console.error(err);
   }
-  return response;
+  return response.data;
+};
+
+const getReportingDetailsData = async () => {
+  let response;
+  try {
+    response = await get('/api/dash/reportingDetails');
+  } catch (err) {
+    console.error(err);
+  }
+  return response.data;
 };
 
 export {
-  postForm, addOrganisation, getAllOrganisations, getCaseNotReportedData,
+  postForm, addOrganisation, getAllOrganisations, getUnreportedCasesData, getReportingDetailsData,
 };
