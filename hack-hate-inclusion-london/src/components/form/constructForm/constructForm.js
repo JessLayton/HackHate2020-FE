@@ -47,8 +47,8 @@ const constructForm = async (
   currentIssuesCount,
   impairmentCount,
   keyIssuesPara,
-  emotionalImpactCS,
-  outcomesCS,
+  emotionalImpactCaseStudy,
+  outcomesCaseStudy,
 ) => {
   const formData = {
     quarter: getQuarterValue(quarter),
@@ -58,7 +58,7 @@ const constructForm = async (
     referrals: referralsCount,
     reportingDetails: reportingCount,
     supportProvided: supportCount,
-    casesNotPoliceReport: unreportedCaseCount,
+    unreportedCases: unreportedCaseCount,
     intersectional: intersectionalCrimesCount,
     age: ageCount,
     ethnicity: ethnicityCount,
@@ -71,8 +71,8 @@ const constructForm = async (
     currentIssues: currentIssuesCount,
     impairments: impairmentCount,
     keyIssuesPara,
-    emotionalImpactCS,
-    outcomesCS,
+    emotionalImpactCaseStudy,
+    outcomesCaseStudy,
   };
   return postForm(formData);
 };

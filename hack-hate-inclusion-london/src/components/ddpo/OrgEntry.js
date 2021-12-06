@@ -60,7 +60,7 @@ const OrgEntry = () => {
         <Grid container spacing={2} direction='column'>
           <Grid item>
             <Typography variant='h4' component='h2'>
-              Add A DDPO
+              Add a DDPO
             </Typography>
           </Grid>
           <Grid container item direction='column' spacing={1}>
