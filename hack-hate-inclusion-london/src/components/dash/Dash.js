@@ -5,6 +5,7 @@ import HighchartsReact from 'highcharts-react-official';
 
 import { getUnreportedCasesData, getReportingDetailsData } from '../../connections/DatabaseService';
 
+require('highcharts/modules/exporting')(Highcharts);
 require('highcharts/modules/accessibility')(Highcharts);
 
 const useStyles = makeStyles({
@@ -19,8 +20,6 @@ const Dash = () => {
   const [reportingDetailsData, setReportingDetailsData] = React.useState([{ data: [] }]);
   const [reportingDetailsAxis, setReportingDetailsAxis] = React.useState({ categories: [] });
 
-  console.log(unreportedCasesData);
-
   const unreportedCasesOptions = {
     title: {
       text: 'Reasons for not reporting cases to the police',
@@ -31,6 +30,9 @@ const Dash = () => {
     },
     xAxis: {
       categories: unreportedCasesAxis,
+    },
+    exporting: {
+      filename: 'reasons-for-not-reporting-cases-chart',
     },
   };
 
@@ -44,6 +46,9 @@ const Dash = () => {
     },
     xAxis: {
       categories: reportingDetailsAxis,
+    },
+    exporting: {
+      filename: 'disparity-in-cases-reported-chart',
     },
   };
 
