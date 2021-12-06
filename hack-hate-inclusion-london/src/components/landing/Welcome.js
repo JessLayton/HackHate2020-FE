@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  Grid, Button, Typography, makeStyles,
+  Grid, Button, Typography,
 } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import makeStyles from '@mui/styles/makeStyles';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   welcome: {
@@ -11,16 +12,7 @@ const useStyles = makeStyles({
 });
 
 const Welcome = () => {
-  const history = useHistory();
   const classes = useStyles();
-
-  const navigateToForm = () => {
-    history.push('/form');
-  };
-
-  const navigateToDash = () => {
-    history.push('/dash');
-  };
 
   return (
     <Grid container direction='column' spacing={8} alignItems='center' className={classes.welcome}>
@@ -39,12 +31,12 @@ const Welcome = () => {
       </Grid>
       <Grid container item direction='row' spacing={6} justify='center'>
         <Grid item>
-          <Button variant='contained' color='primary' onClick={navigateToForm}>
+          <Button variant='contained' color='primary' component={Link} to='/form'>
             Go to form
           </Button>
         </Grid>
         <Grid item>
-          <Button variant='contained' color='primary' onClick={navigateToDash}>
+          <Button variant='contained' color='primary' component={Link} to='/dash'>
             Go to Dashboard
           </Button>
         </Grid>

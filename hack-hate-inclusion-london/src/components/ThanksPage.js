@@ -1,9 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import {
-  Grid, makeStyles, Button, Typography,
+  Grid, Button, Typography,
 } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles({
   message: {
@@ -13,11 +13,6 @@ const useStyles = makeStyles({
 
 const ThanksPage = () => {
   const classes = useStyles();
-  const history = useHistory();
-
-  const returnToForm = () => {
-    history.push('/');
-  };
 
   return (
     <Grid container spacing={8} className={classes.message} justify='center'>
@@ -32,7 +27,7 @@ const ThanksPage = () => {
         </Grid>
       </Grid>
       <Grid item>
-        <Button variant='contained' color='primary' onClick={returnToForm}>
+        <Button variant='contained' color='primary' component={Link} to='/'>
           Home
         </Button>
       </Grid>

@@ -3,7 +3,7 @@ import React from 'react';
 import FAB from '@mui/material/Fab';
 import NavigationIcon from '@mui/icons-material/Navigation';
 import Tooltip from '@mui/material/Tooltip';
-import { makeStyles } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles({
   fab: (show) => ({

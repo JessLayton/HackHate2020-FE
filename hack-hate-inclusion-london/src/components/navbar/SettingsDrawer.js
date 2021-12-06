@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Box, Button, Divider, Drawer, Grid, IconButton, makeStyles, ThemeProvider, Slider, Tooltip, Typography, useTheme,
+  Box, Button, Divider, Drawer, Grid, IconButton, ThemeProvider, Slider, Tooltip, Typography, useTheme,
 } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import CloseIcon from '@mui/icons-material/Close';
 import PropTypes from 'prop-types';
 

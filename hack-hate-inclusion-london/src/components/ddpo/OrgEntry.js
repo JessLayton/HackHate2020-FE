@@ -2,15 +2,13 @@ import React from 'react';
 import {
   Button, Divider, Grid, TextField, Typography,
 } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { addOrganisation } from '../../connections/DatabaseService';
 import DDPOStore from './DDPOStore';
 import SnackbarStore from '../../snackbar/SnackbarStore';
 
 const OrgEntry = () => {
-  const history = useHistory();
-
   const [orgName, setOrgName] = React.useState('');
   const [error, setError] = React.useState(false);
 
@@ -48,10 +46,6 @@ const OrgEntry = () => {
     } else {
       SnackbarStore.showError(message);
     }
-  };
-
-  const returnToForm = () => {
-    history.push('/form');
   };
 
   return (
@@ -93,7 +87,7 @@ const OrgEntry = () => {
             <Divider />
           </Grid>
           <Grid item>
-            <Button variant='contained' color='primary' onClick={returnToForm}>
+            <Button variant='contained' color='primary' component={Link} to='/form'>
               Return to form
             </Button>
           </Grid>

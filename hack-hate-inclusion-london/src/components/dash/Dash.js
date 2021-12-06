@@ -1,5 +1,6 @@
-import { Typography, Grid, makeStyles } from '@mui/material';
+import { Typography, Grid } from '@mui/material';
 import React from 'react';
+import makeStyles from '@mui/styles/makeStyles';
 
 import { dashLocation } from '../../local/location';
 

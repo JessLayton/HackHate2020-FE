@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, makeStyles, Tooltip } from '@mui/material';
+import { Grid, Tooltip } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({

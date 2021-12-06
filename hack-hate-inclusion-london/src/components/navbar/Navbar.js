@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
-  AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip, Button,
+  AppBar, Toolbar, Typography, Grid, IconButton, Tooltip, Button,
 } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsDrawer from './SettingsDrawer';
 
@@ -17,20 +18,11 @@ const useStyles = makeStyles({
 
 const Navbar = () => {
   const classes = useStyles();
-  const history = useHistory();
 
   const [settingsOpen, setSettingsOpen] = React.useState(false);
 
   const handleToggleSettings = () => {
     setSettingsOpen(!settingsOpen);
-  };
-
-  const navigateToDash = () => {
-    history.push('/dash');
-  };
-
-  const navigateToForm = () => {
-    history.push('/form');
   };
 
   return (
@@ -59,10 +51,10 @@ const Navbar = () => {
             </Grid>
           </Grid>
           <Grid item>
-            <Button color='secondary' onClick={navigateToDash}>Dashboard</Button>
+            <Button color='secondary' component={NavLink} to='/dash'>Dashboard</Button>
           </Grid>
           <Grid item>
-            <Button color='secondary' onClick={navigateToForm}>Form</Button>
+            <Button color='secondary' component={NavLink} to='/form'>Form</Button>
           </Grid>
           <Grid item>
             <Tooltip title='Open user settings' aria-label='open user settings'>
