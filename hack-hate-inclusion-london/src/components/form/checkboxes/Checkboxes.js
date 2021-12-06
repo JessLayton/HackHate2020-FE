@@ -21,17 +21,16 @@ const Checkboxes = ({ checkedItems, onChange }) => {
 
   const handleCheckAll = () => {
     const isChecked = !allChecked;
-    const boroughsList = allBoroughs;
     if (isChecked) {
-      boroughsList.forEach((borough) => {
+      allBoroughs.forEach((borough) => {
         borough.isChecked = true;
       });
     } else {
-      boroughsList.forEach((borough) => {
+      allBoroughs.forEach((borough) => {
         borough.isChecked = false;
       });
     }
-    setAllBoroughs(boroughsList);
+    setAllBoroughs(allBoroughs);
     setAllChecked(isChecked);
   };
 
