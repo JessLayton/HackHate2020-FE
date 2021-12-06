@@ -157,7 +157,7 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
   return (
     <Drawer open={open} anchor='right' onClose={toggleOpen}>
       <Box className={classes.titleBackground}>
-        <Grid container justify='space-between' alignItems='center'>
+        <Grid container justifyContent='space-between' alignItems='center'>
           <Grid item>
             <Typography variant='h4' component='h2' className={classes.titleStyles}>
               User Settings
@@ -173,32 +173,42 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
         </Grid>
       </Box>
       <Grid container direction='column' spacing={4} className={classes.sideSpacing}>
-        <Grid container item spacing={1} direction='column'>
-          <Grid item>
-            <Typography variant='h6' component='h3'>
-              App Colour Theme Options
-            </Typography>
+        <Grid item>
+          <Grid container spacing={1} direction='column'>
+            <Grid item>
+              <Typography variant='h6' component='h3'>
+                App Colour Theme Options
+              </Typography>
+            </Grid>
+            <Grid item>{getThemeOptions()}</Grid>
           </Grid>
-          <Grid item>{getThemeOptions()}</Grid>
         </Grid>
-        <Divider />
+        <Grid item>
+          <Divider />
+        </Grid>
         <Grid item>
           <Typography variant='h6' component='h3'>
             App Font Size Options
           </Typography>
           {getFontSizeOptions()}
         </Grid>
-        <Divider />
-        <Grid container item spacing={1} direction='column'>
-          <Grid item>
-            <Typography variant='h6' component='h3'>
-              {' '}
-              App Font Style Options
-            </Typography>
-          </Grid>
-          <Grid item>{getFontOptions()}</Grid>
+        <Grid item>
+          <Divider />
         </Grid>
-        <Divider />
+        <Grid item>
+          <Grid container spacing={1} direction='column'>
+            <Grid item>
+              <Typography variant='h6' component='h3'>
+                {' '}
+                App Font Style Options
+              </Typography>
+            </Grid>
+            <Grid item>{getFontOptions()}</Grid>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Divider />
+        </Grid>
       </Grid>
     </Drawer>
   );

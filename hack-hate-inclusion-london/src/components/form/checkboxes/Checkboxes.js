@@ -29,11 +29,15 @@ const Checkboxes = ({ checkedItems, onChange }) => {
   return (
     <FormGroup>
       <Grid container direction='row' spacing={1}>
-        <Grid container item xs={12} sm={6} direction='column' spacing={1}>
-          {boroughs.slice(0, Math.floor(boroughs.length / 2)).map((borough, index) => getCheckbox(borough, index))}
+        <Grid item xs={12} sm={6}>
+          <Grid container direction='column' spacing={1}>
+            {boroughs.slice(0, Math.floor(boroughs.length / 2)).map((borough, index) => getCheckbox(borough, index))}
+          </Grid>
         </Grid>
-        <Grid container item xs={12} sm={6} direction='column' spacing={1}>
-          {boroughs.slice(Math.ceil(boroughs.length / 2)).map((borough, index) => getCheckbox(borough, index + Math.ceil(boroughs.length / 2)))}
+        <Grid item xs={12} sm={6}>
+          <Grid container direction='column' spacing={1}>
+            {boroughs.slice(Math.ceil(boroughs.length / 2)).map((borough, index) => getCheckbox(borough, index + Math.ceil(boroughs.length / 2)))}
+          </Grid>
         </Grid>
       </Grid>
     </FormGroup>

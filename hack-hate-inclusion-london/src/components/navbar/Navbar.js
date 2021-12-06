@@ -29,39 +29,45 @@ const Navbar = () => {
     <>
       <AppBar>
         <Toolbar className={classes.toolBar}>
-          <Grid container direction='row' justify='space-between' alignItems='center'>
-            <Grid container item spacing={3} alignItems='center'>
-              <Grid item>
-                <Tooltip title='Go to home' aria-label='navigate-to-home'>
-                  <Link to='/'>
-                    <img
-                      src='data-collator-logo.png'
-                      width='55px'
-                      height='55px'
-                      alt='Data Collator Logo'
-                    />
-                  </Link>
-                </Tooltip>
-              </Grid>
-              <Grid item>
-                <Typography variant='h3' component='h1'>
-                  Data Collator
-                </Typography>
+          <Grid container direction='row' justifyContent='space-between' alignItems='center'>
+            <Grid item>
+              <Grid container direction='row' spacing={3}>
+                <Grid item>
+                  <Tooltip title='Go to home' aria-label='navigate-to-home'>
+                    <Link to='/'>
+                      <img
+                        src='data-collator-logo.png'
+                        width='55px'
+                        height='55px'
+                        alt='Data Collator Logo'
+                      />
+                    </Link>
+                  </Tooltip>
+                </Grid>
+                <Grid item>
+                  <Typography variant='h3' component='h1'>
+                    Data Collator
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item>
-            <Button color='secondary' component={NavLink} to='/dash'>Dashboard</Button>
-          </Grid>
-          <Grid item>
-            <Button color='secondary' component={NavLink} to='/form'>Form</Button>
-          </Grid>
-          <Grid item>
-            <Tooltip title='Open user settings' aria-label='open user settings'>
-              <IconButton aria-label='user settings' onClick={handleToggleSettings}>
-                <SettingsIcon color='secondary' fontSize='large' />
-              </IconButton>
-            </Tooltip>
+            <Grid item>
+              <Grid container direction='row' alignItems='center' spacing={1}>
+                <Grid item>
+                  <Button color='secondary' component={NavLink} to='/dash'>Dashboard</Button>
+                </Grid>
+                <Grid item>
+                  <Button color='secondary' component={NavLink} to='/form'>Form</Button>
+                </Grid>
+                <Grid item>
+                  <Tooltip title='Open user settings' aria-label='open user settings'>
+                    <IconButton aria-label='user settings' onClick={handleToggleSettings}>
+                      <SettingsIcon color='secondary' fontSize='large' />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
         </Toolbar>
       </AppBar>

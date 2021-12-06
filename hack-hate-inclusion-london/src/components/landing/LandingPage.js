@@ -1,13 +1,12 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
+import { Container } from '@mui/material';
+
 import Welcome from './Welcome';
 
 const Landing = () => (
-  <Grid container justify='center'>
-    <Grid container item xs={11} sm={10}>
-      <Welcome />
-    </Grid>
-  </Grid>
+  <Container maxWidth='md' justify='center'>
+    <Welcome />
+  </Container>
 );
 
 export default Landing;

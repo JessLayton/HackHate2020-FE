@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button, Divider, Grid, TextField, Typography,
+  Button, Container, Divider, Grid, TextField, Typography,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -49,15 +49,15 @@ const OrgEntry = () => {
   };
 
   return (
-    <Grid container justify='center'>
-      <Grid container item xs={11} sm={10}>
-        <Grid container spacing={2} direction='column'>
-          <Grid item>
-            <Typography variant='h4' component='h2'>
-              Add a DDPO
-            </Typography>
-          </Grid>
-          <Grid container item direction='column' spacing={1}>
+    <Container maxWidth='lg'>
+      <Grid container spacing={2} direction='column'>
+        <Grid item>
+          <Typography variant='h4' component='h2'>
+            Add a DDPO
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Grid container direction='column' spacing={1}>
             <Grid item>
               <Typography>Please enter the name of your organisation:</Typography>
             </Grid>
@@ -78,22 +78,22 @@ const OrgEntry = () => {
               />
             </Grid>
           </Grid>
-          <Grid item>
-            <Button variant='contained' color='primary' onClick={handleSubmit}>
-              Add Organisation
-            </Button>
-          </Grid>
-          <Grid item>
-            <Divider />
-          </Grid>
-          <Grid item>
-            <Button variant='contained' color='primary' component={Link} to='/form'>
-              Return to form
-            </Button>
-          </Grid>
+        </Grid>
+        <Grid item>
+          <Button variant='contained' color='primary' onClick={handleSubmit}>
+            Add Organisation
+          </Button>
+        </Grid>
+        <Grid item>
+          <Divider />
+        </Grid>
+        <Grid item>
+          <Button variant='contained' color='primary' component={Link} to='/form'>
+            Return to form
+          </Button>
         </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 };
 
