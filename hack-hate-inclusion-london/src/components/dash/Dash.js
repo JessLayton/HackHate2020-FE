@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 const Dash = () => {
   const classes = useStyles();
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth='xl'>
       <Grid container direction='column' spacing={5}>
         <Grid item className={classes.dash}>
           <Typography variant='h4' component='h2'>

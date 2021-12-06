@@ -122,7 +122,7 @@ const Form = observer(() => {
   };
 
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth='xl'>
       <Grid container direction='column' spacing={2} alignItems='center'>
         <ScrollUp />
         <Grid item>
