@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FormGroup from '@material-ui/core/FormGroup';
-import Grid from '@material-ui/core/Grid';
+import FormGroup from '@mui/material/FormGroup';
+import Grid from '@mui/material/Grid';
 
 import CheckBox from './Checkbox';
 

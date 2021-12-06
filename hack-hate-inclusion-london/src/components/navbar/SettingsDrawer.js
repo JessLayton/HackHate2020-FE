@@ -1,8 +1,8 @@
 import React from 'react';
 import {
   Box, Button, Divider, Drawer, Grid, IconButton, makeStyles, MuiThemeProvider, Slider, Tooltip, Typography, useTheme,
-} from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+} from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import PropTypes from 'prop-types';
 
 import getTheme, { themes } from '../../theme/theme';

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Grid, Button, Typography, makeStyles,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({

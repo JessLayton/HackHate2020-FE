@@ -1,8 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Typography from '@material-ui/core/Typography';
-import { Grid, makeStyles, Button } from '@material-ui/core';
+import {
+  Grid, makeStyles, Button, Typography,
+} from '@mui/material';
 
 const useStyles = makeStyles({
   message: {

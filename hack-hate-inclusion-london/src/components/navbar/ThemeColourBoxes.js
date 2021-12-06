@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, makeStyles, Tooltip } from '@material-ui/core';
+import { Grid, makeStyles, Tooltip } from '@mui/material';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({

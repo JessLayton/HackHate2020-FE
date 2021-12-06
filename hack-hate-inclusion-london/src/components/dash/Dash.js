@@ -1,4 +1,4 @@
-import { Typography, Grid, makeStyles } from '@material-ui/core';
+import { Typography, Grid, makeStyles } from '@mui/material';
 import React from 'react';
 
 import { dashLocation } from '../../local/location';

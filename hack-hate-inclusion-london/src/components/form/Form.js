@@ -3,9 +3,8 @@ import { useHistory, Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 import {
-  Button, Grid, Typography,
-} from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
+  Button, Grid, Typography, Divider,
+} from '@mui/material';
 
 import constructForm from './constructForm/constructForm';
 import Brief from './Brief';

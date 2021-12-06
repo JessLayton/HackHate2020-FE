@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
   AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip, Button,
-} from '@material-ui/core';
-import SettingsIcon from '@material-ui/icons/Settings';
+} from '@mui/material';
+import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsDrawer from './SettingsDrawer';
 
 const useStyles = makeStyles({

@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { postForm } from '../../../connections/DatabaseService';
 
 const getCheckedBoroughs = (boroughs) => {

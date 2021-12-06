@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Button, Divider, Grid, TextField, Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useHistory } from 'react-router-dom';
 
 import { addOrganisation } from '../../connections/DatabaseService';
