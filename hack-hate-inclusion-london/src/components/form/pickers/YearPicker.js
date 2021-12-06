@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import { DatePicker, AdapterDateFns, LocalizationProvider } from '@mui/lab';
 
 const YearPicker = ({ onChange, value }) => {
   const handleChange = (date) => {
@@ -9,9 +8,9 @@ const YearPicker = ({ onChange, value }) => {
   };
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <LocalizationProvider utils={AdapterDateFns}>
       <DatePicker views={['year']} value={value} onChange={handleChange} inputVariant='outlined' label='Year' required minDate='2000' />
-    </MuiPickersUtilsProvider>
+    </LocalizationProvider>
   );
 };
 
