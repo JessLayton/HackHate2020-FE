@@ -1,22 +1,76 @@
-import { Typography, Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
+import { Typography, Grid, makeStyles } from '@material-ui/core';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
-import { dashLocation } from '../../local/location';
+import { getUnreportedCasesData, getReportingDetailsData } from '../../connections/DatabaseService';
+
+require('highcharts/modules/exporting')(Highcharts);
+require('highcharts/modules/accessibility')(Highcharts);
 
 const useStyles = makeStyles({
   dash: {
     marginTop: '20px',
   },
-  iframe: {
-    width: '100%',
-    height: '1300px',
-  },
 });
 
 const Dash = () => {
+  const [unreportedCasesData, setUnreportedCasesData] = React.useState([{ data: [] }]);
+  const [unreportedCasesAxis, setUnreportedCasesAxis] = React.useState({ categories: [] });
+  const [reportingDetailsData, setReportingDetailsData] = React.useState([{ data: [] }]);
+  const [reportingDetailsAxis, setReportingDetailsAxis] = React.useState({ categories: [] });
+
+  const unreportedCasesOptions = {
+    title: {
+      text: 'Reasons for not reporting cases to the police',
+    },
+    series: unreportedCasesData,
+    chart: {
+      type: 'column',
+    },
+    xAxis: {
+      categories: unreportedCasesAxis,
+    },
+    exporting: {
+      filename: 'reasons-for-not-reporting-cases-chart',
+    },
+  };
+
+  const reportingDetailsOptions = {
+    title: {
+      text: 'Disparity in cases reported to the police',
+    },
+    series: reportingDetailsData,
+    chart: {
+      type: 'line',
+    },
+    xAxis: {
+      categories: reportingDetailsAxis,
+    },
+    exporting: {
+      filename: 'disparity-in-cases-reported-chart',
+    },
+  };
+
+  const getData = async () => {
+    const { xAxis: unreportedCasesXAxis, dataArray: unreportedCasesDataArray } = await getUnreportedCasesData();
+    const { xAxis: reportingDetailsXAxis, dataArray: reportingDetailsDataArray } = await getReportingDetailsData();
+    if (unreportedCasesXAxis && unreportedCasesDataArray) {
+      setUnreportedCasesData(unreportedCasesDataArray);
+      setUnreportedCasesAxis(unreportedCasesXAxis);
+    }
+    if (reportingDetailsXAxis && reportingDetailsDataArray) {
+      setReportingDetailsData(reportingDetailsDataArray);
+      setReportingDetailsAxis(reportingDetailsXAxis);
+    }
+  };
+
+  React.useEffect(() => {
+    getData();
+  }, []);
+
   const classes = useStyles();
   return (
-
     <Grid container>
       <Grid container item justify='center'>
         <Grid container direction='column' item xs={11} spacing={5}>
@@ -26,8 +80,18 @@ const Dash = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <iframe src={dashLocation} title='Dashboard displaying collated data' className={classes.iframe} frameBorder={0} />
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={reportingDetailsOptions}
+            />
           </Grid>
+          <Grid item>
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={unreportedCasesOptions}
+            />
+          </Grid>
+          {/* TODO add data table for screen readers */}
         </Grid>
       </Grid>
     </Grid>
