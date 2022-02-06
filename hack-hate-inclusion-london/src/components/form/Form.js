@@ -67,12 +67,9 @@ const Form = observer(() => {
   const validateForm = () => {
     const invalidQuestions = [];
     if (!validWordCount(keyIssuesPara)) {
-      invalidQuestions.push(5);
+      invalidQuestions.push(7);
     }
-    if (!validWordCount(emotionalImpactCS)) {
-      invalidQuestions.push(15);
-    }
-    if (!validWordCount(outcomesCS)) {
+    if (!validWordCount(emotionalImpactCS) || !validWordCount(outcomesCS)) {
       invalidQuestions.push(16);
     }
     return { valid: invalidQuestions.length === 0, invalidQuestions };
@@ -126,369 +123,376 @@ const Form = observer(() => {
 
   return (
     <Grid container justify='center'>
-      <Grid container item xs={11} sm={10}>
+      <Grid item xs={11} sm={10}>
         <ScrollUp />
-        <Brief />
-        <form onSubmit={handleSubmit}>
-          <Grid container direction='column' spacing={2}>
-            <Grid item>
-              <ConfirmGDPR gdprConfirmed={gdprConfirmed} setGdprConfirmed={setGdprConfirmed} />
-            </Grid>
-            <Grid item>
-              <ol>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Time Period (Quarterly)
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Grid container direction='row' spacing={2}>
+        <Grid container direction='column' spacing={3}>
+          <Grid item>
+            <Brief />
+          </Grid>
+          <Grid item>
+            <form onSubmit={handleSubmit}>
+              <Grid container direction='column' spacing={2}>
+                <Grid item>
+                  <ConfirmGDPR gdprConfirmed={gdprConfirmed} setGdprConfirmed={setGdprConfirmed} />
+                </Grid>
+                <Grid item>
+                  <ol>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
                         <Grid item>
-                          <AutocompleteField options={yearQuarters} onChange={setQuarter} required label='Quarter' />
+                          <Typography variant='subtitle1'>
+                            Time Period (Quarterly)
+                          </Typography>
                         </Grid>
                         <Grid item>
-                          <YearPicker value={year} onChange={setYear} required />
+                          <Grid container direction='row' spacing={2}>
+                            <Grid item>
+                              <AutocompleteField options={yearQuarters} onChange={setQuarter} required label='Quarter' />
+                            </Grid>
+                            <Grid item>
+                              <YearPicker value={year} onChange={setYear} required />
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <Divider />
                         </Grid>
                       </Grid>
-                    </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Name of DDPO
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <AutocompleteField
+                            options={DDPOStore.ddpos}
+                            onChange={setOrganisation}
+                            required
+                            label='DDPO'
+                            helperText={(
+                              <Link to='/ddpo'>Don&apos;t see your DDPO? Click here to add a DDPO</Link>
+                            )}
+                          />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Boroughs Covered (Tick all that apply)
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Checkboxes checkedItems={boroughs} onChange={setBoroughs} />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Details of referrals / enquiries during this quarter
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <NumberFieldsGroup inputs={referralsAndEnquiries} value={referralsCount} onBlur={setReferralsCount} minValue={0} miniLabel={referralsAndEnquiries} />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Details of ongoing work during this quarter
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <NumberFieldsGroup inputs={reportingDetails} value={reportingCount} onBlur={setReportingCount} minValue={0} miniLabel={reportingDetails} />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Details of reporting during this quarter
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <NumberFieldsGroup inputs={reportingDetails} value={reportingCount} onBlur={setReportingCount} minValue={0} miniLabel={reportingDetails} />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            For DDPOs who are not collecting the data outlined below,
+                            please provide a short paragraph (up to 300 words) highlighting key issues, challenges / positive outcomes.
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <BigTextBox label='Key issues/outcomes (300 words max)' value={keyIssuesPara} onBlur={setKeyIssuesPara} validate={validWordCount} />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Type of support provided - Please provide a number for each Hate Crime Support
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <NumberFieldsGroup inputs={supportTypes} value={supportCount} onBlur={setSupportCount} minValue={0} />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            For cases not reported to police, please indicate main reasons why - Please provide a number for each
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <NumberFieldsGroup inputs={unreportedCases} value={unreportedCaseCount} onBlur={setUnreportedCaseCount} minValue={0} />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Intersectionality and Disability Hate Crime:
+                            Please indicate how many people you supported felt the hate crime targeted another aspect of their identity and was also a:
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <NumberFieldsGroup inputs={intersectionalCrimes} value={intersectionCrimesCount} onBlur={setIntersectionalCrimesCount} minValue={0} />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
                     <Grid item>
-                      <Divider />
+                      <DemographicInfo />
                     </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Name of DDPO
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <AutocompleteField
-                        options={DDPOStore.ddpos}
-                        onChange={setOrganisation}
-                        required
-                        label='DDPO'
-                        helperText={(
-                          <Link to='/ddpo'>Don&apos;t see your DDPO? Click here to add a DDPO</Link>
-                        )}
-                      />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Boroughs Covered (Tick all that apply)
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Checkboxes checkedItems={boroughs} onChange={setBoroughs} />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Details of referrals / enquiries during this quarter
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <NumberFieldsGroup inputs={referralsAndEnquiries} value={referralsCount} onBlur={setReferralsCount} minValue={0} miniLabel={referralsAndEnquiries} />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Details of ongoing work during this quarter
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <NumberFieldsGroup inputs={reportingDetails} value={reportingCount} onBlur={setReportingCount} minValue={0} miniLabel={reportingDetails} />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Details of reporting during this quarter
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <NumberFieldsGroup inputs={reportingDetails} value={reportingCount} onBlur={setReportingCount} minValue={0} miniLabel={reportingDetails} />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        For DDPOs who are not collecting the data outlined below,
-                        please provide a short paragraph (up to 300 words) highlighting key issues, challenges / positive outcomes.
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <BigTextBox label='Key issues/outcomes (300 words max)' value={keyIssuesPara} onBlur={setKeyIssuesPara} validate={validWordCount} />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Type of support provided - Please provide a number for each Hate Crime Support
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <NumberFieldsGroup inputs={supportTypes} value={supportCount} onBlur={setSupportCount} minValue={0} />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        For cases not reported to police, please indicate main reasons why - Please provide a number for each
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <NumberFieldsGroup inputs={unreportedCases} value={unreportedCaseCount} onBlur={setUnreportedCaseCount} minValue={0} />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Intersectionality and Disability Hate Crime:
-                        Please indicate how many people you supported felt the hate crime targeted another aspect of their identity and was also a:
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <NumberFieldsGroup inputs={intersectionalCrimes} value={intersectionCrimesCount} onBlur={setIntersectionalCrimesCount} minValue={0} />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <Grid item>
-                  <DemographicInfo />
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Age of victims being supported - Please provide a number
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <NumberFieldsGroup inputs={ageGroups} value={ageCount} onBlur={setAgeCount} minValue={0} />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Ethnicity of victims being supported - Please provide a number
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <NumberFieldsGroup inputs={ethnicities} value={ethnicityCount} onBlur={setEthnicityCount} minValue={0} />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            What number of your clients are:
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <ol type='a'>
+                            <li>
+                              <NumberFieldsGroup inputs={orientations} value={orientationsCount} onBlur={setOrientationCount} minValue={0} />
+                            </li>
+                            <li>
+                              <NumberFieldsGroup inputs={genders} value={genderCount} onBlur={setGenderCount} minValue={0} />
+                            </li>
+                          </ol>
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Details of where the hate crime occurred, the actions involved, and what they were regarding?
+                            (This is to highlight the multiple issues a victim can experience)
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            As with the previous questions, these are all optional. Please provide information where you can
+                            as this is appreciated and valuable, whether you can answer one question or many.
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <ol type='a'>
+                            <li>
+                              <Grid container direction='column' spacing={2}>
+                                <Grid item>
+                                  Where the hate crime occurred:
+                                </Grid>
+                                <Grid item>
+                                  <NumberFieldsGroup inputs={whereDetails} value={whereCount} onBlur={setWhereCount} minValue={0} />
+                                </Grid>
+                              </Grid>
+                            </li>
+                            <li>
+                              <Grid container direction='column' spacing={2}>
+                                <Grid item>
+                                  Form of hate crime:
+                                </Grid>
+                                <Grid item>
+                                  <NumberFieldsGroup inputs={hateCrime} value={hateCrimeCount} onBlur={setHateCrimeCount} minValue={0} />
+                                </Grid>
+                              </Grid>
+                            </li>
+                            <li>
+                              <Grid container direction='column' spacing={2}>
+                                <Grid item>
+                                  The Hate crime was committed by:
+                                </Grid>
+                                <Grid item>
+                                  <NumberFieldsGroup inputs={committedBy} value={committedByCount} onBlur={setCommittedByCount} minValue={0} />
+                                </Grid>
+                              </Grid>
+                            </li>
+                            <li>
+                              <Grid container direction='column' spacing={2}>
+                                <Grid item>
+                                  How many were specifically regarding (relating to current/key issues):
+                                </Grid>
+                                <Grid item>
+                                  <NumberFieldsGroup inputs={currentIssues} value={currentIssuesCount} onBlur={setCurrentIssuesCount} minValue={0} />
+                                </Grid>
+                              </Grid>
+                            </li>
+                          </ol>
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            What number of your clients identify the following as their impairment / condition / disability?
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <NumberFieldsGroup inputs={impairments} value={impairmentCount} onBlur={setImpairmentCount} minValue={0} />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            Case studies
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography>
+                            In filling out the below, please be conscious of confidentiality and GDPR guidelines,
+                            keep the case study anonymous and avoid personalised details that could lead to individuals being identified.
+                          </Typography>
+                          <Typography>
+                            For the case studies below, please include the length of time taken with the client
+                            and if you feel your support improved their awareness / knowledge of rights, confidence,
+                            feelings of safety, of being listened to, feeling less isolated.
+                            Please also include what other services within your DDPO the client accessed, or any other services you signposted / referred to.
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <ol type='a'>
+                          <li>
+                            <Grid container direction='column' spacing={2}>
+                              <Grid item>
+                                Brief case study highlighting emotional impact of Disability Hate Crime and / or challenges / positives dealing with Police / CPS
+                              </Grid>
+                              <Grid item>
+                                <BigTextBox label='Case Study (Up to 300 words)' value={emotionalImpactCS} onBlur={setEmotionalImpactCS} validate={validWordCount} />
+                              </Grid>
+                            </Grid>
+                          </li>
+                          <li>
+                            <Grid container direction='column' spacing={2}>
+                              <Grid item>
+                                Brief case study highlighting achieving positive outcomes without a report to police
+                              </Grid>
+                              <Grid item>
+                                <BigTextBox label='Case Study (Up to 300 words)' value={outcomesCS} onBlur={setOutcomesCS} validate={validWordCount} />
+                              </Grid>
+                            </Grid>
+                          </li>
+                        </ol>
+                      </Grid>
+                    </li>
+                  </ol>
                 </Grid>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Age of victims being supported - Please provide a number
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <NumberFieldsGroup inputs={ageGroups} value={ageCount} onBlur={setAgeCount} minValue={0} />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Ethnicity of victims being supported - Please provide a number
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <NumberFieldsGroup inputs={ethnicities} value={ethnicityCount} onBlur={setEthnicityCount} minValue={0} />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        What number of your clients are:
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <ol type='a'>
-                        <li>
-                          <NumberFieldsGroup inputs={orientations} value={orientationsCount} onBlur={setOrientationCount} minValue={0} />
-                        </li>
-                        <li>
-                          <NumberFieldsGroup inputs={genders} value={genderCount} onBlur={setGenderCount} minValue={0} />
-                        </li>
-                      </ol>
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Details of where the hate crime occurred, the actions involved, and what they were regarding?
-                        (This is to highlight the multiple issues a victim can experience)
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        As with the previous questions, these are all optional. Please provide information where you can
-                        as this is appreciated and valuable, whether you can answer one question or many.
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <ol type='a'>
-                        <li>
-                          <Grid container direction='column' spacing={2}>
-                            <Grid item>
-                              Where the hate crime occurred:
-                            </Grid>
-                            <Grid item>
-                              <NumberFieldsGroup inputs={whereDetails} value={whereCount} onBlur={setWhereCount} minValue={0} />
-                            </Grid>
-                          </Grid>
-                        </li>
-                        <li>
-                          <Grid container direction='column' spacing={2}>
-                            <Grid item>
-                              Form of hate crime:
-                            </Grid>
-                            <Grid item>
-                              <NumberFieldsGroup inputs={hateCrime} value={hateCrimeCount} onBlur={setHateCrimeCount} minValue={0} />
-                            </Grid>
-                          </Grid>
-                        </li>
-                        <li>
-                          <Grid container direction='column' spacing={2}>
-                            <Grid item>
-                              The Hate crime was committed by:
-                            </Grid>
-                            <Grid item>
-                              <NumberFieldsGroup inputs={committedBy} value={committedByCount} onBlur={setCommittedByCount} minValue={0} />
-                            </Grid>
-                          </Grid>
-                        </li>
-                        <li>
-                          <Grid container direction='column' spacing={2}>
-                            <Grid item>
-                              How many were specifically regarding (relating to current/key issues):
-                            </Grid>
-                            <Grid item>
-                              <NumberFieldsGroup inputs={currentIssues} value={currentIssuesCount} onBlur={setCurrentIssuesCount} minValue={0} />
-                            </Grid>
-                          </Grid>
-                        </li>
-                      </ol>
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        What number of your clients identify the following as their impairment / condition / disability?
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <NumberFieldsGroup inputs={impairments} value={impairmentCount} onBlur={setImpairmentCount} minValue={0} />
-                    </Grid>
-                    <Grid item>
-                      <Divider />
-                    </Grid>
-                  </Grid>
-                </li>
-                <li>
-                  <Grid container direction='column' spacing={2}>
-                    <Grid item>
-                      <Typography variant='subtitle1'>
-                        Case studies
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography>
-                        In filling out the below, please be conscious of confidentiality and GDPR guidelines,
-                        keep the case study anonymous and avoid personalised details that could lead to individuals being identified.
-                      </Typography>
-                      <Typography>
-                        For the case studies below, please include the length of time taken with the client
-                        and if you feel your support improved their awareness / knowledge of rights, confidence, feelings of safety, of being listened to, feeling less isolated.
-                        Please also include what other services within your DDPO the client accessed, or any other services you signposted / referred to.
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                  <Grid item>
-                    <ol type='a'>
-                      <li>
-                        <Grid container direction='column' spacing={2}>
-                          <Grid item>
-                            Brief case study highlighting emotional impact of Disability Hate Crime and / or challenges / positives dealing with Police / CPS
-                          </Grid>
-                          <Grid item>
-                            <BigTextBox label='Case Study (Up to 300 words)' value={emotionalImpactCS} onBlur={setEmotionalImpactCS} validate={validWordCount} />
-                          </Grid>
-                        </Grid>
-                      </li>
-                      <li>
-                        <Grid container direction='column' spacing={2}>
-                          <Grid item>
-                            Brief case study highlighting achieving positive outcomes without a report to police
-                          </Grid>
-                          <Grid item>
-                            <BigTextBox label='Case Study (Up to 300 words)' value={outcomesCS} onBlur={setOutcomesCS} validate={validWordCount} />
-                          </Grid>
-                        </Grid>
-                      </li>
-                    </ol>
-                  </Grid>
-                </li>
-              </ol>
-            </Grid>
-            <Grid item>
-              <Divider />
-            </Grid>
-            <Grid item>
-              <Button type='submit' variant='contained' color='primary' size='large'>
-                Submit
-              </Button>
-            </Grid>
+                <Grid item>
+                  <Divider />
+                </Grid>
+                <Grid item>
+                  <Button type='submit' variant='contained' color='primary' size='large'>
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
           </Grid>
-        </form>
+        </Grid>
       </Grid>
     </Grid>
   );
