@@ -19,6 +19,7 @@ const NumberFields = ({
             onBlur={(newValue) => handleChange(input.key, newValue)}
             defaultValue={value[input.key]}
             minValue={minValue}
+            helperText={input.helperText}
           />
         </Grid>
       ))}

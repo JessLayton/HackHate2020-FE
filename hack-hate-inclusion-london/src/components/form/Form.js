@@ -28,13 +28,14 @@ import ageGroups, { initialisedAgeGroups } from '../../resources/ageGroups';
 import yearQuarters from '../../resources/yearQuarters';
 import impairments, { initialisedImpairments } from '../../resources/impairments';
 import genders, { initialisedGenders } from '../../resources/gender';
-import sex, { initialisedSex } from '../../resources/sex';
 import orientations, { initialisedOrientations } from '../../resources/orientations';
 import whereDetails, { initialisedWhereDetails } from '../../resources/whereDetails';
 import hateCrime, { initialisedHateCrime } from '../../resources/hateCrime';
 import committedBy, { initialisedCommittedBy } from '../../resources/commitedBy';
 import currentIssues, { initialisedCurrentIssues } from '../../resources/currentIssues';
 import boroughsList from '../../resources/boroughs';
+import ConfirmGDPR from './ConfirmGDPR';
+import DemographicInfo from './DemographicInfo';
 
 const Form = observer(() => {
   const [quarter, setQuarter] = React.useState('');
@@ -49,7 +50,6 @@ const Form = observer(() => {
   const [ageCount, setAgeCount] = React.useState(initialisedAgeGroups);
   const [ethnicityCount, setEthnicityCount] = React.useState(initialisedEthnicities);
   const [genderCount, setGenderCount] = React.useState(initialisedGenders);
-  const [sexCount, setSexCount] = React.useState(initialisedSex);
   const [orientationsCount, setOrientationCount] = React.useState(initialisedOrientations);
   const [whereCount, setWhereCount] = React.useState(initialisedWhereDetails);
   const [hateCrimeCount, setHateCrimeCount] = React.useState(initialisedHateCrime);
@@ -59,6 +59,7 @@ const Form = observer(() => {
   const [keyIssuesPara, setKeyIssuesPara] = React.useState('');
   const [emotionalImpactCS, setEmotionalImpactCS] = React.useState('');
   const [outcomesCS, setOutcomesCS] = React.useState('');
+  const [gdprConfirmed, setGdprConfirmed] = React.useState('no');
   const history = useHistory();
 
   const validWordCount = (entry) => (entry.split(' ').filter((word) => word !== '').length <= 300);
@@ -80,7 +81,9 @@ const Form = observer(() => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formIsValid = validateForm();
-    if (formIsValid.valid) {
+    if (gdprConfirmed === 'no') {
+      SnackbarStore.showError('You must read the and agree to the conditions above before submitting the form');
+    } else if (formIsValid.valid) {
       let success;
       try {
         success = await constructForm(
@@ -96,7 +99,6 @@ const Form = observer(() => {
           ageCount,
           ethnicityCount,
           genderCount,
-          sexCount,
           orientationsCount,
           whereCount,
           hateCrimeCount,
@@ -129,6 +131,9 @@ const Form = observer(() => {
         <Brief />
         <form onSubmit={handleSubmit}>
           <Grid container direction='column' spacing={2}>
+            <Grid item>
+              <ConfirmGDPR gdprConfirmed={gdprConfirmed} setGdprConfirmed={setGdprConfirmed} />
+            </Grid>
             <Grid item>
               <ol>
                 <li>
@@ -210,6 +215,21 @@ const Form = observer(() => {
                   <Grid container direction='column' spacing={2}>
                     <Grid item>
                       <Typography variant='subtitle1'>
+                        Details of ongoing work during this quarter
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <NumberFieldsGroup inputs={reportingDetails} value={reportingCount} onBlur={setReportingCount} minValue={0} miniLabel={reportingDetails} />
+                    </Grid>
+                    <Grid item>
+                      <Divider />
+                    </Grid>
+                  </Grid>
+                </li>
+                <li>
+                  <Grid container direction='column' spacing={2}>
+                    <Grid item>
+                      <Typography variant='subtitle1'>
                         Details of reporting during this quarter
                       </Typography>
                     </Grid>
@@ -241,7 +261,7 @@ const Form = observer(() => {
                   <Grid container direction='column' spacing={2}>
                     <Grid item>
                       <Typography variant='subtitle1'>
-                        Type of support provided - Please provide a number for each
+                        Type of support provided - Please provide a number for each Hate Crime Support
                       </Typography>
                     </Grid>
                     <Grid item>
@@ -283,6 +303,9 @@ const Form = observer(() => {
                     </Grid>
                   </Grid>
                 </li>
+                <Grid item>
+                  <DemographicInfo />
+                </Grid>
                 <li>
                   <Grid container direction='column' spacing={2}>
                     <Grid item>
@@ -320,9 +343,6 @@ const Form = observer(() => {
                     <Grid item>
                       <ol type='a'>
                         <li>
-                          <NumberFieldsGroup inputs={sex} value={sexCount} onBlur={setSexCount} minValue={0} />
-                        </li>
-                        <li>
                           <NumberFieldsGroup inputs={orientations} value={orientationsCount} onBlur={setOrientationCount} minValue={0} />
                         </li>
                         <li>
@@ -341,6 +361,12 @@ const Form = observer(() => {
                       <Typography variant='subtitle1'>
                         Details of where the hate crime occurred, the actions involved, and what they were regarding?
                         (This is to highlight the multiple issues a victim can experience)
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant='subtitle1'>
+                        As with the previous questions, these are all optional. Please provide information where you can
+                        as this is appreciated and valuable, whether you can answer one question or many.
                       </Typography>
                     </Grid>
                     <Grid item>
@@ -368,7 +394,7 @@ const Form = observer(() => {
                         <li>
                           <Grid container direction='column' spacing={2}>
                             <Grid item>
-                              Hate crime committed by:
+                              The Hate crime was committed by:
                             </Grid>
                             <Grid item>
                               <NumberFieldsGroup inputs={committedBy} value={committedByCount} onBlur={setCommittedByCount} minValue={0} />
@@ -396,7 +422,7 @@ const Form = observer(() => {
                   <Grid container direction='column' spacing={2}>
                     <Grid item>
                       <Typography variant='subtitle1'>
-                        What number of your clients identify the following as their impairment / condition?
+                        What number of your clients identify the following as their impairment / condition / disability?
                       </Typography>
                     </Grid>
                     <Grid item>
