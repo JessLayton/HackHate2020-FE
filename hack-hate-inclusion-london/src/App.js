@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Landing from './components/landing/LandingPage';
 import Dash from './components/dash/Dash';
-import Form from './components/form/Form';
+// import Form from './components/form/Form';
+import Form from './components/form/JotForm';
+
 import ThanksPage from './components/ThanksPage';
 import OrgEntry from './components/ddpo/OrgEntry';
 import Snackbar from './snackbar/Snackbar';
