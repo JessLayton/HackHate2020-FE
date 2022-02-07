@@ -21,6 +21,8 @@ import DDPOStore from '../ddpo/DDPOStore';
 import ethnicities, { initialisedEthnicities } from '../../resources/ethnicities';
 import referralsAndEnquiries, { initialisedReferralsAndEnquiries } from '../../resources/referralsAndEnquiries';
 import reportingDetails, { initialisedReportingDetails } from '../../resources/reportingDetails';
+import ongoingDetails, { initialisedOngoingDetails } from '../../resources/ongoingDetails';
+
 import supportTypes, { initialisedSupportTypes } from '../../resources/supportTypes';
 import unreportedCases, { initialisedUnreportedCases } from '../../resources/unreportedCases';
 import intersectionalCrimes, { initialisedIntersectionalCrimes } from '../../resources/intersectionalCrime';
@@ -44,6 +46,7 @@ const Form = observer(() => {
   const [boroughs, setBoroughs] = React.useState(boroughsList);
   const [referralsCount, setReferralsCount] = React.useState(initialisedReferralsAndEnquiries);
   const [reportingCount, setReportingCount] = React.useState(initialisedReportingDetails);
+  const [ongoingCount, setOngoingCount] = React.useState(initialisedOngoingDetails);
   const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
   const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(initialisedUnreportedCases);
   const [intersectionCrimesCount, setIntersectionalCrimesCount] = React.useState(initialisedIntersectionalCrimes);
@@ -79,7 +82,7 @@ const Form = observer(() => {
     event.preventDefault();
     const formIsValid = validateForm();
     if (gdprConfirmed === 'no') {
-      SnackbarStore.showError('You must read the and agree to the conditions above before submitting the form');
+      SnackbarStore.showError('You must read and agree to the conditions above before submitting the form');
     } else if (formIsValid.valid) {
       let success;
       try {
@@ -90,6 +93,7 @@ const Form = observer(() => {
           boroughs,
           referralsCount,
           reportingCount,
+          ongoingCount,
           supportCount,
           unreportedCaseCount,
           intersectionCrimesCount,
@@ -205,7 +209,7 @@ const Form = observer(() => {
                           </Typography>
                         </Grid>
                         <Grid item>
-                          <NumberFieldsGroup inputs={referralsAndEnquiries} value={referralsCount} onBlur={setReferralsCount} minValue={0} miniLabel={referralsAndEnquiries} />
+                          <NumberFieldsGroup inputs={referralsAndEnquiries} value={referralsCount} onBlur={setReferralsCount} minValue={0} />
                         </Grid>
                         <Grid item>
                           <Divider />
@@ -220,7 +224,7 @@ const Form = observer(() => {
                           </Typography>
                         </Grid>
                         <Grid item>
-                          <NumberFieldsGroup inputs={reportingDetails} value={reportingCount} onBlur={setReportingCount} minValue={0} miniLabel={reportingDetails} />
+                          <NumberFieldsGroup inputs={ongoingDetails} value={ongoingCount} onBlur={setOngoingCount} minValue={0} />
                         </Grid>
                         <Grid item>
                           <Divider />
@@ -235,7 +239,7 @@ const Form = observer(() => {
                           </Typography>
                         </Grid>
                         <Grid item>
-                          <NumberFieldsGroup inputs={reportingDetails} value={reportingCount} onBlur={setReportingCount} minValue={0} miniLabel={reportingDetails} />
+                          <NumberFieldsGroup inputs={reportingDetails} value={reportingCount} onBlur={setReportingCount} minValue={0} />
                         </Grid>
                         <Grid item>
                           <Divider />
