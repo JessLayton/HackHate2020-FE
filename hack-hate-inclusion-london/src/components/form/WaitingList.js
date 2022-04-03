@@ -6,10 +6,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import PropTypes from 'prop-types';
+import NumberField from './numberfields/NumberField';
 
-const WaitingList = ({ waitingList, setWaitingList }) => {
+const WaitingList = ({
+  isWaitingList, setIsWaitingList, waitingListCount, setWaitingListCount,
+}) => {
   const handleChange = (event) => {
-    setWaitingList(event.target.value);
+    setIsWaitingList(event.target.value);
   };
 
   return (
@@ -21,7 +24,7 @@ const WaitingList = ({ waitingList, setWaitingList }) => {
           </FormLabel>
           <RadioGroup
             name='waiting-list-radio-buttons'
-            value={waitingList}
+            value={isWaitingList}
             onChange={handleChange}
           >
             <FormControlLabel value='no' control={<Radio />} label='No' />
@@ -30,13 +33,25 @@ const WaitingList = ({ waitingList, setWaitingList }) => {
           </RadioGroup>
         </FormControl>
       </Grid>
+      {isWaitingList === 'yes' && (
+        <Grid item>
+          <NumberField
+            label='How many people are currently on your waiting list?'
+            defaultValue={waitingListCount}
+            onBlur={setWaitingListCount}
+            minValue={0}
+          />
+        </Grid>
+      )}
     </Grid>
   );
 };
 
 WaitingList.propTypes = {
-  waitingList: PropTypes.string.isRequired,
-  setWaitingList: PropTypes.func.isRequired,
+  isWaitingList: PropTypes.string.isRequired,
+  setIsWaitingList: PropTypes.func.isRequired,
+  waitingListCount: PropTypes.number.isRequired,
+  setWaitingListCount: PropTypes.func.isRequired,
 };
 
 export default WaitingList;

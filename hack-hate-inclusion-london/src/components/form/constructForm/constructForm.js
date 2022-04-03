@@ -1,11 +1,11 @@
 /* eslint-disable camelcase */
 import { postForm } from '../../../connections/DatabaseService';
 
-const getCheckedBoroughs = (boroughs) => {
+const getChecked = (keys) => {
   const checkedBoroughs = [];
-  boroughs.forEach((borough) => {
-    if (borough.isChecked) {
-      checkedBoroughs.push(borough.label);
+  keys.forEach((key) => {
+    if (key.isChecked) {
+      checkedBoroughs.push(key.label);
     }
   });
   return checkedBoroughs;
@@ -34,6 +34,9 @@ const constructForm = async (
   referralsCount,
   reportingCount,
   ongoingCount,
+  typeOfTimeDataAvailable,
+  timeSpentNumerical,
+  timeSpentInfo,
   isWaitingList,
   waitingListCount,
   supportCount,
@@ -56,12 +59,15 @@ const constructForm = async (
     quarter: getQuarterValue(quarter),
     year: year.getFullYear(),
     nameDdpo: organisation.name,
-    boroughsCovered: getCheckedBoroughs(boroughs),
+    boroughsCovered: getChecked(boroughs),
     referrals: referralsCount,
     reportingDetails: reportingCount,
     ongoingDetails: ongoingCount,
+    typeOfTimeDataAvailable: getChecked(typeOfTimeDataAvailable),
+    timeSpentNumerical: typeOfTimeDataAvailable.filter((info) => info.key === 'numerical')[0].isChecked ? timeSpentNumerical : 0,
+    timeSpentInfo: typeOfTimeDataAvailable.filter((info) => info.key === 'narrative')[0].isChecked ? timeSpentInfo : '',
     isWaitingList,
-    waitingListCount,
+    waitingListCount: isWaitingList === 'yes' ? waitingListCount : 0,
     supportProvided: supportCount,
     unreportedCases: unreportedCaseCount,
     intersectional: intersectionalCrimesCount,

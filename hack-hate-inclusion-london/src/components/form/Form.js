@@ -10,8 +10,8 @@ import Divider from '@material-ui/core/Divider';
 import constructForm from './constructForm/constructForm';
 import Brief from './Brief';
 import AutocompleteField from './textfields/AutocompleteField';
-import YearPicker from './pickers/YearPicker';
-import Checkboxes from './checkboxes/Checkboxes';
+import YearPicker from './YearPicker';
+import Checkboxes from './OrganisationCheckboxes';
 import NumberFieldsGroup from './numberfields/NumberFieldsGroup';
 import BigTextBox from './textfields/BigTextBox';
 import ScrollUp from './ScrollUp';
@@ -35,12 +35,13 @@ import whereDetails, { initialisedWhereDetails } from '../../resources/whereDeta
 import hateCrime, { initialisedHateCrime } from '../../resources/hateCrime';
 import committedBy, { initialisedCommittedBy } from '../../resources/commitedBy';
 import currentIssues, { initialisedCurrentIssues } from '../../resources/currentIssues';
-import waitingList, { initialisedWaitingList } from '../../resources/waitingList';
 
 import boroughsList from '../../resources/boroughs';
+import timeInfoType from '../../resources/timeInfoType';
 import ConfirmGDPR from './ConfirmGDPR';
 import DemographicInfo from './DemographicInfo';
 import WaitingList from './WaitingList';
+import TimeSpentCheckboxes from './TimeSpentCheckboxes';
 
 const Form = observer(() => {
   const [quarter, setQuarter] = React.useState('');
@@ -50,7 +51,10 @@ const Form = observer(() => {
   const [referralsCount, setReferralsCount] = React.useState(initialisedReferralsAndEnquiries);
   const [reportingCount, setReportingCount] = React.useState(initialisedReportingDetails);
   const [ongoingCount, setOngoingCount] = React.useState(initialisedOngoingDetails);
-  const [waitingListCount, setWaitingListCount] = React.useState(initialisedWaitingList);
+  const [typeOfTimeDataAvailable, setTypeOfTimeDataAvailable] = React.useState(timeInfoType);
+  const [timeSpentNumerical, setTimeSpentNumerical] = React.useState(0);
+  const [timeSpentInfo, setTimeSpentInfo] = React.useState('');
+  const [waitingListCount, setWaitingListCount] = React.useState(0);
   const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
   const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(initialisedUnreportedCases);
   const [intersectionCrimesCount, setIntersectionalCrimesCount] = React.useState(initialisedIntersectionalCrimes);
@@ -100,6 +104,9 @@ const Form = observer(() => {
           referralsCount,
           reportingCount,
           ongoingCount,
+          typeOfTimeDataAvailable,
+          timeSpentNumerical,
+          timeSpentInfo,
           isWaitingList,
           waitingListCount,
           supportCount,
@@ -197,11 +204,6 @@ const Form = observer(() => {
                     <li>
                       <Grid container direction='column' spacing={2}>
                         <Grid item>
-                          <Typography variant='subtitle1'>
-                            Boroughs Covered (Tick all that apply)
-                          </Typography>
-                        </Grid>
-                        <Grid item>
                           <Checkboxes checkedItems={boroughs} onChange={setBoroughs} />
                         </Grid>
                         <Grid item>
@@ -227,6 +229,23 @@ const Form = observer(() => {
                     <li>
                       <Grid container direction='column' spacing={2}>
                         <Grid item>
+                          <TimeSpentCheckboxes
+                            typeOfTimeDataAvailable={typeOfTimeDataAvailable}
+                            setTypeOfTimeDataAvailable={setTypeOfTimeDataAvailable}
+                            timeSpentNumerical={timeSpentNumerical}
+                            setTimeSpentNumerical={setTimeSpentNumerical}
+                            timeSpentInfo={timeSpentInfo}
+                            setTimeSpentInfo={setTimeSpentInfo}
+                          />
+                        </Grid>
+                        <Grid item>
+                          <Divider />
+                        </Grid>
+                      </Grid>
+                    </li>
+                    <li>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
                           <Typography variant='subtitle1'>
                             Details of ongoing work during this quarter
                           </Typography>
@@ -237,13 +256,15 @@ const Form = observer(() => {
                       </Grid>
                       <Grid container direction='column' spacing={2}>
                         <Grid item>
-                          <WaitingList waitingList={isWaitingList} setWaitingList={setIsWaitingList} />
+                          <WaitingList
+                            isWaitingList={isWaitingList}
+                            setIsWaitingList={setIsWaitingList}
+                            waitingListCount={waitingListCount}
+                            setWaitingListCount={setWaitingListCount}
+                          />
                         </Grid>
                       </Grid>
                       <Grid container direction='column' spacing={2}>
-                        <Grid item>
-                          <NumberFieldsGroup inputs={waitingList} value={waitingListCount} onBlur={setWaitingListCount} />
-                        </Grid>
                         <Grid item>
                           <Divider />
                         </Grid>
