@@ -52,6 +52,28 @@ const getReportingDetailsData = async () => {
   return response.data;
 };
 
+const getReferralsOverTimeData = async () => {
+  let response;
+  try {
+    response = await get('/api/dash/referralsOverTime');
+  } catch (err) {
+    console.error(err);
+  }
+  return response.data;
+};
+
+const getAllReferralsData = async () => {
+  let response;
+  try {
+    response = await get('/api/dash/allReferrals');
+  } catch (err) {
+    console.error(err);
+  }
+  return response.data;
+};
+
 export {
-  postForm, addOrganisation, getAllOrganisations, getUnreportedCasesData, getReportingDetailsData,
+  postForm, addOrganisation, getAllOrganisations,
+  getUnreportedCasesData, getReportingDetailsData, getReferralsOverTimeData,
+  getAllReferralsData,
 };

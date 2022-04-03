@@ -3,7 +3,9 @@ import { Typography, Grid, makeStyles } from '@material-ui/core';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-import { getUnreportedCasesData, getReportingDetailsData } from '../../connections/DatabaseService';
+import {
+  getUnreportedCasesData, getReportingDetailsData, getReferralsOverTimeData, getAllReferralsData,
+} from '../../connections/DatabaseService';
 
 require('highcharts/modules/exporting')(Highcharts);
 require('highcharts/modules/accessibility')(Highcharts);
@@ -15,10 +17,14 @@ const useStyles = makeStyles({
 });
 
 const Dash = () => {
-  const [unreportedCasesData, setUnreportedCasesData] = React.useState([{ data: [] }]);
-  const [unreportedCasesAxis, setUnreportedCasesAxis] = React.useState({ categories: [] });
-  const [reportingDetailsData, setReportingDetailsData] = React.useState([{ data: [] }]);
-  const [reportingDetailsAxis, setReportingDetailsAxis] = React.useState({ categories: [] });
+  const [unreportedCasesData, setUnreportedCasesData] = React.useState([]);
+  const [unreportedCasesAxis, setUnreportedCasesAxis] = React.useState([]);
+  const [reportingDetailsData, setReportingDetailsData] = React.useState([]);
+  const [reportingDetailsAxis, setReportingDetailsAxis] = React.useState([]);
+  const [referralsOverTimeData, setReferralsOverTimeData] = React.useState([]);
+  const [referralsOverTimeAxis, setReferralsOverTimeAxis] = React.useState([]);
+  const [allReferralsData, setAllReferralsData] = React.useState([]);
+  const [allReferralsAxis, setAllReferralsAxis] = React.useState([]);
 
   const unreportedCasesOptions = {
     title: {
@@ -52,9 +58,59 @@ const Dash = () => {
     },
   };
 
+  const referralsOverTimeOptions = {
+    title: {
+      text: 'Referrals Over Time',
+    },
+    series: referralsOverTimeData,
+    chart: {
+      type: 'line',
+    },
+    xAxis: {
+      title: {
+        text: 'Referrals per quarter',
+      },
+      categories: referralsOverTimeAxis,
+    },
+    yAxis: {
+      title: {
+        text: 'Number of referrals',
+      },
+    },
+    exporting: {
+      filename: 'referrals-over-time-chart',
+    },
+  };
+
+  const allReferralsOptions = {
+    title: {
+      text: 'All Referrals',
+    },
+    series: allReferralsData,
+    chart: {
+      type: 'column',
+    },
+    xAxis: {
+      title: {
+        text: 'Referral types',
+      },
+      categories: allReferralsAxis,
+    },
+    yAxis: {
+      title: {
+        text: 'Number of referrals',
+      },
+    },
+    exporting: {
+      filename: 'all-referrals--chart',
+    },
+  };
+
   const getData = async () => {
     const { xAxis: unreportedCasesXAxis, dataArray: unreportedCasesDataArray } = await getUnreportedCasesData();
     const { xAxis: reportingDetailsXAxis, dataArray: reportingDetailsDataArray } = await getReportingDetailsData();
+    const { xAxis: referralsOverTimeXAxis, dataArray: referralsOverTimeDataArray } = await getReferralsOverTimeData();
+    const { xAxis: allReferralsXAxis, dataArray: allReferralsDataArray } = await getAllReferralsData();
     if (unreportedCasesXAxis && unreportedCasesDataArray) {
       setUnreportedCasesData(unreportedCasesDataArray);
       setUnreportedCasesAxis(unreportedCasesXAxis);
@@ -62,6 +118,14 @@ const Dash = () => {
     if (reportingDetailsXAxis && reportingDetailsDataArray) {
       setReportingDetailsData(reportingDetailsDataArray);
       setReportingDetailsAxis(reportingDetailsXAxis);
+    }
+    if (referralsOverTimeXAxis && referralsOverTimeDataArray) {
+      setReferralsOverTimeData(referralsOverTimeDataArray);
+      setReferralsOverTimeAxis(referralsOverTimeXAxis);
+    }
+    if (allReferralsXAxis && allReferralsDataArray) {
+      setAllReferralsData(allReferralsDataArray);
+      setAllReferralsAxis(allReferralsXAxis);
     }
   };
 
@@ -90,6 +154,19 @@ const Dash = () => {
               highcharts={Highcharts}
               options={unreportedCasesOptions}
             />
+          </Grid>
+          <Grid item>
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={referralsOverTimeOptions}
+            />
+          </Grid>
+          <Grid item>
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={allReferralsOptions}
+            />
+            {console.log(allReferralsOptions, unreportedCasesOptions)}
           </Grid>
           {/* TODO add data table for screen readers */}
         </Grid>
