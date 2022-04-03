@@ -35,9 +35,12 @@ import whereDetails, { initialisedWhereDetails } from '../../resources/whereDeta
 import hateCrime, { initialisedHateCrime } from '../../resources/hateCrime';
 import committedBy, { initialisedCommittedBy } from '../../resources/commitedBy';
 import currentIssues, { initialisedCurrentIssues } from '../../resources/currentIssues';
+import waitingList, { initialisedWaitingList } from '../../resources/waitingList';
+
 import boroughsList from '../../resources/boroughs';
 import ConfirmGDPR from './ConfirmGDPR';
 import DemographicInfo from './DemographicInfo';
+import WaitingList from './WaitingList';
 
 const Form = observer(() => {
   const [quarter, setQuarter] = React.useState('');
@@ -47,6 +50,7 @@ const Form = observer(() => {
   const [referralsCount, setReferralsCount] = React.useState(initialisedReferralsAndEnquiries);
   const [reportingCount, setReportingCount] = React.useState(initialisedReportingDetails);
   const [ongoingCount, setOngoingCount] = React.useState(initialisedOngoingDetails);
+  const [waitingListCount, setWaitingListCount] = React.useState(initialisedWaitingList);
   const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
   const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(initialisedUnreportedCases);
   const [intersectionCrimesCount, setIntersectionalCrimesCount] = React.useState(initialisedIntersectionalCrimes);
@@ -63,6 +67,8 @@ const Form = observer(() => {
   const [emotionalImpactCS, setEmotionalImpactCS] = React.useState('');
   const [outcomesCS, setOutcomesCS] = React.useState('');
   const [gdprConfirmed, setGdprConfirmed] = React.useState('no');
+  const [isWaitingList, setIsWaitingList] = React.useState('no');
+
   const history = useHistory();
 
   const validWordCount = (entry) => (entry.split(' ').filter((word) => word !== '').length <= 300);
@@ -94,6 +100,8 @@ const Form = observer(() => {
           referralsCount,
           reportingCount,
           ongoingCount,
+          isWaitingList,
+          waitingListCount,
           supportCount,
           unreportedCaseCount,
           intersectionCrimesCount,
@@ -224,7 +232,17 @@ const Form = observer(() => {
                           </Typography>
                         </Grid>
                         <Grid item>
-                          <NumberFieldsGroup inputs={ongoingDetails} value={ongoingCount} onBlur={setOngoingCount} minValue={0} />
+                          <NumberFieldsGroup inputs={ongoingDetails} value={ongoingCount} onBlur={setOngoingCount} />
+                        </Grid>
+                      </Grid>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <WaitingList waitingList={isWaitingList} setWaitingList={setIsWaitingList} />
+                        </Grid>
+                      </Grid>
+                      <Grid container direction='column' spacing={2}>
+                        <Grid item>
+                          <NumberFieldsGroup inputs={waitingList} value={waitingListCount} onBlur={setWaitingListCount} />
                         </Grid>
                         <Grid item>
                           <Divider />
