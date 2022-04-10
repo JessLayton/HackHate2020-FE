@@ -16,7 +16,7 @@ const WaitingList = ({
   };
 
   return (
-    <Grid container>
+    <Grid container direction='column'>
       <Grid item>
         <FormControl>
           <FormLabel>

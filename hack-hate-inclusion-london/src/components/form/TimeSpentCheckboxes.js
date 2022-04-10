@@ -31,7 +31,7 @@ const TimeSpentCheckboxes = ({
   );
 
   return (
-    <Grid container item direction='column' spacing={2}>
+    <Grid container direction='column' spacing={2}>
       <Grid item>
         <Typography variant='subtitle1'>
           In terms of time spent on hate crime work (compared to other services you offer), what kind of information can you provide this quarter?
