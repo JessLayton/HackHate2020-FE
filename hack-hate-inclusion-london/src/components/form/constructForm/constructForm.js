@@ -1,11 +1,11 @@
 /* eslint-disable camelcase */
 import { postForm } from '../../../connections/DatabaseService';
 
-const getCheckedBoroughs = (boroughs) => {
+const getChecked = (keys) => {
   const checkedBoroughs = [];
-  boroughs.forEach((borough) => {
-    if (borough.isChecked) {
-      checkedBoroughs.push(borough.label);
+  keys.forEach((key) => {
+    if (key.isChecked) {
+      checkedBoroughs.push(key.label);
     }
   });
   return checkedBoroughs;
@@ -33,13 +33,18 @@ const constructForm = async (
   boroughs,
   referralsCount,
   reportingCount,
+  ongoingCount,
+  typeOfTimeDataAvailable,
+  timeSpentNumerical,
+  timeSpentInfo,
+  isWaitingList,
+  waitingListCount,
   supportCount,
   unreportedCaseCount,
   intersectionalCrimesCount,
   ageCount,
   ethnicityCount,
   genderCount,
-  sexCount,
   orientationsCount,
   whereCount,
   hateCrimeCount,
@@ -54,16 +59,21 @@ const constructForm = async (
     quarter: getQuarterValue(quarter),
     year: year.getFullYear(),
     nameDdpo: organisation.name,
-    boroughsCovered: getCheckedBoroughs(boroughs),
+    boroughsCovered: getChecked(boroughs),
     referrals: referralsCount,
     reportingDetails: reportingCount,
+    ongoingDetails: ongoingCount,
+    typeOfTimeDataAvailable: getChecked(typeOfTimeDataAvailable),
+    timeSpentNumerical: typeOfTimeDataAvailable.find((info) => info.key === 'numerical').isChecked ? timeSpentNumerical : 0,
+    timeSpentInfo: typeOfTimeDataAvailable.find((info) => info.key === 'narrative').isChecked ? timeSpentInfo : '',
+    isWaitingList,
+    waitingListCount: isWaitingList === 'yes' ? waitingListCount : 0,
     supportProvided: supportCount,
     unreportedCases: unreportedCaseCount,
     intersectional: intersectionalCrimesCount,
     age: ageCount,
     ethnicity: ethnicityCount,
     gender: genderCount,
-    sex: sexCount,
     orientation: orientationsCount,
     where: whereCount,
     hateCrime: hateCrimeCount,

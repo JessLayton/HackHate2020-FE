@@ -5,7 +5,7 @@ const supportTypes = [
   { label: 'Emotional Support', key: 'emotional' },
   {
     label:
-      'General support - issues relating to  harrassment / housing / financial / safeguarding',
+      'General support - issues relating to  harassment / housing / financial / safeguarding',
     key: 'general',
   },
   { label: 'Signposted to support elsewhere', key: 'signposted' },

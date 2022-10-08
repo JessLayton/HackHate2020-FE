@@ -7,9 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import { Button, Typography } from '@material-ui/core';
 import CheckBox from './Checkbox';
 
-import boroughs from '../../../resources/boroughs';
+import boroughs from '../../resources/boroughs';
 
-const Checkboxes = ({ checkedItems, onChange }) => {
+const OrganisationCheckboxes = ({ checkedItems, onChange }) => {
   const [allChecked, setAllChecked] = React.useState(false);
   const [allBoroughs, setAllBoroughs] = React.useState(boroughs);
 
@@ -48,6 +48,11 @@ const Checkboxes = ({ checkedItems, onChange }) => {
   return (
     <Grid container direction='column' spacing={2}>
       <Grid item>
+        <Typography variant='subtitle1'>
+          Boroughs Covered (Tick all that apply)
+        </Typography>
+      </Grid>
+      <Grid item>
         <Grid container direction='row' justify='space-between' alignItems='center'>
           <Grid item>
             <Typography>All Boroughs: </Typography>
@@ -75,11 +80,11 @@ const Checkboxes = ({ checkedItems, onChange }) => {
   );
 };
 
-Checkboxes.propTypes = {
+OrganisationCheckboxes.propTypes = {
   checkedItems: PropTypes.arrayOf(PropTypes.shape({
     isChecked: PropTypes.bool,
   })).isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
-export default Checkboxes;
+export default OrganisationCheckboxes;

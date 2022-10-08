@@ -4,13 +4,13 @@ const impairments = [
   { label: 'Physical', key: 'physical' },
   { label: 'Cognitive', key: 'cognitive' },
   { label: 'Sensory', key: 'sensory' },
-  { label: 'Learning Difficulties', key: 'learningDifficulties' },
-  { label: 'Neurodivergent', key: 'neurodivergent' },
+  { label: 'Learning Difficulty', key: 'learningDifficulties' },
+  { label: 'Neurodivergence', key: 'neurodivergent' },
   { label: 'Deaf', key: 'deaf' },
   { label: 'Deafened / hard of hearing', key: 'hardOfHearing' },
-  { label: 'Mental health issues', key: 'mentalHealth' },
-  { label: 'Long-term issues', key: 'longTerm' },
-  { label: 'Other', key: 'other' },
+  { label: 'Mental health distress / trauma', key: 'mentalHealth' },
+  { label: 'Long-term / chronic issues', key: 'longTerm' },
+  { label: 'Condition / impairment / disability not listed', key: 'other' },
 ];
 
 export const initialisedImpairments = createInitialState(impairments);

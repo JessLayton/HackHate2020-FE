@@ -19,6 +19,7 @@ const NumberFields = ({
             onBlur={(newValue) => handleChange(input.key, newValue)}
             defaultValue={value[input.key]}
             minValue={minValue}
+            helperText={input.helperText}
           />
         </Grid>
       ))}
@@ -30,7 +31,11 @@ NumberFields.propTypes = {
   inputs: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   value: PropTypes.shape({}).isRequired,
   onBlur: PropTypes.func.isRequired,
-  minValue: PropTypes.number.isRequired,
+  minValue: PropTypes.number,
+};
+
+NumberFields.defaultProps = {
+  minValue: 0,
 };
 
 export default NumberFields;

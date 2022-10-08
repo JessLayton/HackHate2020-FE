@@ -1,10 +1,14 @@
 import createInitialState from '../components/form/constructForm/InitialState';
 
 const genders = [
-  { label: 'Cisgender', key: 'cis' },
-  { label: 'Transgender / Nonbinary', key: 'transNonbinary' },
+  { label: 'Cis Woman', key: 'cisWoman' },
+  { label: 'Trans Woman', key: 'transWoman' },
+  { label: 'Cis Man', key: 'cisMan' },
+  { label: 'Trans Man', key: 'transMan' },
+  { label: 'Intersex', key: 'intersex' },
+  { label: 'Non-Binary', key: 'nonBinary' },
   { label: 'Gender identity not listed', key: 'unlisted' },
-  { label: 'Not recorded / unknown', key: 'unknown' },
+  { label: 'Data not recorded / unknown', key: 'unknown' },
 
 ];
 
