@@ -72,8 +72,28 @@ const getAllReferralsData = async () => {
   return response.data;
 };
 
+const getIntersectionalData = async () => {
+  let response;
+  try {
+    response = await get('/api/dash/intersectionalHateCrime');
+  } catch (err) {
+    console.error(err);
+  }
+  return response?.data;
+};
+
+const getSupportProvidedData = async () => {
+  let response;
+  try {
+    response = await get('/api/dash/supportProvided');
+  } catch (err) {
+    console.error(err);
+  }
+  return response?.data;
+};
+
 export {
   postForm, addOrganisation, getAllOrganisations,
   getUnreportedCasesData, getReportingDetailsData, getReferralsOverTimeData,
-  getAllReferralsData,
+  getAllReferralsData, getIntersectionalData, getSupportProvidedData,
 };

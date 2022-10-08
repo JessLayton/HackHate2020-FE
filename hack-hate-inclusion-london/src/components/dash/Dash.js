@@ -4,7 +4,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
 import {
-  getUnreportedCasesData, getReportingDetailsData, getReferralsOverTimeData, getAllReferralsData,
+  getUnreportedCasesData, getReportingDetailsData, getReferralsOverTimeData, getAllReferralsData, getIntersectionalData, getSupportProvidedData,
 } from '../../connections/DatabaseService';
 
 require('highcharts/modules/exporting')(Highcharts);
@@ -25,6 +25,10 @@ const Dash = () => {
   const [referralsOverTimeAxis, setReferralsOverTimeAxis] = React.useState([]);
   const [allReferralsData, setAllReferralsData] = React.useState([]);
   const [allReferralsAxis, setAllReferralsAxis] = React.useState([]);
+  const [intersectionalData, setIntersectionalData] = React.useState([]);
+  const [intersectionalAxis, setIntersectionalAxis] = React.useState([]);
+  const [supportProvidedData, setSupportProvidedData] = React.useState([]);
+  const [supportProvidedAxis, setSupportProvidedAxis] = React.useState([]);
 
   const unreportedCasesOptions = {
     title: {
@@ -92,7 +96,7 @@ const Dash = () => {
     },
     xAxis: {
       title: {
-        text: 'Referral types',
+        text: 'Referral type',
       },
       categories: allReferralsAxis,
     },
@@ -102,7 +106,47 @@ const Dash = () => {
       },
     },
     exporting: {
-      filename: 'all-referrals--chart',
+      filename: 'all-referrals-chart',
+    },
+  };
+
+  const intersectionalOptions = {
+    title: {
+      text: 'Intersectional Hate Crime',
+    },
+    series: intersectionalData,
+    chart: {
+      type: 'column',
+    },
+    xAxis: {
+      title: {
+        text: 'Intersectional hate crime type',
+      },
+      categories: intersectionalAxis,
+    },
+    yAxis: {
+      title: {
+        text: 'Number of cases',
+      },
+    },
+    exporting: {
+      filename: 'intersections-hate-crime-chart',
+    },
+  };
+
+  const supportProvidedOptions = {
+    title: {
+      text: 'Support Provided To Individuals',
+    },
+    series: supportProvidedData,
+    chart: {
+      type: 'column',
+    },
+    xAxis: {
+      categories: supportProvidedAxis,
+    },
+    exporting: {
+      filename: 'support-provided-chart',
     },
   };
 
@@ -111,6 +155,9 @@ const Dash = () => {
     const { xAxis: reportingDetailsXAxis, dataArray: reportingDetailsDataArray } = await getReportingDetailsData();
     const { xAxis: referralsOverTimeXAxis, dataArray: referralsOverTimeDataArray } = await getReferralsOverTimeData();
     const { xAxis: allReferralsXAxis, dataArray: allReferralsDataArray } = await getAllReferralsData();
+    const { xAxis: intersectionalXAxis, dataArray: intersectionalDataArray } = await getIntersectionalData();
+    const { xAxis: supportProvidedXAxis, dataArray: supportProvidedDataArray } = await getSupportProvidedData();
+
     if (unreportedCasesXAxis && unreportedCasesDataArray) {
       setUnreportedCasesData(unreportedCasesDataArray);
       setUnreportedCasesAxis(unreportedCasesXAxis);
@@ -126,6 +173,14 @@ const Dash = () => {
     if (allReferralsXAxis && allReferralsDataArray) {
       setAllReferralsData(allReferralsDataArray);
       setAllReferralsAxis(allReferralsXAxis);
+    }
+    if (intersectionalXAxis && intersectionalDataArray) {
+      setIntersectionalData(intersectionalDataArray);
+      setIntersectionalAxis(intersectionalXAxis);
+    }
+    if (supportProvidedXAxis && supportProvidedDataArray) {
+      setSupportProvidedData(supportProvidedDataArray);
+      setSupportProvidedAxis(supportProvidedXAxis);
     }
   };
 
@@ -166,7 +221,18 @@ const Dash = () => {
               highcharts={Highcharts}
               options={allReferralsOptions}
             />
-            {console.log(allReferralsOptions, unreportedCasesOptions)}
+          </Grid>
+          <Grid item>
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={intersectionalOptions}
+            />
+          </Grid>
+          <Grid item>
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={supportProvidedOptions}
+            />
           </Grid>
           {/* TODO add data table for screen readers */}
         </Grid>
