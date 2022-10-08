@@ -251,6 +251,11 @@ const Form = observer(() => {
                           </Typography>
                         </Grid>
                         <Grid item>
+                          <Typography variant='caption'>
+                            Please only count work carrying over from previous quarters in this small section.
+                          </Typography>
+                        </Grid>
+                        <Grid item>
                           <NumberFieldsGroup inputs={ongoingDetails} value={ongoingCount} onBlur={setOngoingCount} />
                         </Grid>
                       </Grid>
