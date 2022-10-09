@@ -57,8 +57,6 @@ const DemographicCheckboxes = ({
     </Grid>
   );
 
-  console.log(typeOfDemographicDataAvailable.filter((info) => info.isChecked));
-
   return (
     <Grid container direction='column' spacing={2}>
       <Grid container item xs={12} sm={6} direction='column' spacing={1}>
@@ -85,15 +83,15 @@ const DemographicCheckboxes = ({
 };
 
 DemographicCheckboxes.propTypes = {
-  typeOfDemographicDataAvailable: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  typeOfDemographicDataAvailable: PropTypes.arrayOf(PropTypes.shape({ isChecked: PropTypes.bool })).isRequired,
   setTypeOfDemographicDataAvailable: PropTypes.func.isRequired,
-  ageCount: PropTypes.shape.isRequired,
+  ageCount: PropTypes.shape({}).isRequired,
   setAgeCount: PropTypes.func.isRequired,
-  ethnicityCount: PropTypes.shape.isRequired,
+  ethnicityCount: PropTypes.shape({}).isRequired,
   setEthnicityCount: PropTypes.func.isRequired,
-  orientationsCount: PropTypes.shape.isRequired,
+  orientationsCount: PropTypes.shape({}).isRequired,
   setOrientationsCount: PropTypes.func.isRequired,
-  genderCount: PropTypes.shape.isRequired,
+  genderCount: PropTypes.shape({}).isRequired,
   setGenderCount: PropTypes.func.isRequired,
 };
 
