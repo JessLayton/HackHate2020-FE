@@ -2,13 +2,13 @@
 import { postForm } from '../../../connections/DatabaseService';
 
 const getChecked = (keys) => {
-  const checkedBoroughs = [];
+  const checked = [];
   keys.forEach((key) => {
     if (key.isChecked) {
-      checkedBoroughs.push(key.label);
+      checked.push(key.label);
     }
   });
-  return checkedBoroughs;
+  return checked;
 };
 
 const getQuarterValue = (quarter) => {
@@ -42,6 +42,7 @@ const constructForm = async (
   supportCount,
   unreportedCaseCount,
   intersectionalCrimesCount,
+  typeOfDemographicDataAvailable,
   ageCount,
   ethnicityCount,
   genderCount,
@@ -71,10 +72,11 @@ const constructForm = async (
     supportProvided: supportCount,
     unreportedCases: unreportedCaseCount,
     intersectional: intersectionalCrimesCount,
-    age: ageCount,
-    ethnicity: ethnicityCount,
-    gender: genderCount,
-    orientation: orientationsCount,
+    typeOfDemographicDataAvailable: getChecked(typeOfDemographicDataAvailable),
+    age: typeOfDemographicDataAvailable.find((info) => info.label === 'Age').isChecked ? ageCount : {},
+    ethnicity: typeOfDemographicDataAvailable.find((info) => info.label === 'Ethnicity').isChecked ? ethnicityCount : {},
+    gender: typeOfDemographicDataAvailable.find((info) => info.label === 'Sex and Gender Identity').isChecked ? genderCount : {},
+    orientation: typeOfDemographicDataAvailable.find((info) => info.label === 'Sexual Orientation').isChecked ? orientationsCount : {},
     where: whereCount,
     hateCrime: hateCrimeCount,
     committedBy: committedByCount,

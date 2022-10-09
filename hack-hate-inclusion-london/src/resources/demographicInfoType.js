@@ -6,16 +6,16 @@ import orientations from './orientations';
 
 const demographicInfoType = [
   {
-    label: 'Age', description: 'Age of victims being supported', isChecked: false, key: 'numerical', demographic: ageGroups,
+    label: 'Age', description: 'Age of victims being supported', isChecked: false, demographic: ageGroups,
   },
   {
-    label: 'Ethnicity', description: 'Ethnicity of victims being supported', isChecked: false, key: 'numerical', demographic: ethnicities,
+    label: 'Ethnicity', description: 'Ethnicity of victims being supported', isChecked: false, demographic: ethnicities,
   },
   {
-    label: 'Sex and Gender Identity', description: 'Sex and Gender Identity of victims being supported', isChecked: false, key: 'numerical', demographic: genders,
+    label: 'Sex and Gender Identity', description: 'Sex and Gender Identity of victims being supported', isChecked: false, demographic: genders,
   },
   {
-    label: 'Sexual Orientation', description: 'Sexual Orientation of victims being supported', isChecked: false, key: 'numerical', demographic: orientations,
+    label: 'Sexual Orientation', description: 'Sexual Orientation of victims being supported', isChecked: false, demographic: orientations,
   },
 ];
 

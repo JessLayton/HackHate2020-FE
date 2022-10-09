@@ -115,6 +115,7 @@ const Form = observer(() => {
           supportCount,
           unreportedCaseCount,
           intersectionCrimesCount,
+          typeOfDemographicDataAvailable,
           ageCount,
           ethnicityCount,
           genderCount,
