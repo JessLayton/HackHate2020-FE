@@ -1,9 +1,14 @@
 import React from 'react';
 import { Typography, Grid, makeStyles } from '@material-ui/core';
 import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
 
-import { getUnreportedCasesData, getReportingDetailsData } from '../../connections/DatabaseService';
+import {
+  getUnreportedCasesData, getReportingDetailsData, getReferralsOverTimeData, getAllReferralsData, getIntersectionalData, getSupportProvidedData,
+} from '../../connections/DatabaseService';
+import MultipleBarChart from './MultipleBarChart';
+import CombinedBarChart from './CombinedBarChart';
+import MultipleLineChart from './MultipleLineChart';
+import SingleLineChart from './SingleLineChart';
 
 require('highcharts/modules/exporting')(Highcharts);
 require('highcharts/modules/accessibility')(Highcharts);
@@ -15,61 +20,8 @@ const useStyles = makeStyles({
 });
 
 const Dash = () => {
-  const [unreportedCasesData, setUnreportedCasesData] = React.useState([{ data: [] }]);
-  const [unreportedCasesAxis, setUnreportedCasesAxis] = React.useState({ categories: [] });
-  const [reportingDetailsData, setReportingDetailsData] = React.useState([{ data: [] }]);
-  const [reportingDetailsAxis, setReportingDetailsAxis] = React.useState({ categories: [] });
-
-  const unreportedCasesOptions = {
-    title: {
-      text: 'Reasons for not reporting cases to the police',
-    },
-    series: unreportedCasesData,
-    chart: {
-      type: 'column',
-    },
-    xAxis: {
-      categories: unreportedCasesAxis,
-    },
-    exporting: {
-      filename: 'reasons-for-not-reporting-cases-chart',
-    },
-  };
-
-  const reportingDetailsOptions = {
-    title: {
-      text: 'Disparity in cases reported to the police',
-    },
-    series: reportingDetailsData,
-    chart: {
-      type: 'line',
-    },
-    xAxis: {
-      categories: reportingDetailsAxis,
-    },
-    exporting: {
-      filename: 'disparity-in-cases-reported-chart',
-    },
-  };
-
-  const getData = async () => {
-    const { xAxis: unreportedCasesXAxis, dataArray: unreportedCasesDataArray } = await getUnreportedCasesData();
-    const { xAxis: reportingDetailsXAxis, dataArray: reportingDetailsDataArray } = await getReportingDetailsData();
-    if (unreportedCasesXAxis && unreportedCasesDataArray) {
-      setUnreportedCasesData(unreportedCasesDataArray);
-      setUnreportedCasesAxis(unreportedCasesXAxis);
-    }
-    if (reportingDetailsXAxis && reportingDetailsDataArray) {
-      setReportingDetailsData(reportingDetailsDataArray);
-      setReportingDetailsAxis(reportingDetailsXAxis);
-    }
-  };
-
-  React.useEffect(() => {
-    getData();
-  }, []);
-
   const classes = useStyles();
+
   return (
     <Grid container>
       <Grid container item justify='center'>
@@ -80,18 +32,54 @@ const Dash = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <HighchartsReact
-              highcharts={Highcharts}
-              options={reportingDetailsOptions}
+            <MultipleLineChart
+              getData={getReportingDetailsData}
+              title='Disparity in cases reported to the police'
+              exportFilename='disparity-in-cases-reported-chart'
             />
           </Grid>
           <Grid item>
-            <HighchartsReact
-              highcharts={Highcharts}
-              options={unreportedCasesOptions}
+            <MultipleBarChart
+              getData={getUnreportedCasesData}
+              title='Reasons for not reporting cases to the police'
+              exportFilename='reasons-for-not-reporting-cases-chart'
             />
           </Grid>
-          {/* TODO add data table for screen readers */}
+          <Grid item>
+            <SingleLineChart
+              getData={getReferralsOverTimeData}
+              title='Referrals Over Time'
+              xAxisLabel='Referrals per quarter'
+              yAxisLabel='Number of referrals'
+              exportFilename='referrals-over-time-chart'
+            />
+          </Grid>
+          <Grid item>
+            <CombinedBarChart
+              getData={getAllReferralsData}
+              title='All Referrals'
+              xAxisLabel='Referral type'
+              yAxisLabel='Number of referrals'
+              exportFilename='all-referrals-chart'
+            />
+          </Grid>
+          <Grid item>
+            <CombinedBarChart
+              getData={getIntersectionalData}
+              title='Intersectional Hate Crime'
+              xAxisLabel='Intersectional hate crime type'
+              yAxisLabel='Number of cases'
+              exportFilename='intersections-hate-crime-chart'
+            />
+          </Grid>
+          <Grid item>
+            <MultipleBarChart
+              getData={getSupportProvidedData}
+              title='Support Provided To Individuals'
+              exportFilename='support-provided-chart'
+            />
+          </Grid>
+          {/* TODO: add data table for screen readers */}
         </Grid>
       </Grid>
     </Grid>
