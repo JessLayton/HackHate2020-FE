@@ -27,8 +27,8 @@ const BigTextBox = ({
       label={label}
       multiline
       fullWidth
-      rows={5}
-      rowsMax={20}
+      minRows={5}
+      maxRows={20}
       InputLabelProps={{
         shrink: true,
       }}

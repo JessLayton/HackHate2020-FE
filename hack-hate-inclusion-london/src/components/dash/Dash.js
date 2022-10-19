@@ -72,7 +72,7 @@ const Dash = () => {
   const classes = useStyles();
   return (
     <Grid container>
-      <Grid container item justify='center'>
+      <Grid container item justifyContent='center'>
         <Grid container direction='column' item xs={11} spacing={5}>
           <Grid item className={classes.dash}>
             <Typography variant='h4' component='h2'>

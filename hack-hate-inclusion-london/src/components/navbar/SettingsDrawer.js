@@ -156,7 +156,7 @@ const SettingsDrawer = ({ open, toggleOpen }) => {
   return (
     <Drawer open={open} anchor='right' onClose={toggleOpen}>
       <Box className={classes.titleBackground}>
-        <Grid container justify='space-between' alignItems='center'>
+        <Grid container justifyContent='space-between' alignItems='center'>
           <Grid item>
             <Typography variant='h4' component='h2' className={classes.titleStyles}>
               User Settings

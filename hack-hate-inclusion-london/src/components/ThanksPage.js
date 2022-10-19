@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography';
 import { Grid, makeStyles, Button } from '@material-ui/core';
@@ -12,15 +12,15 @@ const useStyles = makeStyles({
 
 const ThanksPage = () => {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const returnToForm = () => {
-    history.push('/');
+    navigate('/');
   };
 
   return (
-    <Grid container spacing={8} className={classes.message} justify='center'>
-      <Grid container item justify='center' spacing={3}>
+    <Grid container spacing={8} className={classes.message} justifyContent='center'>
+      <Grid container item justifyContent='center' spacing={3}>
         <Grid item>
           <Typography component='h2' variant='h4'>
             Thank you filling out this form.

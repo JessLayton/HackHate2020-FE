@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 import {
@@ -73,7 +73,7 @@ const Form = observer(() => {
   const [gdprConfirmed, setGdprConfirmed] = React.useState('no');
   const [isWaitingList, setIsWaitingList] = React.useState('no');
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const validWordCount = (entry) => (entry.split(' ').filter((word) => word !== '').length <= 300);
 
@@ -126,7 +126,7 @@ const Form = observer(() => {
           outcomesCS,
         );
         if (success) {
-          history.push('/thankyou');
+          navigate('/thankyou');
           SnackbarStore.showSuccess(`Submitted form for ${organisation.name}`);
         }
       } catch (error) {
@@ -141,7 +141,7 @@ const Form = observer(() => {
   };
 
   return (
-    <Grid container justify='center'>
+    <Grid container justifyContent='center'>
       <Grid item xs={11} sm={10}>
         <ScrollUp />
         <Grid container direction='column' spacing={3}>

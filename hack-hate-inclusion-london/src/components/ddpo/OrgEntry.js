@@ -2,14 +2,14 @@ import React from 'react';
 import {
   Button, Divider, Grid, TextField, Typography,
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { addOrganisation } from '../../connections/DatabaseService';
 import DDPOStore from './DDPOStore';
 import SnackbarStore from '../../snackbar/SnackbarStore';
 
 const OrgEntry = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [orgName, setOrgName] = React.useState('');
   const [error, setError] = React.useState(false);
@@ -51,11 +51,11 @@ const OrgEntry = () => {
   };
 
   const returnToForm = () => {
-    history.push('/form');
+    navigate('/form');
   };
 
   return (
-    <Grid container justify='center'>
+    <Grid container justifyContent='center'>
       <Grid container item xs={11} sm={10}>
         <Grid container spacing={2} direction='column'>
           <Grid item>

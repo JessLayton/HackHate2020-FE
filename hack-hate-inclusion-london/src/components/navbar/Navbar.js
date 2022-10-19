@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip, Button,
 } from '@material-ui/core';
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 
 const Navbar = () => {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [settingsOpen, setSettingsOpen] = React.useState(false);
 
@@ -26,18 +26,18 @@ const Navbar = () => {
   };
 
   const navigateToDash = () => {
-    history.push('/dash');
+    navigate('/dash');
   };
 
   const navigateToForm = () => {
-    history.push('/form');
+    navigate('/form');
   };
 
   return (
     <>
       <AppBar>
         <Toolbar className={classes.toolBar}>
-          <Grid container direction='row' justify='space-between' alignItems='center'>
+          <Grid container direction='row' justifyContent='space-between' alignItems='center'>
             <Grid container item spacing={3} alignItems='center'>
               <Grid item>
                 <Tooltip title='Go to home' aria-label='navigate-to-home'>

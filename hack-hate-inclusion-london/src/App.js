@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Landing from './components/landing/LandingPage';
 import Dash from './components/dash/Dash';
@@ -17,23 +17,13 @@ function App() {
     <Router>
       <Navbar />
       <Snackbar />
-      <Switch>
-        <Route exact path='/'>
-          <Landing />
-        </Route>
-        <Route path='/dash'>
-          <Dash />
-        </Route>
-        <Route path='/form'>
-          <Form />
-        </Route>
-        <Route path='/ddpo'>
-          <OrgEntry />
-        </Route>
-        <Route path='/thankyou'>
-          <ThanksPage />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route exact path='/' element={<Landing />} />
+        <Route path='/dash' element={<Dash />} />
+        <Route path='/form' element={<Form />} />
+        <Route path='/ddpo' element={<OrgEntry />} />
+        <Route path='/thankyou' element={<ThanksPage />} />
+      </Routes>
     </Router>
   );
 }

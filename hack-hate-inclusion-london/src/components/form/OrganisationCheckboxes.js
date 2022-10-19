@@ -53,7 +53,7 @@ const OrganisationCheckboxes = ({ checkedItems, onChange }) => {
         </Typography>
       </Grid>
       <Grid item>
-        <Grid container direction='row' justify='space-between' alignItems='center'>
+        <Grid container direction='row' justifyContent='space-between' alignItems='center'>
           <Grid item>
             <Typography>All Boroughs: </Typography>
           </Grid>
