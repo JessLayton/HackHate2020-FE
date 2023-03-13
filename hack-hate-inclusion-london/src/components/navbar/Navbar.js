@@ -1,9 +1,16 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  AppBar, Toolbar, Typography, Grid, IconButton, makeStyles, Tooltip, Button,
-} from '@material-ui/core';
-import SettingsIcon from '@material-ui/icons/Settings';
+
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Toolbar from '@mui/material/Toolbar';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import makeStyles from '@mui/styles/makeStyles';
+
+import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsDrawer from './SettingsDrawer';
 
 const useStyles = makeStyles({

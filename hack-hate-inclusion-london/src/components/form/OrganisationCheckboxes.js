@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FormGroup from '@material-ui/core/FormGroup';
-import Grid from '@material-ui/core/Grid';
+import Button from '@mui/material/Button';
+import FormGroup from '@mui/material/FormGroup';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
-import { Button, Typography } from '@material-ui/core';
 import CheckBox from './Checkbox';
 
 import boroughs from '../../resources/boroughs';

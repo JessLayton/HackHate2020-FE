@@ -1,5 +1,5 @@
-import createTheme from '@material-ui/core/styles/createTheme';
-import grey from '@material-ui/core/colors/grey';
+import createTheme from '@mui/material/styles/createTheme';
+import grey from '@mui/material/colors/grey';
 
 const defaultTheme = {
   palette: {

@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react-lite';
-import MuiSnackbar from '@material-ui/core/Snackbar';
-import { Alert as MuiAlert, AlertTitle } from '@material-ui/lab';
+
+import MuiSnackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 import SnackbarStore from './SnackbarStore';
 

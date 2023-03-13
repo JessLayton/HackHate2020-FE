@@ -1,19 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const AutocompleteField = ({
-  options, onChange, label, helperText,
+  options, onChange, value, label,
 }) => {
-  const handleChange = (event, value) => {
-    onChange(value);
+  const handleChange = (event, newValue) => {
+    onChange(newValue);
   };
+  const [inputValue, setInputValue] = React.useState('');
+
   return (
     <Autocomplete
       options={options}
       getOptionLabel={(option) => option.name}
       style={{ width: 300 }}
+      value={value}
+      onChange={handleChange}
+      onInputChange={(event, newInputValue) => {
+        setInputValue(newInputValue);
+      }}
+      inputValue={inputValue}
       renderInput={(params) => (
         <TextField
           // eslint-disable-next-line react/jsx-props-no-spreading
@@ -24,10 +33,9 @@ const AutocompleteField = ({
           variant='outlined'
           required
           label={label}
-          helperText={helperText}
         />
       )}
-      onChange={handleChange}
+
     />
   );
 };
@@ -35,13 +43,13 @@ const AutocompleteField = ({
 AutocompleteField.propTypes = {
   label: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  value: PropTypes.shape(),
   onChange: PropTypes.func.isRequired,
-  helperText: PropTypes.node,
 };
 
 AutocompleteField.defaultProps = {
   label: '',
-  helperText: undefined,
+  value: undefined,
 };
 
 export default AutocompleteField;

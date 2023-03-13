@@ -1,9 +1,20 @@
 import React from 'react';
-import {
-  Box, Button, Divider, Drawer, Grid, IconButton, makeStyles, MuiThemeProvider, Slider, Tooltip, Typography, useTheme,
-} from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
+
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Slider from '@mui/material/Slider';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import MuiThemeProvider from '@mui/styles/ThemeProvider';
+import makeStyles from '@mui/styles/makeStyles';
+import useTheme from '@mui/styles/useTheme';
+
+import CloseIcon from '@mui/icons-material/Close';
 
 import getTheme, { themes } from '../../theme/theme';
 import fontFamilies from '../../theme/fontFamilies';

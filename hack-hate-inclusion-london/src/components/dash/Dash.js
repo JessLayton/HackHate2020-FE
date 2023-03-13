@@ -1,5 +1,9 @@
 import React from 'react';
-import { Typography, Grid, makeStyles } from '@material-ui/core';
+
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import makeStyles from '@mui/styles/makeStyles';
+
 import Highcharts from 'highcharts';
 
 import {

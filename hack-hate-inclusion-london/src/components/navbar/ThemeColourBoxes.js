@@ -1,6 +1,9 @@
 import React from 'react';
-import { Grid, makeStyles, Tooltip } from '@material-ui/core';
 import PropTypes from 'prop-types';
+
+import Grid from '@mui/material/Grid';
+import Tooltip from '@mui/material/Tooltip';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles({
   themeColourBox: {

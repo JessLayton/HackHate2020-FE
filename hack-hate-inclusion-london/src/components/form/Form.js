@@ -2,10 +2,10 @@ import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
-import {
-  Button, Grid, Typography,
-} from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
 import constructForm from './constructForm/constructForm';
 import Brief from './Brief';
@@ -46,7 +46,7 @@ import TimeSpentCheckboxes from './TimeSpentCheckboxes';
 import DemographicCheckboxes from './DemographicCheckboxes';
 
 const Form = observer(() => {
-  const [quarter, setQuarter] = React.useState('');
+  const [quarter, setQuarter] = React.useState(yearQuarters[0]);
   const [year, setYear] = React.useState(new Date());
   const [organisation, setOrganisation] = React.useState('');
   const [boroughs, setBoroughs] = React.useState(boroughsList);
@@ -170,10 +170,10 @@ const Form = observer(() => {
                         <Grid item>
                           <Grid container direction='row' spacing={2}>
                             <Grid item>
-                              <AutocompleteField options={yearQuarters} onChange={setQuarter} required label='Quarter' />
+                              <AutocompleteField options={yearQuarters} onChange={setQuarter} value={quarter} label='Quarter' />
                             </Grid>
                             <Grid item>
-                              <YearPicker value={year} onChange={setYear} required />
+                              <YearPicker value={year} onChange={setYear} />
                             </Grid>
                           </Grid>
                         </Grid>

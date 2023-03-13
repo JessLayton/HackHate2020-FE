@@ -1,8 +1,11 @@
 import React from 'react';
-import {
-  Grid, Button, Typography, makeStyles,
-} from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
+
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles({
   welcome: {

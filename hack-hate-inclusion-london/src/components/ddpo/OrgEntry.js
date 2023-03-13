@@ -1,7 +1,11 @@
 import React from 'react';
-import {
-  Button, Divider, Grid, TextField, Typography,
-} from '@material-ui/core';
+
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+
 import { useNavigate } from 'react-router-dom';
 
 import { addOrganisation } from '../../connections/DatabaseService';

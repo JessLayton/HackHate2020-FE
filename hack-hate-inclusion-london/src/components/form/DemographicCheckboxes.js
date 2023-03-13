@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import FormGroup from '@material-ui/core/FormGroup';
 
-import { Typography } from '@material-ui/core';
+import Grid from '@mui/material/Grid';
+import FormGroup from '@mui/material/FormGroup';
+import Typography from '@mui/material/Typography';
+
 import CheckBox from './Checkbox';
 import NumberFieldsGroup from './numberfields/NumberFieldsGroup';
 

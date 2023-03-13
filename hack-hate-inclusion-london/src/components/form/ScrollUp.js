@@ -1,9 +1,9 @@
 import React from 'react';
 
-import FAB from '@material-ui/core/Fab';
-import NavigationIcon from '@material-ui/icons/Navigation';
-import Tooltip from '@material-ui/core/Tooltip';
-import { makeStyles } from '@material-ui/core/styles';
+import FAB from '@mui/material/Fab';
+import NavigationIcon from '@mui/icons-material/Navigation';
+import Tooltip from '@mui/material/Tooltip';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   fab: (show) => ({
