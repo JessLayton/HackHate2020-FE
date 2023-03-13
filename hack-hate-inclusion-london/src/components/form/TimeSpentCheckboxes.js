@@ -11,9 +11,16 @@ import NumberField from './numberfields/NumberField';
 const TimeSpentCheckboxes = ({
   typeOfTimeDataAvailable, setTypeOfTimeDataAvailable, timeSpentNumerical, setTimeSpentNumerical, timeSpentInfo, setTimeSpentInfo,
 }) => {
-  const handleChange = (index, checked) => {
+  const handleChange = (index, checked, key) => {
     const updatedItems = [...typeOfTimeDataAvailable];
     updatedItems[index].isChecked = checked;
+    if (key === 'neither') {
+      updatedItems.filter((info) => info.key !== 'neither').forEach((type) => {
+        type.isChecked = false;
+      });
+    } else {
+      updatedItems.find((info) => info.key === 'neither').isChecked = false;
+    }
     setTypeOfTimeDataAvailable(updatedItems);
   };
 
@@ -24,7 +31,7 @@ const TimeSpentCheckboxes = ({
           label={infoType.label}
           name={infoType.label}
           checked={typeOfTimeDataAvailable[index].isChecked}
-          onChange={(checked) => handleChange(index, checked)}
+          onChange={(checked) => handleChange(index, checked, infoType.key)}
         />
       </FormGroup>
     </Grid>

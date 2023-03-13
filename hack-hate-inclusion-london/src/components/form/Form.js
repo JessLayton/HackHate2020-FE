@@ -18,7 +18,7 @@ import ScrollUp from './ScrollUp';
 import SnackbarStore from '../../snackbar/SnackbarStore';
 import DDPOStore from '../ddpo/DDPOStore';
 
-import ethnicities, { initialisedEthnicities } from '../../resources/ethnicities';
+import { initialisedEthnicities } from '../../resources/ethnicities';
 import referralsAndEnquiries, { initialisedReferralsAndEnquiries } from '../../resources/referralsAndEnquiries';
 import reportingDetails, { initialisedReportingDetails } from '../../resources/reportingDetails';
 import ongoingDetails, { initialisedOngoingDetails } from '../../resources/ongoingDetails';
@@ -26,11 +26,11 @@ import ongoingDetails, { initialisedOngoingDetails } from '../../resources/ongoi
 import supportTypes, { initialisedSupportTypes } from '../../resources/supportTypes';
 import unreportedCases, { initialisedUnreportedCases } from '../../resources/unreportedCases';
 import intersectionalCrimes, { initialisedIntersectionalCrimes } from '../../resources/intersectionalCrime';
-import ageGroups, { initialisedAgeGroups } from '../../resources/ageGroups';
+import { initialisedAgeGroups } from '../../resources/ageGroups';
 import yearQuarters from '../../resources/yearQuarters';
 import impairments, { initialisedImpairments } from '../../resources/impairments';
-import genders, { initialisedGenders } from '../../resources/gender';
-import orientations, { initialisedOrientations } from '../../resources/orientations';
+import { initialisedGenders } from '../../resources/gender';
+import { initialisedOrientations } from '../../resources/orientations';
 import whereDetails, { initialisedWhereDetails } from '../../resources/whereDetails';
 import hateCrime, { initialisedHateCrime } from '../../resources/hateCrime';
 import committedBy, { initialisedCommittedBy } from '../../resources/commitedBy';
@@ -38,10 +38,12 @@ import currentIssues, { initialisedCurrentIssues } from '../../resources/current
 
 import boroughsList from '../../resources/boroughs';
 import timeInfoType from '../../resources/timeInfoType';
+import demographicInfoType from '../../resources/demographicInfoType';
 import ConfirmGDPR from './ConfirmGDPR';
 import DemographicInfo from './DemographicInfo';
 import WaitingList from './WaitingList';
 import TimeSpentCheckboxes from './TimeSpentCheckboxes';
+import DemographicCheckboxes from './DemographicCheckboxes';
 
 const Form = observer(() => {
   const [quarter, setQuarter] = React.useState('');
@@ -58,6 +60,7 @@ const Form = observer(() => {
   const [supportCount, setSupportCount] = React.useState(initialisedSupportTypes);
   const [unreportedCaseCount, setUnreportedCaseCount] = React.useState(initialisedUnreportedCases);
   const [intersectionCrimesCount, setIntersectionalCrimesCount] = React.useState(initialisedIntersectionalCrimes);
+  const [typeOfDemographicDataAvailable, setTypeOfDemographicDataAvailable] = React.useState(demographicInfoType);
   const [ageCount, setAgeCount] = React.useState(initialisedAgeGroups);
   const [ethnicityCount, setEthnicityCount] = React.useState(initialisedEthnicities);
   const [genderCount, setGenderCount] = React.useState(initialisedGenders);
@@ -112,6 +115,7 @@ const Form = observer(() => {
           supportCount,
           unreportedCaseCount,
           intersectionCrimesCount,
+          typeOfDemographicDataAvailable,
           ageCount,
           ethnicityCount,
           genderCount,
@@ -251,6 +255,11 @@ const Form = observer(() => {
                           </Typography>
                         </Grid>
                         <Grid item>
+                          <Typography variant='caption'>
+                            Please only count work carrying over from previous quarters in this small section.
+                          </Typography>
+                        </Grid>
+                        <Grid item>
                           <NumberFieldsGroup inputs={ongoingDetails} value={ongoingCount} onBlur={setOngoingCount} />
                         </Grid>
                       </Grid>
@@ -347,52 +356,24 @@ const Form = observer(() => {
                         </Grid>
                       </Grid>
                     </li>
-                    <Grid item>
-                      <DemographicInfo />
-                    </Grid>
                     <li>
                       <Grid container direction='column' spacing={2}>
                         <Grid item>
-                          <Typography variant='subtitle1'>
-                            Age of victims being supported - Please provide a number
-                          </Typography>
+                          <DemographicInfo />
                         </Grid>
                         <Grid item>
-                          <NumberFieldsGroup inputs={ageGroups} value={ageCount} onBlur={setAgeCount} minValue={0} />
-                        </Grid>
-                      </Grid>
-                    </li>
-                    <li>
-                      <Grid container direction='column' spacing={2}>
-                        <Grid item>
-                          <Typography variant='subtitle1'>
-                            Ethnicity of victims being supported - Please provide a number
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <NumberFieldsGroup inputs={ethnicities} value={ethnicityCount} onBlur={setEthnicityCount} minValue={0} />
-                        </Grid>
-                        <Grid item>
-                          <Divider />
-                        </Grid>
-                      </Grid>
-                    </li>
-                    <li>
-                      <Grid container direction='column' spacing={2}>
-                        <Grid item>
-                          <Typography variant='subtitle1'>
-                            What number of your clients are:
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <ol type='a'>
-                            <li>
-                              <NumberFieldsGroup inputs={orientations} value={orientationsCount} onBlur={setOrientationCount} minValue={0} />
-                            </li>
-                            <li>
-                              <NumberFieldsGroup inputs={genders} value={genderCount} onBlur={setGenderCount} minValue={0} />
-                            </li>
-                          </ol>
+                          <DemographicCheckboxes
+                            typeOfDemographicDataAvailable={typeOfDemographicDataAvailable}
+                            setTypeOfDemographicDataAvailable={setTypeOfDemographicDataAvailable}
+                            ageCount={ageCount}
+                            setAgeCount={setAgeCount}
+                            ethnicityCount={ethnicityCount}
+                            setEthnicityCount={setEthnicityCount}
+                            orientationsCount={orientationsCount}
+                            setOrientationsCount={setOrientationCount}
+                            genderCount={genderCount}
+                            setGenderCount={setGenderCount}
+                          />
                         </Grid>
                         <Grid item>
                           <Divider />
