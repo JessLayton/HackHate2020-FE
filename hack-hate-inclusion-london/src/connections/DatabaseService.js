@@ -12,6 +12,16 @@ const postForm = async (formData) => {
   return success;
 };
 
+const getUserSubmissions = async () => {
+  let response;
+  try {
+    response = await get('/api/form/submissions');
+  } catch (err) {
+    console.error(err);
+  }
+  return response;
+};
+
 const addOrganisation = async (name) => {
   let response;
   try {
@@ -93,7 +103,7 @@ const getSupportProvidedData = async () => {
 };
 
 export {
-  postForm, addOrganisation, getAllOrganisations,
+  postForm, getUserSubmissions, addOrganisation, getAllOrganisations,
   getUnreportedCasesData, getReportingDetailsData, getReferralsOverTimeData,
   getAllReferralsData, getIntersectionalData, getSupportProvidedData,
 };
