@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Grid, Button, Typography, makeStyles,
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
   welcome: {
@@ -11,15 +11,15 @@ const useStyles = makeStyles({
 });
 
 const Welcome = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
 
   const navigateToForm = () => {
-    history.push('/form');
+    navigate('/form');
   };
 
   const navigateToDash = () => {
-    history.push('/dash');
+    navigate('/dash');
   };
 
   return (
@@ -37,7 +37,7 @@ const Welcome = () => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid container item direction='row' spacing={6} justify='center'>
+      <Grid container item direction='row' spacing={6} justifyContent='center'>
         <Grid item>
           <Button variant='contained' color='primary' onClick={navigateToForm}>
             Go to form
