@@ -25,6 +25,15 @@ const getQuarterValue = (quarter) => {
   }
 };
 
+const getCurrentDate = () => {
+  const today = new Date();
+  const options = {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+  };
+  const formattedDate = today.toLocaleDateString(undefined, options);
+  return formattedDate;
+};
+
 const constructForm = async (
   quarter,
   year,
@@ -54,6 +63,7 @@ const constructForm = async (
   keyIssuesPara,
   emotionalImpactCaseStudy,
   outcomesCaseStudy,
+  isDraft,
 ) => {
   const formData = {
     quarter: getQuarterValue(quarter),
@@ -84,6 +94,10 @@ const constructForm = async (
     keyIssuesPara,
     emotionalImpactCaseStudy,
     outcomesCaseStudy,
+    submissionDetails: {
+      lastUpdated: getCurrentDate(),
+      isDraft,
+    },
   };
   return postForm(formData);
 };

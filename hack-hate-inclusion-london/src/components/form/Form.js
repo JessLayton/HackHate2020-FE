@@ -92,6 +92,7 @@ const Form = observer(() => {
   };
 
   const handleSubmit = async (event) => {
+    const isDraft = false;
     event.preventDefault();
     const formIsValid = validateForm();
     if (gdprConfirmed === 'no') {
@@ -128,6 +129,7 @@ const Form = observer(() => {
           keyIssuesPara,
           emotionalImpactCS,
           outcomesCS,
+          isDraft,
         );
         if (success) {
           navigate('/thankyou');
